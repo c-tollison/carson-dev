@@ -1,0 +1,19 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    padding-bottom: 16px;
+}
+
+.footer a {
+    transform: scale(0.33);
+}
+
+.footer svg {
+    cursor: pointer;
+}

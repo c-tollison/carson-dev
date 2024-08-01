@@ -1,11 +1,23 @@
 import { useState } from "react";
 import "./nav-bar.css";
 
-export default function NavBar() {
+export interface NavBarProps {
+    handleScroll: () => void;
+}
+
+export default function NavBar({ handleScroll }: NavBarProps) {
     const [sideNavBar, setSideNavBar] = useState(false);
 
     function showSideNavBar() {
         setSideNavBar(!sideNavBar);
+        handleScroll();
+    }
+
+    function route(path: string) {
+        return (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+            event.stopPropagation();
+            console.log(path);
+        };
     }
 
     return (
@@ -39,7 +51,10 @@ export default function NavBar() {
                     </li>
                 </ul>
                 {sideNavBar && (
-                    <ul className="side-navbar-buttons">
+                    <ul
+                        className="side-navbar-buttons"
+                        onClick={showSideNavBar}
+                    >
                         <svg
                             onClick={showSideNavBar}
                             xmlns="http://www.w3.org/2000/svg"
@@ -50,13 +65,13 @@ export default function NavBar() {
                         >
                             <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                         </svg>
-                        <li>
+                        <li onClick={route("experience")}>
                             <a href="#">Experience</a>
                         </li>
-                        <li>
+                        <li onClick={route("contact")}>
                             <a href="#">Contact</a>
                         </li>
-                        <li>
+                        <li onClick={route("articles")}>
                             <a href="#">Articles</a>
                         </li>
                     </ul>

@@ -1,0 +1,31 @@
+.carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 50vh;
+    overflow: hidden;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 650px) {
+    .carousel {
+        flex-direction: column;
+        height: 100%;
+        padding: 0 36px;
+        scroll-snap-type: y mandatory;
+    }
+}

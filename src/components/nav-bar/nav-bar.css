@@ -1,10 +1,15 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #1c1c1e;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 32px 0;
-    position: sticky;
-    top: 0;
+    padding: 32px 48px;
 }
 
 .navbar h1 {
@@ -46,11 +51,9 @@
     top: 0;
     right: 0;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     z-index: 999;
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,7 +64,12 @@
 .side-navbar-buttons li {
     height: 125px;
     width: 100%;
-    border: 1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.side-navbar-buttons li:hover {
+    background-color: #ff6f61;
 }
 
 .side-navbar-buttons li:first-child {
@@ -93,7 +101,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 650px) {
     .hide-on-mobile {
         display: none;
     }
