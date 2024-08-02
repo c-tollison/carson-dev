@@ -1,16 +1,20 @@
-import Project, { ProjectProps } from "./project/project";
+import Project from "./project/project";
 import "./projects.css";
 
 export default function Projects() {
-    const projects: ProjectProps[] = [
-        { title: "Giyu Tomioka", imgPath: "giyu.jpg" },
-        { title: "Mitsuri Kanroji", imgPath: "mitsuri.jpg" },
-        { title: "Obanai Iguro", imgPath: "obanai.jpg" },
-        { title: "Sanemi Shinazugawa", imgPath: "sanemi.jpg" },
+    const projects = [
+        {
+            title: "Eagle Building Company",
+            imgPath: "eagle-bid.png",
+        },
+        {
+            title: "Unbeatable AI",
+            imgPath: "unbeatable-ai.png",
+        },
     ];
 
     return (
-        <section className="carousel-wrapper">
+        <>
             <div className="carousel">
                 {projects.map((project, index) => (
                     <Project
@@ -20,6 +24,6 @@ export default function Projects() {
                     />
                 ))}
             </div>
-        </section>
+        </>
     );
 }

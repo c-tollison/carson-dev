@@ -1,16 +1,17 @@
 import { useState } from "react";
 import "./nav-bar.css";
 
-export interface NavBarProps {
-    handleScroll: () => void;
-}
-
-export default function NavBar({ handleScroll }: NavBarProps) {
+export default function NavBar() {
     const [sideNavBar, setSideNavBar] = useState(false);
 
     function showSideNavBar() {
-        setSideNavBar(!sideNavBar);
-        handleScroll();
+        document.body.style.overflow = "hidden";
+        setSideNavBar(true);
+    }
+
+    function hideSideNavBar() {
+        document.body.style.overflow = "auto";
+        setSideNavBar(false);
     }
 
     function route(path: string) {
@@ -53,10 +54,10 @@ export default function NavBar({ handleScroll }: NavBarProps) {
                 {sideNavBar && (
                     <ul
                         className="side-navbar-buttons"
-                        onClick={showSideNavBar}
+                        onClick={hideSideNavBar}
                     >
                         <svg
-                            onClick={showSideNavBar}
+                            onClick={hideSideNavBar}
                             xmlns="http://www.w3.org/2000/svg"
                             height="26px"
                             viewBox="0 -960 960 960"

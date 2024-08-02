@@ -24,6 +24,7 @@
 }
 
 .projectHolder img:hover {
+    cursor: pointer;
     opacity: 0.5;
 }
 
@@ -33,6 +34,7 @@
         width: 100%;
         height: auto;
         flex-direction: column;
+        text-align: center;
     }
 
     .projectHolder:hover {
