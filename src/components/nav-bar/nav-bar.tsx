@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./nav-bar.css";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
     const [sideNavBar, setSideNavBar] = useState(false);
@@ -25,19 +26,19 @@ export default function NavBar() {
         <header>
             <nav className="navbar">
                 <h1>
-                    <a href="#">
+                    <Link to={"/"}>
                         Carson<span className="accent">-dev</span>
-                    </a>
+                    </Link>
                 </h1>
                 <ul className="navbar-buttons">
                     <li className="hide-on-mobile">
-                        <a href="#">Experience</a>
+                        <Link to={"experience"}>Experience</Link>
                     </li>
                     <li className="hide-on-mobile">
-                        <a href="#">Contact</a>
+                        <Link to={"contact"}>Contact</Link>
                     </li>
                     <li className="hide-on-mobile">
-                        <a href="#">Articles</a>
+                        <Link to={"articles"}>Articles</Link>
                     </li>
                     <li className="menu-button" onClick={showSideNavBar}>
                         <svg
