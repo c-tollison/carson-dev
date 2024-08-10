@@ -28,7 +28,7 @@ export default function Projects() {
         },
         {
             title: "Unbeatable AI",
-            repoLink: "https://github.com/c-tollison/unbeatable-ai",
+            repoLink: "https://c-tollison.github.io/unbeatable-ai/",
             imgPath: "unbeatable-ai.png",
             description: [
                 "A web application for playing Tic-Tac-Toe, developed to showcase the minimax algorithm. This algorithm, a recursive strategy, is employed to determine the optimal move for a player, thereby creating an unbeatable AI opponent for the game.",

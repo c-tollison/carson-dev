@@ -15,13 +15,6 @@ export default function NavBar() {
         setSideNavBar(false);
     }
 
-    function route(path: string) {
-        return (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-            event.stopPropagation();
-            console.log(path);
-        };
-    }
-
     return (
         <header>
             <nav className="navbar">
@@ -67,15 +60,15 @@ export default function NavBar() {
                         >
                             <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                         </svg>
-                        <li onClick={route("experience")}>
-                            <a href="#">Experience</a>
-                        </li>
-                        <li onClick={route("contact")}>
-                            <a href="#">Contact</a>
-                        </li>
-                        <li onClick={route("articles")}>
-                            <a href="#">Articles</a>
-                        </li>
+                        <Link to={"experience"} className="link">
+                            <li>Experience</li>
+                        </Link>
+                        <Link to={"contact"} className="link">
+                            <li>Contact</li>
+                        </Link>
+                        <Link to={"articles"} className="link">
+                            <li>Articles</li>
+                        </Link>
                     </ul>
                 )}
             </nav>
