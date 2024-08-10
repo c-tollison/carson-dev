@@ -35,10 +35,12 @@
         height: auto;
         flex-direction: column;
         text-align: center;
+        border-radius: 8px;
+        padding: 0;
     }
 
     .projectHolder:hover {
-        width: 100%;
+        width: 110%;
     }
 
     .projectHolder img {

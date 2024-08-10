@@ -138,13 +138,12 @@ table {
     background-color: #1c1c1e;
     min-height: 100vh;
     height: 100%;
-    width: 100vw;
     color: #f0f0f0;
     font-family: "FuturaMedium", sans-serif;
     letter-spacing: 0.05rem;
     position: relative;
-    padding-bottom: 64px;
     line-height: 1.5;
+    padding: 32px 48px 64px 48px;
 }
 
 .accent {
