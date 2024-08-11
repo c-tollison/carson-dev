@@ -133,9 +133,12 @@ table {
     box-sizing: border-box;
 }
 
+body {
+    background-color: #1c1c1e;
+}
+
 #root {
     box-sizing: border-box;
-    background-color: #1c1c1e;
     min-height: 100vh;
     height: 100%;
     color: #f0f0f0;
