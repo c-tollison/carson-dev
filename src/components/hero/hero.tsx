@@ -7,7 +7,7 @@ export default function Hero() {
                 Carson <span className="accent">Tollison</span>
             </h1>
             <h2 className="hero-description">Software Engineer</h2>
-            <a href="mailto:tollisoncarson@example.com">
+            <a href="mailto:tollisoncarson@gmail.com">
                 <button className="contact-button">Contact Me</button>
             </a>
         </section>
