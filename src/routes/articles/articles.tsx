@@ -1,3 +1,3 @@
 export default function Articles() {
-    return <>articles</>;
+    return <div className="center">Building 🛠️</div>;
 }

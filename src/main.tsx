@@ -5,7 +5,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Dashboard from "./routes/dashboard/dashboard";
 import Experience from "./routes/experience/experience";
 import Root from "./routes/root";
-import Contact from "./routes/contact/contact";
 import Articles from "./routes/articles/articles";
 
 const router = createBrowserRouter([
@@ -20,10 +19,6 @@ const router = createBrowserRouter([
             {
                 path: "experience",
                 Component: Experience,
-            },
-            {
-                path: "contact",
-                Component: Contact,
             },
             {
                 path: "articles",

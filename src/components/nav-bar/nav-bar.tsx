@@ -28,9 +28,6 @@ export default function NavBar() {
                         <Link to={"experience"}>Experience</Link>
                     </li>
                     <li className="hide-on-mobile">
-                        <Link to={"contact"}>Contact</Link>
-                    </li>
-                    <li className="hide-on-mobile">
                         <Link to={"articles"}>Articles</Link>
                     </li>
                     <li className="menu-button" onClick={showSideNavBar}>
@@ -62,9 +59,6 @@ export default function NavBar() {
                         </svg>
                         <Link to={"experience"} className="link">
                             <li>Experience</li>
-                        </Link>
-                        <Link to={"contact"} className="link">
-                            <li>Contact</li>
                         </Link>
                         <Link to={"articles"} className="link">
                             <li>Articles</li>

@@ -27,7 +27,7 @@ export default function WorkExperience({
             </div>
             <ul>
                 {details.map((detail, detailIndex) => (
-                    <li key={detailIndex}>{detail}</li>
+                    <li key={`${jobTitle}-${detailIndex}`}>{detail}</li>
                 ))}
             </ul>
         </div>

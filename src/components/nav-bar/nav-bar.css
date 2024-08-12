@@ -10,6 +10,8 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 32px;
+    height: 40px;
+    padding: 32px 0px;
 }
 
 .navbar h1 {
@@ -103,15 +105,13 @@ header {
 }
 
 @media (max-width: 650px) {
-    .navbar {
-        height: 40px;
-    }
-
     .hide-on-mobile {
         display: none;
     }
 
     .menu-button {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

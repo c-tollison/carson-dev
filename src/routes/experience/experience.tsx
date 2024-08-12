@@ -7,20 +7,21 @@ export default function Experience() {
     const workExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: "ChiroHD",
-            jobTitle: "Software Engineer Intern",
+            jobTitle: "Software Engineer",
             location: "Remote",
-            date: "Nov '21 - Present",
+            date: "Nov '21 - May '22, Aug '22 - May '23, Aug '23 - Present",
             details: [
                 "Enhanced EOB processing by redesigning the ERA parser to leverage S3 triggers for multi-EOB handling and auto-populating dashboards, reducing manual entry by 80% and expediting payment processing.",
                 "Led the integration of end-to-end testing with Cypress into CI/CD pipelines, cutting manual testing by 50% and accelerating release cycles by 30%.",
                 "Integrated Twilio opt-in messaging and developed a robust texting environment, doubling testing efficiency, ensuring government compliance, and streamlining communication.",
+                "Contributed to key projects across multiple work periods, balancing academic development with professional experience.",
             ],
         },
         {
             companyOrProjectName: "Amazon",
             jobTitle: "Software Development Engineer Intern",
             location: "Seattle, WA",
-            date: "May - Aug '22 & '23",
+            date: "May - Aug '22, May - Aug '23",
             details: [
                 "Engineered scalable automation solutions using Python and Java, enhancing workflow efficiency by 40% and improving system reusability across multiple teams.",
                 "Utilized AWS services (Lambda, SQS, DynamoDB) to build and optimize a real-time data processing project, ensuring consistent deployments with AWS CDK.",
@@ -47,24 +48,26 @@ export default function Experience() {
     return (
         <div className="experience-container">
             <h2>Work Experience</h2>
-            {workExperience.map((job) => (
+            {workExperience.map((job, index) => (
                 <WorkExperience
                     companyOrProjectName={job.companyOrProjectName}
                     jobTitle={job.jobTitle}
                     location={job.location}
                     date={job.date}
                     details={job.details}
+                    key={index}
                 />
             ))}
 
             <h2>Project Experience</h2>
-            {projectExperience.map((project) => (
+            {projectExperience.map((project, index) => (
                 <WorkExperience
                     companyOrProjectName={project.companyOrProjectName}
                     jobTitle={project.jobTitle}
                     location={project.location}
                     date={project.date}
                     details={project.details}
+                    key={index}
                 />
             ))}
         </div>
