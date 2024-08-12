@@ -10,10 +10,15 @@
     padding-bottom: 16px;
 }
 
-.footer a {
+.icon {
     transform: scale(0.33);
 }
 
 .footer svg {
     cursor: pointer;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
 }

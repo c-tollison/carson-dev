@@ -104,7 +104,7 @@ header {
 
 @media (max-width: 650px) {
     .navbar {
-        height: 85px;
+        height: 40px;
     }
 
     .hide-on-mobile {
