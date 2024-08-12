@@ -1,13 +1,16 @@
+resource "aws_cloudfront_origin_access_control" "s3" {
+    name                              = "S3 OAC"
+    description                       = "S3 Origin Access Control"
+    origin_access_control_origin_type = "s3"
+    signing_behavior                  = "always"
+    signing_protocol                  = "sigv4"
+}
+
 resource "aws_cloudfront_distribution" "subdomain" {
     origin {
-        domain_name = var.sub-domain-regional-domain-name
-        origin_id   = "S3-${var.static-app-domain}"
-        custom_origin_config {
-            http_port              = 80
-            https_port             = 443
-            origin_protocol_policy = "http-only"
-            origin_ssl_protocols   = ["TLSv1.2"]
-        }
+        domain_name             = var.sub-domain-regional-domain-name
+        origin_id               = "S3-${var.static-app-domain}"
+        origin_access_control_id = aws_cloudfront_origin_access_control.s3.id
     }
 
     enabled             = true
@@ -52,14 +55,9 @@ resource "aws_cloudfront_distribution" "subdomain" {
 
 resource "aws_cloudfront_distribution" "root_domain" {
     origin {
-        domain_name = var.root-regional-domain-name
-        origin_id   = "S3-${var.root-domain}"
-        custom_origin_config {
-            http_port              = 80
-            https_port             = 443
-            origin_protocol_policy = "http-only"
-            origin_ssl_protocols   = ["TLSv1.2"]
-        }
+        domain_name                 = var.root-regional-domain-name
+        origin_id                   = "S3-${var.root-domain}"
+        origin_access_control_id    = aws_cloudfront_origin_access_control.s3.id
     }
 
     enabled         = true
