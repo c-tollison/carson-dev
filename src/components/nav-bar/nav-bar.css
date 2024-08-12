@@ -103,6 +103,10 @@ header {
 }
 
 @media (max-width: 650px) {
+    .navbar {
+        height: 85px;
+    }
+
     .hide-on-mobile {
         display: none;
     }
