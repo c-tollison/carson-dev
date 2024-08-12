@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "subdomain" {
     origin {
-        domain_name = var.sub-domain-bucket-website-endpoint
+        domain_name = var.sub-domain-regional-domain-name
         origin_id   = "S3-${var.static-app-domain}"
         custom_origin_config {
             http_port              = 80
@@ -46,13 +46,13 @@ resource "aws_cloudfront_distribution" "subdomain" {
     }
 
     tags = {
-        Name = "${var.project-name}-subdomain-cloudfront"
+        Name = "${var.project-name}-sub-domain-cloudfront"
     }
 }
 
 resource "aws_cloudfront_distribution" "root_domain" {
     origin {
-        domain_name = var.root-domain-bucket-website-endpoint
+        domain_name = var.root-regional-domain-name
         origin_id   = "S3-${var.root-domain}"
         custom_origin_config {
             http_port              = 80

@@ -1,5 +1,5 @@
-variable sub-domain-bucket-website-endpoint {}
-variable root-domain-bucket-website-endpoint {}
+variable sub-domain-regional-domain-name {}
+variable root-regional-domain-name {}
 variable static-app-domain {}
 variable root-domain {}
 variable certificate-arn {}

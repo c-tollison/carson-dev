@@ -32,3 +32,9 @@ variable "app-subdomain" {
     description = "Sub-domain for the application"
     default     = "www" 
 }
+
+variable "profile" {
+    type        = string
+    description = "AWS account for deployment"
+    default     = "AdministratorAccess-683259080346" 
+}

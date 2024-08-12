@@ -29,7 +29,7 @@ resource "aws_s3_bucket_website_configuration" "root_domain" {
 
     redirect_all_requests_to {
         host_name   = var.static-app-domain
-        protocol    = "HTTPS"
+        protocol    = "https"
     }
 }
 

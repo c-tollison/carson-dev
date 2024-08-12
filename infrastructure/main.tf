@@ -12,7 +12,7 @@ module "acm" {
 module "route53" {
     source                              = "./modules/route53"
 
-    domain-validation-options           = module.acm.domain_validation_options
+    domain-validation-options           = module.acm.domain-validation-options
     route53-zone-id                     = var.route53-zone-id
     domain-name                         = var.domain-name
     cloudfront-subdomain-domain-name    = module.cloudfront.subdomain-distribution-domain-name
@@ -34,12 +34,12 @@ module "s3" {
 }
 
 module "cloudfront" {
-    source                              = "./modules/cloudfront"
+    source                          = "./modules/cloudfront"
     
-    sub-domain-bucket-website-endpoint  = module.s3.sub-domain-bucket-website-endpoint
-    root-domain-bucket-website-endpoint = module.s3.root-domain-bucket-website-endpoint
-    static-app-domain                   = local.static-app-domain
-    root-domain                         = var.domain-name
-    certificate-arn                     = module.acm.arn
-    project-name                        = var.project-name
+    sub-domain-regional-domain-name = module.s3.sub-domain-regional-domain-name
+    root-regional-domain-name       = module.s3.root-regional-domain-name
+    static-app-domain               = local.static-app-domain
+    root-domain                     = var.domain-name
+    certificate-arn                 = module.acm.arn
+    project-name                    = var.project-name
 }
