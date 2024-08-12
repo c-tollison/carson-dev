@@ -1,1 +1,3 @@
-// Setup the root provider
+provider "aws" {
+    region = var.region
+}
