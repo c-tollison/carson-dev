@@ -1,5 +1,5 @@
 variable sub-domain-regional-domain-name {}
-variable root-regional-domain-name {}
+variable root-domain-website-endpoint {}
 variable static-app-domain {}
 variable root-domain {}
 variable certificate-arn {}

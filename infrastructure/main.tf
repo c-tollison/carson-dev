@@ -37,7 +37,7 @@ module "cloudfront" {
     source                          = "./modules/cloudfront"
     
     sub-domain-regional-domain-name = module.s3.sub-domain-regional-domain-name
-    root-regional-domain-name       = module.s3.root-regional-domain-name
+    root-domain-website-endpoint       = module.s3.root-domain-website-endpoint
     static-app-domain               = local.static-app-domain
     root-domain                     = var.domain-name
     certificate-arn                 = module.acm.arn
