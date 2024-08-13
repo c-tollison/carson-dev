@@ -11,7 +11,7 @@ export default function Experience() {
             location: "Remote",
             date: "Nov '21 - Present",
             details: [
-                "Enhanced EOB processing using SFTP file servers and S3 triggers, reducing manual entry by 80% and expediting payment processing. Bringing insurance processing to over 700 offices.",
+                "Enhanced EOB process using SFTP file servers and S3 triggers, reducing manual entry by 80% and expediting insurance payment processing for over 700 offices.",
                 "Led integration of end-to-end testing, cutting manual testing by 50% and accelerating release cycles by 30% using CircleCi for CI/CD and Cypress for testing.",
                 "Integrated Twilio opt-in messaging and developed a robust texting environment, doubling testing efficiency, ensuring government compliance, and streamlining communication.",
                 "Developed healthcare management software using TypeScript, Node.js, Angular, and PostgreSQL.",
