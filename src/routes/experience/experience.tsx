@@ -4,44 +4,64 @@ import WorkExperience, {
 import "./experience.css";
 
 export default function Experience() {
-    const workExperience: WorkExperienceProps[] = [
+    const workExperience = [
         {
             companyOrProjectName: "ChiroHD",
             jobTitle: "Software Engineer",
             location: "Remote",
-            date: "Nov '21 - Present",
+            date: "Dec 2023 - Present",
             details: [
-                "Enhanced EOB process using SFTP file servers and S3 triggers, reducing manual entry by 80% and expediting insurance payment processing for over 700 offices.",
-                "Led integration of end-to-end testing, cutting manual testing by 50% and accelerating release cycles by 30% using CircleCi for CI/CD and Cypress for testing.",
-                "Integrated Twilio opt-in messaging and developed a robust texting environment, doubling testing efficiency, ensuring government compliance, and streamlining communication.",
-                "Developed healthcare management software using TypeScript, Node.js, Angular, and PostgreSQL.",
-                "Implemented and maintained AWS infrastructure, leveraging services like Lambda, S3, and RDS.",
+                "Engineered an SFTP and S3-based EOB process, reducing manual entry by 80% and accelerating payment processing for 700+ offices",
+                "Implemented end-to-end testing with CircleCI and Cypress, cutting manual testing by 50% and speeding up release cycles by 30%",
+                "Developed repeatable database cloning system using PostgreSQL and bash scripts for efficient testing",
+                "Integrated Twilio opt-in messaging, doubling testing efficiency and ensuring compliance",
             ],
         },
         {
             companyOrProjectName: "Amazon",
             jobTitle: "Software Development Engineer Intern",
             location: "Seattle, WA",
-            date: "May - Aug '22 & '23",
+            date: "May - Aug 2023",
             details: [
-                "Engineered scalable automation solutions using Python and Java, enhancing workflow efficiency by 40% and improving system reusability across multiple teams.",
-                "Utilized AWS services (Lambda, SQS, DynamoDB) to build and optimize a real-time data processing project, ensuring consistent deployments with AWS CDK.",
-                "Designed memory-efficient file reader abstractions, eliminating manual entry errors and increasing processing speed by 25%.",
+                "Contributed to Automated Profitability Management team's application, optimizing profitability for millions of ASINs",
+                "Architected an event-driven solution with AWS Lambda, S3, and DynamoDB, expediting clawback recommendations for millions of ASINs",
+                "Created memory-efficient file reader abstraction in Java, increasing processing speed by 25%",
+            ],
+        },
+        {
+            companyOrProjectName: "Amazon",
+            jobTitle: "Software Development Engineer Intern",
+            location: "Seattle, WA",
+            date: "May - Aug 2022",
+            details: [
+                "Developed file ingestion component for automating hourly associate scheduling",
+                "Implemented event-driven solution with AWS Lambda, SQS, and S3, utilizing AWS CDK for consistent deployments",
+                "Automated parsing of large JSON files using Python, eliminating manual scheduling tasks",
+            ],
+        },
+        {
+            companyOrProjectName: "ChiroHD",
+            jobTitle: "Software Engineer Intern",
+            location: "Remote",
+            date: "Nov 2021 - Dec 2023",
+            details: [
+                "Contributed to a custom paperwork builder for personalized form distribution via system triggers and email, collecting patient data efficiently",
+                "Developed healthcare management software using TypeScript, Node.js, Angular, and PostgreSQL",
+                "Implemented and maintained AWS infrastructure (API Gateway, Lambda, S3, RDS) for scalable healthcare applications",
             ],
         },
     ];
 
-    const projectExperience: WorkExperienceProps[] = [
+    const projectExperience = [
         {
-            companyOrProjectName:
-                "Bid Creator Web App - Eagle Building Company",
+            companyOrProjectName: "Bid Creator Web App",
             jobTitle: "Full-stack Developer, Scrum Manager",
             location: "Clemson, SC",
-            date: "Aug '23 - Dec '23",
+            date: "Aug 2023 - Dec 2023",
             details: [
-                "Led front-end development and Scrum processes for a 5-person team, designing the UI with Figma.",
-                "Developed a web app for creating contracting bid templates using React and Python/Flask, streamlining bid creation by 40%.",
-                "Deployed front-end on AWS Elastic Beanstalk and back-end serverless via Lambda and Zappa, with secure login through AWS Cognito.",
+                "Led 5-person team in front-end development and Scrum management, designing UI in Figma",
+                "Built React/Python Flask web app for contracting bid templates and inventory management, reducing bid creation time by 70%",
+                "Deployed on AWS (Elastic Beanstalk, Lambda, Zappa) with Cognito authentication, optimizing for low infrastructure costs",
             ],
         },
     ];
