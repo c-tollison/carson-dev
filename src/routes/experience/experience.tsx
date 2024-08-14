@@ -4,7 +4,7 @@ import WorkExperience, {
 import "./experience.css";
 
 export default function Experience() {
-    const workExperience = [
+    const workExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: "ChiroHD",
             jobTitle: "Software Engineer",
@@ -52,11 +52,11 @@ export default function Experience() {
         },
     ];
 
-    const projectExperience = [
+    const projectExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: "Bid Creator Web App",
             jobTitle: "Full-stack Developer, Scrum Manager",
-            location: "Clemson, SC",
+            location: "", // Location was not specified in the LaTeX
             date: "Aug 2023 - Dec 2023",
             details: [
                 "Led 5-person team in front-end development and Scrum management, designing UI in Figma",
