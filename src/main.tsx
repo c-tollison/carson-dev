@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Dashboard from "./routes/dashboard/dashboard";
-import Experience from "./routes/experience/experience";
-import Root from "./routes/root";
-import Articles from "./routes/articles/articles";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Dashboard from './routes/dashboard/dashboard';
+import Experience from './routes/experience/experience';
+import Root from './routes/root';
+import Articles from './routes/articles/articles';
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: '/',
         Component: Root,
         children: [
             {
@@ -17,19 +17,19 @@ const router = createBrowserRouter([
                 Component: Dashboard,
             },
             {
-                path: "experience",
+                path: 'experience',
                 Component: Experience,
             },
             {
-                path: "articles",
+                path: 'articles',
                 Component: Articles,
             },
         ],
     },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <RouterProvider router={router} />
-    </React.StrictMode>
+    </React.StrictMode>,
 );

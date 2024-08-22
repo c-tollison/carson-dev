@@ -1,9 +1,9 @@
-import { PointMaterial, Points } from "@react-three/drei";
-import { PointsProps, useFrame } from "@react-three/fiber";
-import { random } from "maath";
-import { useRef, useState } from "react";
-import * as THREE from "three";
-import { GroupProps } from "@react-three/fiber";
+import { PointMaterial, Points } from '@react-three/drei';
+import { PointsProps, useFrame } from '@react-three/fiber';
+import { random } from 'maath';
+import { useRef, useState } from 'react';
+import * as THREE from 'three';
+import { GroupProps } from '@react-three/fiber';
 
 export function Stars(props: GroupProps) {
     const ref = useRef<THREE.Points>(null);
@@ -11,7 +11,7 @@ export function Stars(props: GroupProps) {
         () =>
             random.inSphere(new Float32Array(7000), {
                 radius: 2.5,
-            }) as Float32Array
+            }) as Float32Array,
     );
 
     useFrame((_, delta) => {
@@ -31,7 +31,7 @@ export function Stars(props: GroupProps) {
             >
                 <PointMaterial
                     transparent
-                    color="#ffa0e0"
+                    color='#ffa0e0'
                     size={0.005}
                     sizeAttenuation={true}
                     depthWrite={false}

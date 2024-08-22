@@ -38,7 +38,7 @@
 }
 
 .experience-item li::before {
-    content: "•";
+    content: '•';
     color: #f0f0f0;
     font-weight: bold;
     display: inline-block;

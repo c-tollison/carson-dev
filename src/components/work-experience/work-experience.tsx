@@ -1,4 +1,4 @@
-import "./work-experience.css";
+import './work-experience.css';
 
 export interface WorkExperienceProps {
     companyOrProjectName: string;
@@ -16,11 +16,14 @@ export default function WorkExperience({
     details,
 }: WorkExperienceProps) {
     return (
-        <div key={companyOrProjectName} className="experience-item">
-            <div className="experience-header">
+        <div
+            key={companyOrProjectName}
+            className='experience-item'
+        >
+            <div className='experience-header'>
                 <h3>{companyOrProjectName}</h3>
-                <p className="job-title">{jobTitle}</p>
-                <p className="location-date">
+                <p className='job-title'>{jobTitle}</p>
+                <p className='location-date'>
                     <span>{location}</span>
                     <span>{date}</span>
                 </p>

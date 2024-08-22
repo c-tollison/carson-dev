@@ -1,6 +1,6 @@
-import Hero from "../../components/hero/hero";
-import Projects from "../../components/projects/projects";
-import Footer from "../../components/footer/footer";
+import Hero from '../../components/hero/hero';
+import Projects from '../../components/projects/projects';
+import Footer from '../../components/footer/footer';
 
 function Dashboard() {
     return (

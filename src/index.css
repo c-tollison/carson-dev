@@ -1,7 +1,6 @@
 @font-face {
-    font-family: "FuturaMedium";
-    src: local("futura-medium-bt"),
-        url("./assets/fonts/FuturaMedium/futura-medium-bt.ttf");
+    font-family: 'FuturaMedium';
+    src: local('futura-medium-bt'), url('./assets/fonts/FuturaMedium/futura-medium-bt.ttf');
 }
 
 html,
@@ -121,7 +120,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
+    content: '';
     content: none;
 }
 table {
@@ -138,7 +137,7 @@ table {
     min-height: 100vh;
     height: 100%;
     color: #f0f0f0;
-    font-family: "FuturaMedium", sans-serif;
+    font-family: 'FuturaMedium', sans-serif;
     letter-spacing: 0.05rem;
     position: relative;
     line-height: 1.5;
