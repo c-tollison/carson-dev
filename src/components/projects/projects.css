@@ -8,6 +8,7 @@
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    flex: 1;
 }
 
 .carousel::-webkit-scrollbar {

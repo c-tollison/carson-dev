@@ -52,23 +52,8 @@ export default function Experience() {
         },
     ];
 
-    const projectExperience: WorkExperienceProps[] = [
-        {
-            companyOrProjectName: "Bid Creator Web App",
-            jobTitle: "Full-stack Developer, Scrum Manager",
-            location: "", // Location was not specified in the LaTeX
-            date: "Aug 2023 - Dec 2023",
-            details: [
-                "Led 5-person team in front-end development and Scrum management, designing UI in Figma",
-                "Built React/Python Flask web app for contracting bid templates and inventory management, reducing bid creation time by 70%",
-                "Deployed on AWS (Elastic Beanstalk, Lambda, Zappa) with Cognito authentication, optimizing for low infrastructure costs",
-            ],
-        },
-    ];
-
     return (
         <div className="experience-container">
-            <h2>Work Experience</h2>
             {workExperience.map((job, index) => (
                 <WorkExperience
                     companyOrProjectName={job.companyOrProjectName}
@@ -76,18 +61,6 @@ export default function Experience() {
                     location={job.location}
                     date={job.date}
                     details={job.details}
-                    key={index}
-                />
-            ))}
-
-            <h2>Project Experience</h2>
-            {projectExperience.map((project, index) => (
-                <WorkExperience
-                    companyOrProjectName={project.companyOrProjectName}
-                    jobTitle={project.jobTitle}
-                    location={project.location}
-                    date={project.date}
-                    details={project.details}
                     key={index}
                 />
             ))}

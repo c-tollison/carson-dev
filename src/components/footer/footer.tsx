@@ -24,10 +24,10 @@ export default function Footer() {
                 target="_blank"
                 className="center"
             >
-                About this site
+                This site
                 <svg
-                    width="26px"
-                    height="26px"
+                    width="16px"
+                    height="16px"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

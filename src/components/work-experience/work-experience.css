@@ -1,7 +1,8 @@
 .experience-item {
     margin-bottom: 30px;
-    border-left: 3px solid #ff6f61;
-    padding-left: 20px;
+    padding: 20px;
+    background-color: #1c1c1ebe;
+    border-radius: 16px;
 }
 
 .experience-header {

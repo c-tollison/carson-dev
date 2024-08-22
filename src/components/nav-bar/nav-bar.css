@@ -2,16 +2,17 @@ header {
     position: sticky;
     top: 0;
     z-index: 999;
-    background-color: #1c1c1e;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
     height: 40px;
-    padding: 32px 0px;
+    padding: 28px;
+    background-color: #1c1c1e;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .navbar h1 {

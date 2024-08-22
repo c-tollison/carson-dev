@@ -17,6 +17,7 @@ export default function NavBar() {
 
     return (
         <header>
+            <nav className="blur"></nav>
             <nav className="navbar">
                 <h1>
                     <Link to={"/"}>
