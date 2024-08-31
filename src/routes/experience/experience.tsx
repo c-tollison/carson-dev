@@ -9,10 +9,11 @@ export default function Experience() {
             location: 'Remote',
             date: 'Dec 2023 - Present',
             details: [
-                'Engineered an SFTP and S3-based EOB process, reducing manual entry by 80% and accelerating payment processing for 700+ offices',
-                'Implemented end-to-end testing with CircleCI and Cypress, cutting manual testing by 50% and speeding up release cycles by 30%',
-                'Developed repeatable database cloning system using PostgreSQL and bash scripts for efficient testing',
-                'Integrated Twilio opt-in messaging, doubling testing efficiency and ensuring compliance',
+                'Developed an automated SFTP and S3-based system to parse insurance EOBs (X12), speeding up payment processing for 800+ chiropractic offices',
+                'Built a full-stack app for managing AWS environments using RDS, Lambda, React, and Terraform, improving deployment efficiency',
+                'Implemented E2E testing with CircleCi and Cypress, reducing manual testing and accelerating release cycles',
+                'Utilized Docker to create reproducible, stateless testing environments with seed databases',
+                'Integrated Twilio for HIPAA-compliant messaging with patient opt-in features',
             ],
         },
         {
@@ -43,9 +44,9 @@ export default function Experience() {
             location: 'Remote',
             date: 'Nov 2021 - Dec 2023',
             details: [
-                'Contributed to a custom paperwork builder for personalized form distribution via system triggers and email, collecting patient data efficiently',
-                'Developed healthcare management software using TypeScript, Node.js, Angular, and PostgreSQL',
-                'Implemented and maintained AWS infrastructure (API Gateway, Lambda, S3, RDS) for scalable healthcare applications',
+                'Contributed to a paperwork builder for efficient patient data collection via system triggers and email',
+                'Developed healthcare management software with TypeScript, Node.js, Angular, and PostgreSQL',
+                'Maintained AWS infrastructure (API Gateway, Lambda, S3, RDS) for scalable healthcare apps',
             ],
         },
     ];
