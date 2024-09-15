@@ -1,13 +1,9 @@
-import Hero from '../../components/hero/hero';
-import Projects from '../../components/projects/projects';
-import Footer from '../../components/footer/footer';
+import ColorModeButton from '../../components/buttons/color-mode-button';
 
 function Dashboard() {
     return (
         <>
-            <Hero />
-            <Projects />
-            <Footer />
+            <ColorModeButton />
         </>
     );
 }
