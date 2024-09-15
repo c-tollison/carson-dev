@@ -10,7 +10,7 @@ export default function BaseButton({ children, backgroundColor, ...props }: Base
     return (
         <button
             {...props}
-            className={`${backgroundColor} p-2 dark:text-white text-black rounded-md border shadow-sm`}
+            className={`${backgroundColor} p-2 dark:text-white text-black rounded-md border shadow-sm border-accent`}
         >
             {children}
         </button>
