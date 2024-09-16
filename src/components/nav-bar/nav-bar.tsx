@@ -1,5 +1,5 @@
 import ColorModeButton from '../buttons/color-mode-button';
-import './nav-bar.css';
+
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
@@ -7,7 +7,7 @@ export default function NavBar() {
         <nav className='flex flex-row justify-between items-center w-full'>
             <h1>
                 <Link to={'/'}>
-                    Carson<span className='text-primary'>-dev</span>
+                    Carson<span className='text-primary'> Tollison</span>
                 </Link>
             </h1>
             <ul className='flex flex-wrap gap-4 items-center'>

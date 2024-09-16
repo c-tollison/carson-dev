@@ -4,12 +4,13 @@ import { ColorMode } from '../core/providers/color-mode-provider/color-mode.enum
 
 export default function ColorModeButton() {
     const colorModeContext = useContext(ColorModeContext);
+
     return (
         <div
             onClick={() => {
                 colorModeContext.toggleColorMode();
             }}
-            className='p-2 rounded-md border border-accent cursor-pointer m-0'
+            className='p-2 rounded-md border border-border cursor-pointer m-0'
         >
             {colorModeContext.colorMode === ColorMode.Dark ? (
                 <svg

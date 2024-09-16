@@ -1,22 +1,23 @@
-import './project.css';
+import { useState } from 'react';
 
 export interface ProjectProps {
     title: string;
-    imgPath: string;
+    description: string;
     openModal: () => void;
 }
 
-export default function Project({ title, imgPath, openModal }: ProjectProps) {
+export default function Project({ title, description, openModal }: ProjectProps) {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <div
-            className='projectHolder'
+            className='py-4 px-6 border-b border-accent last:border-b-0 cursor-pointer hover:bg-accent'
             onClick={openModal}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            <img
-                src={imgPath}
-                alt={title}
-            />
-            <h2>{title}</h2>
+            <h2 className='text-xl font-semibold mb-2'>{title}</h2>
+            {isHovered && <p className='text-sm text-muted-foreground truncate'>{description}</p>}
         </div>
     );
 }

@@ -1,7 +1,4 @@
-import { useState } from 'react';
 import Project from './project/project';
-import './projects.css';
-import ProjectModal from './project-modal/project-modal';
 
 export interface ProjectI {
     title: string;
@@ -10,10 +7,11 @@ export interface ProjectI {
     description: string[];
 }
 
-export default function Projects() {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [selectedProject, setSelectedProject] = useState<ProjectI | null>(null);
+interface ProjectsInterface {
+    openModal: (_: ProjectI) => void;
+}
 
+export default function Projects({ openModal }: ProjectsInterface) {
     const projects: ProjectI[] = [
         {
             title: 'Eagle Building Company',
@@ -33,38 +31,26 @@ export default function Projects() {
                 'This project was developed using simple HTML, CSS, and JavaScript.',
             ],
         },
+        {
+            title: 'Postgres Database Manager',
+            repoLink: 'https://github.com/c-tollison/db-manager',
+            imgPath: 'database-manager-cli.png',
+            description: ['Will add some stuff soon'],
+        },
     ];
-
-    function openModal(project: ProjectI) {
-        document.body.style.overflow = 'hidden';
-        setSelectedProject(project);
-        setModalOpen(true);
-    }
-
-    function closeModal() {
-        document.body.style.overflow = 'auto';
-        setModalOpen(false);
-    }
 
     return (
         <>
-            <div className='carousel'>
+            <div>
                 {projects.map((project, index) => (
                     <Project
-                        title={project.title}
-                        imgPath={project.imgPath}
                         key={index}
+                        title={project.title}
+                        description={project.description[0]}
                         openModal={() => openModal(project)}
                     />
                 ))}
             </div>
-
-            {modalOpen && selectedProject && (
-                <ProjectModal
-                    project={selectedProject}
-                    closeModal={closeModal}
-                />
-            )}
         </>
     );
 }
