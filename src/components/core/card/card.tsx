@@ -11,7 +11,7 @@ export default function Card({ children, className, cols, rows, ...props }: Card
     return (
         <div
             {...props}
-            className={`p-4 bg-card rounded-md border border-border shadow-md transition transform duration-300 ease-in-out ${cols} ${rows} ${className}`}
+            className={`p-8 bg-card rounded-md border border-border shadow-md transition transform duration-300 ease-in-out ${cols} ${rows} ${className}`}
         >
             {children}
         </div>

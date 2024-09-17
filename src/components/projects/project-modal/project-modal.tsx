@@ -50,6 +50,17 @@ export default function ProjectModal({ project, closeModal }: ProjectModalProps)
                 <h3>{project.title}</h3>
             )}
 
+            <div className='mt-2 flex flex-wrap gap-2'>
+                {project.tech.map((item, index) => (
+                    <span
+                        key={index}
+                        className='px-2 py-1 text-xs font-medium bg-secondary rounded-full '
+                    >
+                        {item}
+                    </span>
+                ))}
+            </div>
+
             <ul>
                 {project.description.map((desc, index) => (
                     <li
