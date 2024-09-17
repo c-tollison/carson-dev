@@ -1,5 +1,3 @@
-import './work-experience.css';
-
 export interface WorkExperienceProps {
     companyOrProjectName: string;
     jobTitle: string;
@@ -18,19 +16,23 @@ export default function WorkExperience({
     return (
         <div
             key={companyOrProjectName}
-            className='experience-item'
+            className='col-span-full row-span-3 p-6 flex flex-col gap-4 border bg-card rounded-md border border-border shadow-md transition transform duration-300 ease-in-out'
         >
-            <div className='experience-header'>
-                <h3>{companyOrProjectName}</h3>
-                <p className='job-title'>{jobTitle}</p>
-                <p className='location-date'>
-                    <span>{location}</span>
-                    <span>{date}</span>
+            <div className='border-b pb-4 border-accent'>
+                <h3 className='text-xl font-semibold'>{companyOrProjectName}</h3>
+                <p className='text-sm'>{jobTitle}</p>
+                <p className='text-sm text-muted-foreground'>
+                    <span>{location}</span> • <span>{date}</span>
                 </p>
             </div>
-            <ul>
+            <ul className='list-disc list-inside space-y-2 text-muted-foreground'>
                 {details.map((detail, detailIndex) => (
-                    <li key={`${jobTitle}-${detailIndex}`}>{detail}</li>
+                    <li
+                        key={`${jobTitle}-${detailIndex}`}
+                        className='text-sm'
+                    >
+                        {detail}
+                    </li>
                 ))}
             </ul>
         </div>
