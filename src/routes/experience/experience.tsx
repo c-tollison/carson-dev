@@ -1,8 +1,16 @@
+import { Link } from 'react-router-dom';
 import Card from '../../components/core/card/card';
 import NavBar from '../../components/nav-bar/nav-bar';
 import WorkExperience, { WorkExperienceProps } from '../../components/work-experience/work-experience';
+import { useState } from 'react';
 
 export default function Experience() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleOpen() {
+        setIsOpen(!isOpen);
+    }
+
     const workExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: 'ChiroHD',
@@ -59,11 +67,32 @@ export default function Experience() {
                     <Card
                         cols='col-span-full'
                         rows='lg:row-span-1'
-                        className={`w-full h-full flex justify-center `}
+                        className='w-full h-[75px] flex justify-center'
                     >
-                        <NavBar />
+                        <NavBar setIsOpen={toggleOpen} />
                     </Card>
-
+                    {isOpen && (
+                        <>
+                            <Link to={'/experience'}>
+                                <Card
+                                    cols='col-span-full'
+                                    rows='lg:row-span-1'
+                                    className='w-full h-[75px] flex justify-center items-center md:hidden'
+                                >
+                                    Experience
+                                </Card>
+                            </Link>
+                            <Link to={'/articles'}>
+                                <Card
+                                    cols='col-span-full'
+                                    rows='lg:row-span-1'
+                                    className='w-full h-[75px] flex justify-center items-center md:hidden'
+                                >
+                                    Articles
+                                </Card>
+                            </Link>
+                        </>
+                    )}
                     {workExperience.map((job, index) => (
                         <WorkExperience
                             companyOrProjectName={job.companyOrProjectName}

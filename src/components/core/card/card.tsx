@@ -3,8 +3,8 @@ import { HTMLAttributes, ReactNode } from 'react';
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
     children?: ReactNode;
     className?: string;
-    cols: string;
-    rows: string;
+    cols?: string;
+    rows?: string;
 }
 
 export default function Card({ children, className, cols, rows, ...props }: CardProps) {

@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import Card from '../../components/core/card/card';
 import NavBar from '../../components/nav-bar/nav-bar';
+import { Link } from 'react-router-dom';
 
 export default function Articles() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleOpen() {
+        setIsOpen(!isOpen);
+    }
+
     return (
         <>
             <div className='flex h-full justify-center items-center p-4'>
@@ -9,10 +17,32 @@ export default function Articles() {
                     <Card
                         cols='col-span-full'
                         rows='lg:row-span-1'
-                        className={`w-full h-full flex justify-center `}
+                        className='w-full h-[75px] flex justify-center'
                     >
-                        <NavBar />
+                        <NavBar setIsOpen={toggleOpen} />
                     </Card>
+                    {isOpen && (
+                        <>
+                            <Link to={'/experience'}>
+                                <Card
+                                    cols='col-span-full'
+                                    rows='lg:row-span-1'
+                                    className='w-full h-[75px] flex justify-center items-center md:hidden'
+                                >
+                                    Experience
+                                </Card>
+                            </Link>
+                            <Link to={'/articles'}>
+                                <Card
+                                    cols='col-span-full'
+                                    rows='lg:row-span-1'
+                                    className='w-full h-[75px] flex justify-center items-center md:hidden'
+                                >
+                                    Articles
+                                </Card>
+                            </Link>
+                        </>
+                    )}
 
                     <div className='text-center w-full'>Building 🛠️</div>
                 </div>
