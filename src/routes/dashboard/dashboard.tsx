@@ -25,12 +25,12 @@ function Dashboard() {
 
     return (
         <>
-            <div className='flex h-full justify-center items-center'>
-                <div className='h-full w-full grid grid-cols-1 lg:grid-cols-7 lg:grid-rows-9 gap-4 max-w-[1600px]'>
+            <div className='p-4 flex md:h-screen h-full justify-center items-center'>
+                <div className='h-full w-full grid grid-cols-1 lg:grid-cols-7 lg:grid-rows-[75px_repeat(8,_1fr)] gap-4 max-w-[1600px]'>
                     <Card
                         cols='col-span-full'
                         rows='lg:row-span-1'
-                        className={`w-full h-full flex justify-center `}
+                        className='w-full h-[75px] flex justify-center'
                     >
                         <NavBar />
                     </Card>
@@ -61,21 +61,21 @@ function Dashboard() {
                     <Card
                         cols='col-span-full lg:col-span-2'
                         rows='lg:row-span-3'
-                        className={`pb-0 hover:scale-95 cursor-pointer`}
+                        className='pb-0 hover:scale-95 cursor-pointer'
                     >
                         <Learnings />
                     </Card>
                     <Card
                         cols='col-span-full lg:col-span-3'
                         rows='lg:row-span-3'
-                        className={`bg-primary text-white dark:text-black text-xl hover:scale-95 cursor-pointer`}
+                        className='bg-primary text-white dark:text-black text-xl hover:scale-95 cursor-pointer'
                     >
                         <ContactInfo />
                     </Card>
                     <Card
                         cols='col-span-full lg:col-span-2'
                         rows='lg:row-span-1'
-                        className={`w-full h-full flex justify-center`}
+                        className='w-full h-full flex justify-center'
                     >
                         <Footer />
                     </Card>

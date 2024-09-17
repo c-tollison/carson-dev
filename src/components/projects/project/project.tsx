@@ -12,7 +12,7 @@ export default function Project({ title, description, tech, openModal }: Project
 
     return (
         <div
-            className='py-6 px-6 border-b border-accent last:border-b-0 cursor-pointer'
+            className='py-6 px-4 border-b border-accent last:border-b-0 cursor-pointer'
             onClick={openModal}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}

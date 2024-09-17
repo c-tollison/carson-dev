@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useState, useEffect } from 'react';
 import { ColorMode } from './color-mode.enum';
 
 interface ColorModeContextI {
@@ -18,12 +18,23 @@ interface ColorThemeProviderProps {
 }
 
 export function ColorThemeProvider({ children }: ColorThemeProviderProps) {
-    const [colorMode, setColorMode] = useState(defaultContext.colorMode);
+    const [colorMode, setColorMode] = useState<ColorMode>(() => {
+        const savedMode = localStorage.getItem('colorMode');
+        return savedMode ? (savedMode as ColorMode) : defaultContext.colorMode;
+    });
+
+    useEffect(() => {
+        applyColorMode(colorMode);
+    }, [colorMode]);
+
+    function applyColorMode(mode: ColorMode) {
+        document.getElementById('root')?.classList.remove(ColorMode.Dark, ColorMode.Light);
+        document.getElementById('root')?.classList.add(mode);
+        localStorage.setItem('colorMode', mode);
+    }
 
     function toggleColorMode() {
         const newMode = colorMode === ColorMode.Dark ? ColorMode.Light : ColorMode.Dark;
-        document.getElementById('root')?.classList.remove(colorMode);
-        document.getElementById('root')?.classList.add(newMode);
         setColorMode(newMode);
     }
 

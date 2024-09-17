@@ -1,5 +1,6 @@
+import Card from '../../components/core/card/card';
+import NavBar from '../../components/nav-bar/nav-bar';
 import WorkExperience, { WorkExperienceProps } from '../../components/work-experience/work-experience';
-import './experience.css';
 
 export default function Experience() {
     const workExperience: WorkExperienceProps[] = [
@@ -9,33 +10,11 @@ export default function Experience() {
             location: 'Remote',
             date: 'Dec 2023 - Present',
             details: [
-                'Developed an automated SFTP and S3-based system to parse insurance EOBs (X12), speeding up payment processing for 800+ chiropractic offices',
-                'Built a full-stack app for managing AWS environments using RDS, Lambda, React, and Terraform, improving deployment efficiency',
-                'Implemented E2E testing with CircleCi and Cypress, reducing manual testing and accelerating release cycles',
+                'Engineered an automated system for parsing insurance EOBs (X12) using SFTP and S3, streamlining payment processing for 800+ chiropractic offices',
+                'Developed an internal full-stack app with AWS (RDS, Lambda, ALB), React, and Github actions to automate developer environment management and streamline deployments',
+                'Leveraged Docker to create reproducible, stateless testing environments with pre-seeded data. Ran API and end-to-end tests using Jest and Cypress without persisting state',
                 'Utilized Docker to create reproducible, stateless testing environments with seed databases',
-                'Integrated Twilio for HIPAA-compliant messaging with patient opt-in features',
-            ],
-        },
-        {
-            companyOrProjectName: 'Amazon',
-            jobTitle: 'Software Development Engineer Intern',
-            location: 'Seattle, WA',
-            date: 'May - Aug 2023',
-            details: [
-                "Contributed to Automated Profitability Management team's application, optimizing profitability for millions of ASINs",
-                'Architected an event-driven solution with AWS Lambda, S3, and DynamoDB, expediting clawback recommendations for millions of ASINs',
-                'Created memory-efficient file reader abstraction in Java, increasing processing speed by 25%',
-            ],
-        },
-        {
-            companyOrProjectName: 'Amazon',
-            jobTitle: 'Software Development Engineer Intern',
-            location: 'Seattle, WA',
-            date: 'May - Aug 2022',
-            details: [
-                'Developed file ingestion component for automating hourly associate scheduling',
-                'Implemented event-driven solution with AWS Lambda, SQS, and S3, utilizing AWS CDK for consistent deployments',
-                'Automated parsing of large JSON files using Python, eliminating manual scheduling tasks',
+                'Integrated HIPAA-compliant messaging via Twilio, enabling patient communication with opt-in compliance',
             ],
         },
         {
@@ -44,25 +23,59 @@ export default function Experience() {
             location: 'Remote',
             date: 'Nov 2021 - Dec 2023',
             details: [
-                'Contributed to a paperwork builder for efficient patient data collection via system triggers and email',
-                'Developed healthcare management software with TypeScript, Node.js, Angular, and PostgreSQL',
-                'Maintained AWS infrastructure (API Gateway, Lambda, S3, RDS) for scalable healthcare apps',
+                'Enhanced patient data collection with a dynamic paperwork builder triggered by system events and emails',
+                'Developed healthcare software using TypeScript, Node.js, Angular, and PostgreSQL',
+                'Managed AWS infrastructure (API Gateway, Lambda, S3, RDS) for scalable, reliable healthcare applications',
+            ],
+        },
+        {
+            companyOrProjectName: 'Amazon',
+            jobTitle: 'Software Development Engineer Intern',
+            location: 'Seattle, WA',
+            date: 'May - Aug 2023',
+            details: [
+                'Designed and implemented an event-driven architecture leveraging AWS Lambda, S3, and DynamoDB to process and analyze products, significantly accelerating clawback efforts across millions of ASINS',
+                'Engineered a memory-efficient file reader abstraction in Java, resulting in a 25% increase in data processing speed and improved file type handling',
+                'Implemented comprehensive unit and integration tests, achieving over 90% code coverage and enhancing overall system reliability',
+            ],
+        },
+        {
+            companyOrProjectName: 'Amazon',
+            jobTitle: 'Software Development Engineer Intern',
+            location: 'Seattle, WA',
+            date: 'May - Aug 2022',
+            details: [
+                'Implemented a scalable, event-driven architecture using AWS services (S3, SQS, Lambda) to process time card modifications, holiday schedules, and vacation requests. Utilized AWS CDK for infrastructure as code',
+                'Designed a FIFO queue system with SQS to ensure orderly processing of global hourly pay and time requests, significantly improving data consistency and reducing errors',
+                'Automated the parsing and processing of large JSON files, using python, containing employee data, reducing the workload on data engineers and streamlining global time card management',
             ],
         },
     ];
 
     return (
-        <div className='experience-container'>
-            {workExperience.map((job, index) => (
-                <WorkExperience
-                    companyOrProjectName={job.companyOrProjectName}
-                    jobTitle={job.jobTitle}
-                    location={job.location}
-                    date={job.date}
-                    details={job.details}
-                    key={index}
-                />
-            ))}
-        </div>
+        <>
+            <div className='flex h-full justify-center items-center p-4'>
+                <div className='h-full w-full grid grid-cols-1 lg:grid-cols-7 grid-flow-row auto-rows-auto gap-4 max-w-[1600px] grid-rows-[75px_auto]'>
+                    <Card
+                        cols='col-span-full'
+                        rows='lg:row-span-1'
+                        className={`w-full h-full flex justify-center `}
+                    >
+                        <NavBar />
+                    </Card>
+
+                    {workExperience.map((job, index) => (
+                        <WorkExperience
+                            companyOrProjectName={job.companyOrProjectName}
+                            jobTitle={job.jobTitle}
+                            location={job.location}
+                            date={job.date}
+                            details={job.details}
+                            key={index}
+                        />
+                    ))}
+                </div>
+            </div>
+        </>
     );
 }

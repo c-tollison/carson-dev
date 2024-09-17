@@ -12,10 +12,10 @@ export default function NavBar() {
             </h1>
             <ul className='flex flex-wrap gap-4 items-center'>
                 <li>
-                    <Link to={'experience'}>Experience</Link>
+                    <Link to={'/experience'}>Experience</Link>
                 </li>
                 <li>
-                    <Link to={'articles'}>Articles</Link>
+                    <Link to={'/articles'}>Articles</Link>
                 </li>
                 <li>
                     <ColorModeButton />
