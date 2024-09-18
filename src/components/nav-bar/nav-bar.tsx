@@ -17,8 +17,8 @@ export default function NavBar({ setIsOpen }: NavBarProps) {
                         </Link>
                     </h1>
                     <div className='flex gap-4 h-full justify-center items-center md:hidden'>
-                        <DropDownButton onClick={setIsOpen} />
                         <ColorModeButton />
+                        <DropDownButton onClick={setIsOpen} />
                     </div>
                 </div>
                 <ul className={`hidden md:flex flex-col md:flex-row md:items-center md:gap-4 w-full md:w-auto`}>

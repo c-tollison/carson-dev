@@ -65,6 +65,8 @@ function Dashboard() {
                     <Card
                         cols='col-span-full lg:col-span-3'
                         rows='lg:row-span-5'
+                        className='relative overflow-hidden'
+                        waves={true}
                     >
                         <Hero />
                     </Card>
@@ -89,14 +91,14 @@ function Dashboard() {
                     <Card
                         cols='col-span-full lg:col-span-2'
                         rows='lg:row-span-3'
-                        className='pb-0 hover:scale-95 cursor-pointer h-[250px] lg:h-full'
+                        className='pb-0 md:hover:scale-95 cursor-pointer h-[250px] lg:h-full'
                     >
                         <Learnings />
                     </Card>
                     <Card
                         cols='col-span-full lg:col-span-3'
                         rows='lg:row-span-3'
-                        className='bg-primary text-white dark:text-black text-xl hover:scale-95 cursor-pointer  h-[250px] lg:h-full'
+                        className='bg-primary text-white dark:text-black text-xl md:hover:scale-95 cursor-pointer  h-[250px] lg:h-full'
                     >
                         <ContactInfo />
                     </Card>
