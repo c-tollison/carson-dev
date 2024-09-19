@@ -41,20 +41,50 @@ export default function Card({ children, className, cols, rows, waves, ...props 
                             </linearGradient>
                         </defs>
                         <path
-                            d='M0 0 L900 0 L900 120 C750 180, 550 80, 400 120 C250 180, 50 80, 0 120 Z'
+                            d='M0 0 L900 0 L900 150 C750 200, 550 120, 400 150 C250 200, 50 120, 0 150 Z'
                             fill='url(#waveGradient)'
                             opacity='0.3'
-                        />
+                        >
+                            <animate
+                                attributeName='d'
+                                dur='12s'
+                                repeatCount='indefinite'
+                                values='
+                                    M0 0 L900 0 L900 150 C750 200, 550 120, 400 150 C250 200, 50 120, 0 150 Z;
+                                    M0 0 L900 0 L900 180 C750 220, 550 150, 400 180 C250 220, 50 150, 0 180 Z;
+                                    M0 0 L900 0 L900 150 C750 200, 550 120, 400 150 C250 200, 50 120, 0 150 Z'
+                            />
+                        </path>
                         <path
-                            d='M0 0 L900 0 L900 100 C700 160, 500 60, 300 100 C100 160, 0 60, 0 100 Z'
+                            d='M0 0 L900 0 L900 120 C700 180, 500 100, 300 120 C100 180, 0 100, 0 120 Z'
                             fill='url(#waveGradient)'
                             opacity='0.5'
-                        />
+                        >
+                            <animate
+                                attributeName='d'
+                                dur='10s'
+                                repeatCount='indefinite'
+                                values='
+                                    M0 0 L900 0 L900 120 C700 180, 500 100, 300 120 C100 180, 0 100, 0 120 Z;
+                                    M0 0 L900 0 L900 140 C700 200, 500 120, 300 140 C100 200, 0 120, 0 140 Z;
+                                    M0 0 L900 0 L900 120 C700 180, 500 100, 300 120 C100 180, 0 100, 0 120 Z'
+                            />
+                        </path>
                         <path
-                            d='M0 0 L900 0 L900 80 C650 140, 450 40, 250 80 C50 140, 0 40, 0 80 Z'
+                            d='M0 0 L900 0 L900 90 C650 160, 450 70, 250 90 C50 160, 0 70, 0 90 Z'
                             fill='url(#waveGradient)'
                             opacity='0.7'
-                        />
+                        >
+                            <animate
+                                attributeName='d'
+                                dur='8s'
+                                repeatCount='indefinite'
+                                values='
+                                    M0 0 L900 0 L900 90 C650 160, 450 70, 250 90 C50 160, 0 70, 0 90 Z;
+                                    M0 0 L900 0 L900 110 C650 140, 450 80, 250 110 C50 140, 0 80, 0 110 Z;
+                                    M0 0 L900 0 L900 90 C650 160, 450 70, 250 90 C50 160, 0 70, 0 90 Z'
+                            />
+                        </path>
                     </svg>
                     <div className='relative z-10 p-8 pt-28 md:pt-36'>{children}</div>
                 </>
