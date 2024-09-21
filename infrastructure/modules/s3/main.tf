@@ -22,6 +22,10 @@ resource "aws_s3_bucket_website_configuration" "sub_domain" {
     index_document {
         suffix = "index.html"
     }
+
+    error_document {
+      key = "index.html"
+    }
 }
 
 resource "aws_s3_bucket_website_configuration" "root_domain" {

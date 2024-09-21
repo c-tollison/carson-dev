@@ -17,7 +17,21 @@ resource "aws_cloudfront_distribution" "subdomain" {
     is_ipv6_enabled     = true
     default_root_object = "index.html"
     aliases             = [var.static-app-domain]
-    price_class     = "PriceClass_100"
+    price_class         = "PriceClass_100"
+
+    custom_error_response {
+        error_code            = 404
+        response_page_path    = "/index.html"
+        response_code         = 200
+        error_caching_min_ttl = 0
+    }   
+
+    custom_error_response {
+        error_code            = 403
+        response_page_path    = "/index.html"
+        response_code         = 200
+        error_caching_min_ttl = 0
+    }
 
     default_cache_behavior {
         allowed_methods  = ["GET", "HEAD"]
@@ -26,9 +40,9 @@ resource "aws_cloudfront_distribution" "subdomain" {
 
         forwarded_values {
             query_string = false
-        cookies {
-            forward = "none"
-        }
+            cookies {
+                forward = "none"
+            }
         }
 
         viewer_protocol_policy = "redirect-to-https"
@@ -54,25 +68,25 @@ resource "aws_cloudfront_distribution" "subdomain" {
 }
 
 data "aws_cloudfront_cache_policy" "caching_disabled" {
-  name = "Managed-CachingDisabled"
+    name = "Managed-CachingDisabled"
 }
 
 resource "aws_cloudfront_distribution" "root_domain" {
     origin {
         domain_name                 = var.root-domain-website-endpoint
         origin_id                   = "S3-${var.root-domain}"
-            custom_origin_config {
-                http_port              = 80
-                https_port             = 443
-                origin_protocol_policy = "http-only"
-                origin_ssl_protocols   = ["TLSv1.2"]
-            }
+        custom_origin_config {
+            http_port              = 80
+            https_port             = 443
+            origin_protocol_policy = "https-only" 
+            origin_ssl_protocols   = ["TLSv1.2"]
+        }
     }
 
-    enabled         = true
-    is_ipv6_enabled = true
-    aliases         = [var.root-domain]
-    price_class     = "PriceClass_100"
+    enabled             = true
+    is_ipv6_enabled     = true
+    aliases             = [var.root-domain]
+    price_class         = "PriceClass_100"
 
     default_cache_behavior {
         allowed_methods  = ["GET", "HEAD"]
