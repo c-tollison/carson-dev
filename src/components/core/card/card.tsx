@@ -86,7 +86,7 @@ export default function Card({ children, className, cols, rows, waves, ...props 
                             />
                         </path>
                     </svg>
-                    <div className='relative z-10 p-8 pt-28 md:pt-36'>{children}</div>
+                    <div className='relative z-10 flex h-full pt-24 items-end'>{children}</div>
                 </>
             ) : (
                 <>{children}</>
