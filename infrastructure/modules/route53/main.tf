@@ -1,40 +1,39 @@
-resource "aws_route53_record" "cert-validation" {
+resource "aws_route53_record" "cert_validation" {
     for_each = {
-        for dvo in var.domain-validation-options : dvo.domain_name => {
+        for dvo in var.domain_validation_options : dvo.domain_name => {
             name   = dvo.resource_record_name
             record = dvo.resource_record_value
             type   = dvo.resource_record_type
         }
     }
 
-    allow_overwrite = true
-    name            = each.value.name
-    records         = [each.value.record]
-    ttl             = 60
-    type            = each.value.type
-    zone_id         = var.route53-zone-id
+    zone_id = var.route53_zone_id
+    name    = each.value.name
+    type    = each.value.type
+    ttl     = 60
+    records = [each.value.record]
 }
 
-resource "aws_route53_record" "www" {
-    zone_id = var.route53-zone-id
-    name    = "www.${var.domain-name}"
+resource "aws_route53_record" "root_domain" {
+    zone_id = var.route53_zone_id
+    name    = var.domain_name
     type    = "A"
 
     alias {
-        name                   = var.cloudfront-subdomain-domain-name
-        zone_id                = "Z2FDTNDATAQYW2"
-        evaluate_target_health = false
+        name                   = var.cloudfront_main_domain_name
+        zone_id                = var.cloudfront_main_hosted_zone_id
+        evaluate_target_health = true
     }
 }
 
-resource "aws_route53_record" "root" {
-    zone_id = var.route53-zone-id
-    name    = var.domain-name
+resource "aws_route53_record" "www_domain" {
+    zone_id = var.route53_zone_id
+    name    = "www.${var.domain_name}"
     type    = "A"
 
     alias {
-        name                   = var.cloudfront-root-domain-name
-        zone_id                = "Z2FDTNDATAQYW2"
-        evaluate_target_health = false
+        name                   = var.cloudfront_main_domain_name
+        zone_id                = var.cloudfront_main_hosted_zone_id
+        evaluate_target_health = true
     }
 }

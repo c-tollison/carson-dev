@@ -1,2 +1,2 @@
-variable "domain-name" {}
-variable "project-name" {}
+variable "domain_name" {}
+variable "project_name" {}

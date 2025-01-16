@@ -1,4 +1,3 @@
-variable "domain-name" {}
-variable "project-name" {}
-variable "static-app-domain" {}
-variable "cloudfront-arn" {}
+variable "domain_name" {}
+variable "project_name" {}
+variable "cloudfront_arn" {}

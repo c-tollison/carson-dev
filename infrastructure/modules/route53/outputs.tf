@@ -1,3 +1,3 @@
-output "cert-validation" {
-    value = aws_route53_record.cert-validation
+output "cert_validation" {
+    value = aws_route53_record.cert_validation
 }

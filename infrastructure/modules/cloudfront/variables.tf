@@ -1,6 +1,4 @@
-variable sub-domain-regional-domain-name {}
-variable root-domain-website-endpoint {}
-variable static-app-domain {}
-variable root-domain {}
-variable certificate-arn {}
-variable project-name {}
+variable main_bucket_regional_domain_name {}
+variable domain_name {}
+variable certificate_arn {}
+variable project_name {}

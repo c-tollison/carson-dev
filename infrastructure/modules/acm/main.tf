@@ -1,11 +1,11 @@
 resource "aws_acm_certificate" "cert" {
-    domain_name                 = var.domain-name
-    subject_alternative_names   = ["*.${var.domain-name}"]
+    domain_name                 = var.domain_name
+    subject_alternative_names   = ["www.${var.domain_name}"]
     validation_method           = "DNS"
     key_algorithm               = "RSA_2048"
 
     tags = {
-        Name = "${var.project-name}-certificate"
+        Name = "${var.project_name}-certificate"
     }
 
     lifecycle {

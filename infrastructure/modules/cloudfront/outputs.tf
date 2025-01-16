@@ -1,11 +1,11 @@
-output "subdomain-distribution-domain-name" {
-    value = aws_cloudfront_distribution.subdomain.domain_name
+output "main_domain_name" {
+    value = aws_cloudfront_distribution.main.domain_name
 }
 
-output "root-distribution-domain-name" {
-    value = aws_cloudfront_distribution.root_domain.domain_name
+output "main_hosted_zone_id" {
+    value = aws_cloudfront_distribution.main.hosted_zone_id
 }
 
-output "subdomain-distribution-arn" {
-    value = aws_cloudfront_distribution.subdomain.arn
+output "main_arn" {
+    value = aws_cloudfront_distribution.main.arn
 }

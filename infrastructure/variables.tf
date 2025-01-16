@@ -1,16 +1,16 @@
-variable "domain-name" {
+variable "domain_name" {
     type        = string
     description = "Domain name registered in Route 53"
     default     = "carson-dev.com" 
 }
 
-variable "project-name" {
+variable "project_name" {
     type        = string
     description = "Project name"
     default     = "carson-dev-site" 
 }
 
-variable "route53-zone-id" {
+variable "route53_zone_id" {
     type        = string
     description = "The Route 53 Hosted Zone ID for the domain"
     default     =  "Z0582374AWGNA0XPENC8"
@@ -27,14 +27,8 @@ variable "region" {
     }
 }
 
-variable "app-subdomain" {
-    type        = string
-    description = "Sub-domain for the application"
-    default     = "www" 
-}
-
 variable "profile" {
     type        = string
     description = "AWS account for deployment"
-    default     = "AdministratorAccess-683259080346" 
+    default     = "admin" 
 }

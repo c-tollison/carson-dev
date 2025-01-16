@@ -1,5 +1,5 @@
-variable "route53-zone-id" {}
-variable "domain-validation-options" {}
-variable "domain-name" {}
-variable "cloudfront-subdomain-domain-name" {}
-variable "cloudfront-root-domain-name" {}
+variable "route53_zone_id" {}
+variable "domain_validation_options" {}
+variable "domain_name" {}
+variable "cloudfront_main_domain_name" {}
+variable "cloudfront_main_hosted_zone_id" {}
