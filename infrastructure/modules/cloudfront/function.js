@@ -1,17 +1,14 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function handler(event) {
     var request = event.request;
-    var headers = request.headers;
-
-    if (headers.host.value === 'www.carson-dev.com') {
-        return {
+    if (request.headers['host'] && request.headers['host'].value.startsWith('www')) {
+        var response = {
             statusCode: 301,
             statusDescription: 'Moved Permanently',
             headers: {
-                location: { value: 'https://carson-dev.com' + request.uri },
+                location: { value: 'https://carson-dev.com' + event.request.uri },
             },
         };
+        return response;
     }
-
     return request;
 }

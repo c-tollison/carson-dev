@@ -18,7 +18,8 @@ resource "aws_cloudfront_distribution" "main" {
     default_root_object = "index.html"
 
     aliases = [
-        var.domain_name
+        var.domain_name,
+        "www.${var.domain_name}",
     ]
 
     price_class = "PriceClass_100"
@@ -74,5 +75,6 @@ resource "aws_cloudfront_distribution" "main" {
 resource "aws_cloudfront_function" "redirect_www" {
     name    = "redirect-www-to-root"
     runtime = "cloudfront-js-2.0"
-    code = file("${path.module}/function.js")
+    code    = file("${path.module}/function.js")
+    publish = true
 }
