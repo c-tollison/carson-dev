@@ -1,15 +1,47 @@
 export default function Learnings() {
     return (
-        <a
-            href='https://go.dev/'
-            target='_blank'
-        >
-            <div className='h-full flex flex-col gap-4 justify-between items-center text-center'>
-                <div className='text-2xl '>What I'm learning</div>
-                <div className='flex flex-col items-center overflow-hidden'>
-                    <img src='./gopher.png' />
-                </div>
+        <div className='h-full flex flex-col items-center gap-16 text-center'>
+            <h2 className='text-2xl font-semibold'>Tech I'm interested in right now!!</h2>
+            <div className='flex flex-row items-center gap-8'>
+                <a
+                    href='https://hono.dev/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='md:transition-transform md:duration-200 md:hover:scale-105'
+                >
+                    <img
+                        src='./hono-logo.png'
+                        alt='Hono Logo'
+                        className='w-24 h-24 object-contain'
+                    />
+                </a>
+                <div className='h-24 border-l border-accent' />
+                <a
+                    href='https://www.postgresql.org/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='md:transition-transform md:duration-200 md:hover:scale-105'
+                >
+                    <img
+                        src='./postgres-logo.png'
+                        alt='Postgres Logo'
+                        className='w-24 h-24 object-contain'
+                    />
+                </a>
+                <div className='h-24 border-l border-accent' />
+                <a
+                    href='https://bun.sh/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='md:transition-transform md:duration-200 md:hover:scale-105'
+                >
+                    <img
+                        src='./bun-logo.png'
+                        alt='Bun Logo'
+                        className='w-24 h-24 object-contain'
+                    />
+                </a>
             </div>
-        </a>
+        </div>
     );
 }

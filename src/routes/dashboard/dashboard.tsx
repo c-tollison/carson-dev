@@ -8,6 +8,7 @@ import ContactInfo from '../../components/cards/contact-info';
 import Learnings from '../../components/cards/learnings';
 import Hero from '../../components/cards/hero';
 import { Link } from 'react-router-dom';
+import ArticlesList from '../../components/Article/articles-list/articles-list';
 
 function Dashboard() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -65,22 +66,24 @@ function Dashboard() {
                     <Card
                         cols='col-span-full lg:col-span-3'
                         rows='lg:row-span-5'
-                        className='relative overflow-hidden'
-                        waves={true}
+                        className='overflow-hidden flex flex-row gap-2'
                     >
-                        <Hero />
+                        <div className='flex items-center justify-center w-full md:w-1/2'>
+                            <Hero />
+                        </div>
+                        <div className='relative w-full md:w-1/2 aspect-[4/3] border rounded-md border-accent'>
+                            <img
+                                src='ct.jpeg'
+                                alt='Sample'
+                                className='absolute inset-0 w-full h-full object-cover rounded-md'
+                            />
+                        </div>
                     </Card>
                     <Card
                         cols='col-span-full lg:col-span-2'
                         rows='lg:row-span-5'
-                        className='overflow-hidden '
                     >
-                        <div className='relative w-full h-full pb-[75%]'>
-                            <img
-                                src={'yang.jpg'}
-                                className='absolute inset-0 w-full h-full object-cover rounded-md'
-                            />
-                        </div>
+                        <ArticlesList />
                     </Card>
                     <Card
                         cols='col-span-full lg:col-span-2'
@@ -91,14 +94,14 @@ function Dashboard() {
                     <Card
                         cols='col-span-full lg:col-span-2'
                         rows='lg:row-span-3'
-                        className='pb-0 md:hover:scale-95 cursor-pointer h-[250px] lg:h-full'
+                        className='pb-0 h-[250px] lg:h-full'
                     >
                         <Learnings />
                     </Card>
                     <Card
                         cols='col-span-full lg:col-span-3'
                         rows='lg:row-span-3'
-                        className='bg-primary text-white dark:text-black text-xl md:hover:scale-95 cursor-pointer  h-[250px] lg:h-full'
+                        className='bg-primary text-white dark:text-black text-xl md:hover:scale-95 cursor-pointer h-[250px] lg:h-full'
                     >
                         <ContactInfo />
                     </Card>

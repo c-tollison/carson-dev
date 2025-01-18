@@ -52,7 +52,7 @@ export default function Project({ title, description, tech, openModal }: Project
                                     data-name='5-Arrow Up'
                                 />
                             </svg>
-                        </div>{' '}
+                        </div>
                     </>
                 ) : (
                     <div>{title}</div>

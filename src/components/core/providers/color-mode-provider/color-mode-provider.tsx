@@ -29,6 +29,8 @@ export function ColorThemeProvider({ children }: ColorThemeProviderProps) {
 
     function applyColorMode(mode: ColorMode) {
         document.getElementById('root')?.classList.remove(ColorMode.Dark, ColorMode.Light);
+        document.documentElement.style.backgroundColor =
+            mode === ColorMode.Dark ? 'hsl(120, 10%, 10%)' : 'hsl(120, 13%, 96%)';
         document.getElementById('root')?.classList.add(mode);
         localStorage.setItem('colorMode', mode);
     }
