@@ -1,7 +1,7 @@
 export default function Learnings() {
     return (
         <div className='h-full flex flex-col items-center'>
-            <h2 className='text-2xl font-semibold'>Tech I'm interested in right now!!</h2>
+            <h2 className='text-2xl font-semibold'>Cool Tech</h2>
             <div className='flex flex-row h-full items-center justify-center gap-8'>
                 <a
                     href='https://hono.dev/'
