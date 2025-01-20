@@ -7,6 +7,9 @@ import Experience from './routes/experience/experience';
 import Root from './routes/root';
 import Articles from './routes/articles/articles';
 import { ColorThemeProvider } from './components/core/providers/color-mode-provider/color-mode-provider';
+import { articles } from './components/Article/articles-json/articles-array';
+import { Article } from './components/Article/article';
+import { NavbarProvider } from './components/core/providers/navbar-provider/navbar-provider';
 
 const router = createBrowserRouter([
     {
@@ -25,6 +28,10 @@ const router = createBrowserRouter([
                 path: 'articles',
                 Component: Articles,
             },
+            ...articles.map((article) => ({
+                path: `articles/${article.route}`,
+                element: <Article article={article} />,
+            })),
         ],
     },
 ]);
@@ -32,7 +39,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <ColorThemeProvider>
-            <RouterProvider router={router} />
+            <NavbarProvider>
+                <RouterProvider router={router} />
+            </NavbarProvider>
         </ColorThemeProvider>
     </React.StrictMode>,
 );

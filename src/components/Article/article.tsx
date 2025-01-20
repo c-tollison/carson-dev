@@ -1,12 +1,9 @@
-import cashTrakPlans from './articles-json/cash-trak';
-import rowLevelSecurity from './articles-json/row-level-security';
+import { ArticleType } from './articles-json/articles-array';
 
-export interface Article {
-    title: string;
-    date: string;
-    segments: { text: string; type: 'image' | 'text' }[];
+interface ArticleProps {
+    article: ArticleType;
 }
 
-export const articles: Article[] = [rowLevelSecurity, cashTrakPlans].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-});
+export function Article({ article }: ArticleProps) {
+    return <p>Youre looking at an article {article.title}</p>;
+}

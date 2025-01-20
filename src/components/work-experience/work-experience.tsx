@@ -16,7 +16,7 @@ export default function WorkExperience({
     return (
         <div
             key={companyOrProjectName}
-            className='col-span-full row-span-3 p-8 flex flex-col gap-4 border bg-card rounded-md border border-border shadow-md transition transform duration-300 ease-in-out'
+            className='col-span-full row-auto p-8 flex flex-col gap-4 border bg-card rounded-md border border-border shadow-md transition transform duration-300 ease-in-out'
         >
             <div className='border-b pb-4 border-accent'>
                 <h3 className='text-xl font-semibold'>{companyOrProjectName}</h3>

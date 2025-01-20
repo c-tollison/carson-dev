@@ -1,16 +1,6 @@
-import { Link } from 'react-router-dom';
-import Card from '../../components/core/card/card';
-import NavBar from '../../components/nav-bar/nav-bar';
 import WorkExperience, { WorkExperienceProps } from '../../components/work-experience/work-experience';
-import { useState } from 'react';
 
 export default function Experience() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    function toggleOpen() {
-        setIsOpen(!isOpen);
-    }
-
     const workExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: 'ChiroHD',
@@ -62,49 +52,16 @@ export default function Experience() {
 
     return (
         <>
-            <div className='flex h-full justify-center items-center p-4'>
-                <div className='h-full w-full grid grid-cols-1 lg:grid-cols-7 grid-flow-row auto-rows-auto gap-4 max-w-[1600px] grid-rows-[75px_auto]'>
-                    <Card
-                        cols='col-span-full'
-                        rows='lg:row-span-1'
-                        className='w-full h-[75px] flex justify-center'
-                    >
-                        <NavBar setIsOpen={toggleOpen} />
-                    </Card>
-                    {isOpen && (
-                        <>
-                            <Link to={'/experience'}>
-                                <Card
-                                    cols='col-span-full'
-                                    rows='lg:row-span-1'
-                                    className='w-full h-[75px] flex justify-center items-center md:hidden'
-                                >
-                                    Experience
-                                </Card>
-                            </Link>
-                            <Link to={'/articles'}>
-                                <Card
-                                    cols='col-span-full'
-                                    rows='lg:row-span-1'
-                                    className='w-full h-[75px] flex justify-center items-center md:hidden'
-                                >
-                                    Articles
-                                </Card>
-                            </Link>
-                        </>
-                    )}
-                    {workExperience.map((job, index) => (
-                        <WorkExperience
-                            companyOrProjectName={job.companyOrProjectName}
-                            jobTitle={job.jobTitle}
-                            location={job.location}
-                            date={job.date}
-                            details={job.details}
-                            key={index}
-                        />
-                    ))}
-                </div>
-            </div>
+            {workExperience.map((job, index) => (
+                <WorkExperience
+                    companyOrProjectName={job.companyOrProjectName}
+                    jobTitle={job.jobTitle}
+                    location={job.location}
+                    date={job.date}
+                    details={job.details}
+                    key={index}
+                />
+            ))}
         </>
     );
 }
