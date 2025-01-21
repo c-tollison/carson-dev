@@ -21,7 +21,6 @@ export default function Experience() {
             location: 'Remote',
             date: 'Nov 2021 - Dec 2023',
             details: [
-                'Developed a dynamic paperwork builder triggered by custom events and emails, enhancing patient data collection',
                 'Engineered healthcare software using TypeScript, Node.js, Angular, and PostgreSQL',
                 'Managed AWS infrastructure (API Gateway, Lambda, S3, RDS) to support scalable, reliable EHR functionality',
                 'Integrated HIPAA-compliant opt-in/opt-out messaging through Twilio for secure patient communication',
