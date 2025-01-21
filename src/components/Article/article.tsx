@@ -1,9 +1,9 @@
-import { ArticleType } from './articles-json/articles-array';
+import { ArticleI } from './articles-json/articles-array';
 
 interface ArticleProps {
-    article: ArticleType;
+    article: ArticleI;
 }
 
 export function Article({ article }: ArticleProps) {
-    return <p>Youre looking at an article {article.title}</p>;
+    return <p>Currently writing: {article.title}</p>;
 }

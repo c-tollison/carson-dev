@@ -27,11 +27,11 @@ export default function ArticlesList() {
     return (
         <>
             <Link to={'/articles'}>
-                <div className='text-2xl text-center mb-2'>Articles</div>
+                <div className='text-2xl text-center mb-2'>Latest Articles</div>
             </Link>
 
             <div>
-                {articles.map((article, index) => (
+                {articles.slice(0, 5).map((article, index) => (
                     <div
                         key={index}
                         className='py-6 px-4 border-b border-accent last:border-b-0 cursor-pointer'
@@ -61,16 +61,27 @@ export default function ArticlesList() {
                                         </div>
                                     </>
                                 ) : (
-                                    <div className='truncate max-w-full'>{article.title}</div>
+                                    <div className={`max-w-full ${isHovered === index ? 'underline' : ''}`}>
+                                        {article.title}
+                                    </div>
                                 )}
                             </h2>
 
                             {isHovered === index && !isMobile && (
                                 <>
-                                    <p className='text-sm line-clamp-2 overflow-ellipsis'>{article.description}</p>
-                                    <p className='text-sm text-muted-foreground line-clamp-1 overflow-ellipsis'>
-                                        {article.date}
+                                    <p className='text-sm line-clamp-2 overflow-ellipsis text-muted-foreground'>
+                                        {article.date} - {article.description}
                                     </p>
+                                    <div className='mt-2 flex flex-wrap gap-2'>
+                                        {article.tags.map((item, index) => (
+                                            <span
+                                                key={index}
+                                                className='px-2 py-1 text-xs font-medium bg-secondary rounded-full '
+                                            >
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </>
                             )}
                         </Link>

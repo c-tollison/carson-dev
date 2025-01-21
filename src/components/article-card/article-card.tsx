@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { ArticleType } from '../Article/articles-json/articles-array';
+import { ArticleI } from '../Article/articles-json/articles-array';
 
 interface ArticleCardProps {
-    article: ArticleType;
+    article: ArticleI;
 }
 
 export default function ArticleCard({ article }: ArticleCardProps) {

@@ -7,6 +7,7 @@ export default function Hero() {
                 <a
                     href='https://www.chirohd.com/'
                     target='_blank'
+                    className='text-accent hover:underline'
                 >
                     ChiroHD
                 </a>

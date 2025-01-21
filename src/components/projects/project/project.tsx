@@ -55,7 +55,7 @@ export default function Project({ title, description, tech, openModal }: Project
                         </div>
                     </>
                 ) : (
-                    <div>{title}</div>
+                    <div className={`${isHovered ? 'underline' : ''}`}>{title}</div>
                 )}
             </h2>
             {isHovered && !isMobile && (
