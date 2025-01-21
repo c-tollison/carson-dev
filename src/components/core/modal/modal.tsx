@@ -16,7 +16,7 @@ export default function Modal({ children, closeModal }: ModalProps) {
             onClick={closeModal}
         >
             <div
-                className='w-11/12 max-w-5xl flex flex-col items-center gap-2 p-5 m-auto bg-card rounded-xl shadow-lg border border-border'
+                className='w-11/12 max-w-5xl flex flex-col items-center gap-2 p-8 m-auto bg-card rounded-xl shadow-lg border border-border'
                 onClick={(e) => {
                     e.stopPropagation();
                 }}
