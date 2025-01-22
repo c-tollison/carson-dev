@@ -45,7 +45,7 @@ export default function ArticlesList() {
                             <h2 className='text-xl font-semibold flex items-center justify-between'>
                                 {isMobile ? (
                                     <>
-                                        <div className='truncate max-w-full'>{article.title}</div>
+                                        <div className='max-w-full'>{article.title}</div>
                                         <div>
                                             <svg
                                                 xmlns='http://www.w3.org/2000/svg'
