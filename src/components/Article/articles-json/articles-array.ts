@@ -1,11 +1,13 @@
 import deployingWebsiteS3Cloudfront from './deploying-website-s3-cloudfront';
+import { ARTICLE_SEGMENT_TYPE } from './article-segment.enum';
 
 export interface ArticleI {
     title: string;
     description: string;
     date: string;
     route: string;
-    segments: { text: string; type: 'image' | 'text' }[];
+    displayImage: string;
+    segments: { text: string; type: ARTICLE_SEGMENT_TYPE }[];
     tags: string[];
 }
 
