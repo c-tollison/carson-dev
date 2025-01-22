@@ -9,7 +9,7 @@ export default function ContactInfo() {
         <a href='mailto:tollisoncarson@gmail.com'>
             <div className='h-full flex flex-col justify-between'>
                 <div className='flex justify-between'>
-                    <div className='text-wrap w-[100px]'>Want to connect?</div>
+                    <div className='text-wrap w-[100px] md:text-3xl'>Want to connect?</div>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
                         viewBox='0 0 32 32'

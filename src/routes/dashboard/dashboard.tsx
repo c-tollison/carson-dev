@@ -33,14 +33,15 @@ function Dashboard() {
                 <div className='flex items-center justify-center w-full md:w-1/2'>
                     <Hero />
                 </div>
-                <div className='relative w-full md:w-1/2 aspect-[4/3] border rounded-md border-accent'>
+                <div className='relative w-full md:w-1/2 overflow-hidden rounded-md border border-border border-2'>
                     <img
                         src='ct.jpeg'
                         alt='Sample'
-                        className='absolute inset-0 w-full h-full object-cover rounded-md'
+                        className='w-full h-full object-cover object-center'
                     />
                 </div>
             </Card>
+
             <Card
                 cols='col-span-full lg:col-span-2'
                 rows='lg:row-span-5'
