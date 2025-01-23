@@ -8,7 +8,7 @@
 
 ## Project Overview
 
-Carson-dev.com serves as a showcase of my projects and professional experience. This portfolio is built with React/Vite and attempts best practices in cloud infrastructure and continuous deployment.
+[carson-dev.com](https://carson-dev.com) serves as a showcase of my projects and professional experience. This portfolio is built with React/Vite and attempts best practices in cloud infrastructure and continuous deployment.
 
 ### Key Features
 
