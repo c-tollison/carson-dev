@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Dashboard from './routes/dashboard/dashboard';
-import Experience from './routes/experience/experience';
+import Work from './routes/work/work';
 import Root from './routes/root';
-import Articles from './routes/articles/articles';
+import Journal from './routes/journal/journal';
 import { ColorThemeProvider } from './components/core/providers/color-mode-provider/color-mode-provider';
-import { articles } from './components/Article/articles-json/articles-array';
-import { Article } from './components/Article/article';
 import { NavbarProvider } from './components/core/providers/navbar-provider/navbar-provider';
 
 const router = createBrowserRouter([
@@ -21,17 +19,13 @@ const router = createBrowserRouter([
                 Component: Dashboard,
             },
             {
-                path: 'experience',
-                Component: Experience,
+                path: 'work',
+                Component: Work,
             },
             {
-                path: 'articles',
-                Component: Articles,
+                path: 'journal',
+                Component: Journal,
             },
-            ...articles.map((article) => ({
-                path: `articles/${article.route}`,
-                element: <Article article={article} />,
-            })),
         ],
     },
 ]);

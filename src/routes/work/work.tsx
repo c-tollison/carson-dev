@@ -1,6 +1,6 @@
 import WorkExperience, { WorkExperienceProps } from '../../components/work-experience/work-experience';
 
-export default function Experience() {
+export default function Work() {
     const workExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: 'ChiroHD',
