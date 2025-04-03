@@ -1,6 +1,6 @@
-import ColorModeButton from '../buttons/color-mode-button';
+import ColorModeButton from './buttons/color-mode-button';
 import { Link } from 'react-router-dom';
-import DropDownButton from '../buttons/drop-down-button';
+import DropDownButton from './buttons/drop-down-button';
 import { useState } from 'react';
 
 export default function NavBar() {
@@ -39,6 +39,14 @@ export default function NavBar() {
                             className='text-muted-foreground hover:text-primary transition-colors'
                         >
                             Journal
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to='/projects'
+                            className='text-muted-foreground hover:text-primary transition-colors'
+                        >
+                            Projects
                         </Link>
                     </li>
                     <ColorModeButton />
