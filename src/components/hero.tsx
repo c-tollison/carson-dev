@@ -15,7 +15,7 @@ export default function Hero() {
             } else {
                 clearInterval(interval);
             }
-        }, 125);
+        }, 100);
         return () => clearInterval(interval);
     }, []);
 
@@ -44,7 +44,7 @@ export default function Hero() {
                     <img
                         src='ct.jpeg'
                         alt='Carson'
-                        className='w-full h-full object-cover'
+                        className='w-full h-full object-cover rounded-lg'
                     />
                 </div>
             </div>

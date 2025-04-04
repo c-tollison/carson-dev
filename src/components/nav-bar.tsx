@@ -1,14 +1,36 @@
 import ColorModeButton from './buttons/color-mode-button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import DropDownButton from './buttons/drop-down-button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { NavBarPages } from '../enums/NavBarPages.enum';
 
 export default function NavBar() {
+    const location = useLocation();
     const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
+    const [activePage, setActivePage] = useState<NavBarPages>(NavBarPages.Home);
 
     const toggleNavBar = () => {
         setNavBarOpen(!navbarOpen);
     };
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case '/':
+                setActivePage(NavBarPages.Home);
+                break;
+            case '/work':
+                setActivePage(NavBarPages.Work);
+                break;
+            case '/journal':
+                setActivePage(NavBarPages.Journal);
+                break;
+            case '/projects':
+                setActivePage(NavBarPages.Projects);
+                break;
+            default:
+                setActivePage(NavBarPages.Home);
+        }
+    }, [location]);
 
     return (
         <>
@@ -16,7 +38,7 @@ export default function NavBar() {
                 <div className='flex justify-between items-center w-full'>
                     <h1 className='text-xl '>
                         <Link to={'/'}>
-                            Carson<span className='text-secondary'> Tollison</span>
+                            Carson<span className='text-primary'> Tollison</span>
                         </Link>
                     </h1>
                     <div className='flex gap-4 h-full justify-center items-center md:hidden'>
@@ -28,7 +50,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/work'
-                            className='text-muted-foreground hover:text-primary transition-colors'
+                            className={`${activePage === NavBarPages.Work ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors`}
                         >
                             Work
                         </Link>
@@ -36,7 +58,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/journal'
-                            className='text-muted-foreground hover:text-primary transition-colors'
+                            className={`${activePage === NavBarPages.Journal ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors`}
                         >
                             Journal
                         </Link>
@@ -44,7 +66,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/projects'
-                            className='text-muted-foreground hover:text-primary transition-colors'
+                            className={`${activePage === NavBarPages.Projects ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors`}
                         >
                             Projects
                         </Link>

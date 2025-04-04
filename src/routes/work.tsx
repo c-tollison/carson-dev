@@ -1,6 +1,13 @@
-import WorkExperience, { WorkExperienceProps } from '../../components/work-experience/work-experience';
+import { useEffect, useState } from 'react';
+import WorkExperience, { WorkExperienceProps } from '../components/work-experience/work-experience';
 
 export default function Work() {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
+
     const workExperience: WorkExperienceProps[] = [
         {
             companyOrProjectName: 'ChiroHD',
@@ -51,7 +58,7 @@ export default function Work() {
     ];
 
     return (
-        <>
+        <div className={`transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             {workExperience.map((job, index) => (
                 <WorkExperience
                     companyOrProjectName={job.companyOrProjectName}
@@ -62,6 +69,6 @@ export default function Work() {
                     key={index}
                 />
             ))}
-        </>
+        </div>
     );
 }
