@@ -1,40 +1,33 @@
+import { Link } from 'react-router-dom';
+
 export interface WorkExperienceProps {
-    companyOrProjectName: string;
-    jobTitle: string;
-    location: string;
+    route: string;
+    name: string;
+    title: string;
     date: string;
-    details: string[];
+    imageUrl: string;
 }
 
-export default function WorkExperience({
-    companyOrProjectName,
-    jobTitle,
-    location,
-    date,
-    details,
-}: WorkExperienceProps) {
+export default function WorkExperience({ route, name, title, date, imageUrl }: WorkExperienceProps) {
     return (
-        <div
-            key={companyOrProjectName}
-            className='col-span-full row-auto p-8 flex flex-col gap-4 border bg-card rounded-md border border-border shadow-md transition transform duration-300 ease-in-out'
-        >
-            <div className='border-b pb-4 border-accent'>
-                <h3 className='text-xl font-semibold'>{companyOrProjectName}</h3>
-                <p className='text-sm'>{jobTitle}</p>
-                <p className='text-sm text-muted-foreground'>
-                    <span>{location}</span> • <span>{date}</span>
-                </p>
+        <Link to={`/work/${route}`}>
+            <div className='group w-full flex items-center gap-6 p-12 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
+                <div className='w-16 h-16 flex-shrink-0'>
+                    <img
+                        src={imageUrl}
+                        alt='ChiroHD Logo'
+                        className='w-full h-full object-contain rounded-md'
+                    />
+                </div>
+                <div className='flex-1'>
+                    <h3 className='text-2xl font-bold text-foreground group-hover:text-primary transition-colors'>
+                        {name}
+                    </h3>
+                    <p className='text-muted-foreground'>{title}</p>
+                    <p className='text-muted-foreground'>{date}</p>
+                </div>
+                <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>→</div>
             </div>
-            <ul className='list-disc list-inside space-y-2 text-muted-foreground'>
-                {details.map((detail, detailIndex) => (
-                    <li
-                        key={`${jobTitle}-${detailIndex}`}
-                        className='text-sm'
-                    >
-                        {detail}
-                    </li>
-                ))}
-            </ul>
-        </div>
+        </Link>
     );
 }

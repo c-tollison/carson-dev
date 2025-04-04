@@ -21,19 +21,9 @@ export default function Hero() {
 
     return (
         <div className='flex flex-col md:flex-row items-center md:justify-between'>
-            <div className='py-20 flex flex-col gap-3 md:w-1/2'>
+            <div className='py-10 flex flex-col gap-3 md:w-1/2'>
                 <h1 className='text-primary text-5xl font-bold min-h-[3.5rem]'>{displayedText}</h1>
-                <h2 className='text-2xl font-medium'>
-                    Software Engineer currently @
-                    <a
-                        href='https://www.chirohd.com/'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-secondary hover:underline font-semibold'
-                    >
-                        ChiroHD
-                    </a>
-                </h2>
+                <h2 className='text-2xl font-medium'>Software Engineer out of Greenville, SC</h2>
                 <div className='flex gap-4'>
                     <Github />
                     <LinkedIn />

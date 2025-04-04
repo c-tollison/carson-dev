@@ -37,7 +37,14 @@ export default function NavBar() {
             <nav className='flex justify-between items-center w-full border-b pb-4 border-border'>
                 <div className='flex justify-between items-center w-full'>
                     <h1 className='text-xl '>
-                        <Link to={'/'}>
+                        <Link
+                            to='/'
+                            onClick={() => {
+                                if (navbarOpen) {
+                                    toggleNavBar();
+                                }
+                            }}
+                        >
                             Carson<span className='text-primary'> Tollison</span>
                         </Link>
                     </h1>
@@ -74,6 +81,31 @@ export default function NavBar() {
                     <ColorModeButton />
                 </ul>
             </nav>
+            {navbarOpen && (
+                <div className='md:hidden flex flex-col gap-2'>
+                    <Link
+                        to='work'
+                        className='w-full p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                        onClick={toggleNavBar}
+                    >
+                        Work
+                    </Link>
+                    <Link
+                        to='journal'
+                        className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                        onClick={toggleNavBar}
+                    >
+                        Journal
+                    </Link>
+                    <Link
+                        to='projects'
+                        className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                        onClick={toggleNavBar}
+                    >
+                        Projects
+                    </Link>
+                </div>
+            )}
         </>
     );
 }
