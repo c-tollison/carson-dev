@@ -14,17 +14,18 @@ export default function NavBar() {
     };
 
     useEffect(() => {
-        switch (location.pathname) {
-            case '/':
+        const base = location.pathname.split('/')[1];
+        switch (base) {
+            case '':
                 setActivePage(NavBarPages.Home);
                 break;
-            case '/work':
+            case 'work':
                 setActivePage(NavBarPages.Work);
                 break;
-            case '/journal':
+            case 'journal':
                 setActivePage(NavBarPages.Journal);
                 break;
-            case '/projects':
+            case 'projects':
                 setActivePage(NavBarPages.Projects);
                 break;
             default:

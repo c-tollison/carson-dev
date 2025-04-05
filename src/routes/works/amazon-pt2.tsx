@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import PageWrapper from '../../components/page-wrapper';
 
 export default function AmazonPt2() {
@@ -12,7 +13,7 @@ export default function AmazonPt2() {
                         <h4>Seattle, WA</h4>
                     </div>
                 </div>
-                <div className='hidden md:block w-16 h-16 flex-shrink-0'>
+                <div className='hidden md:block w-20 h-20 flex-shrink-0'>
                     <img
                         src='./../amazon.png'
                         alt='Amazon'
@@ -23,7 +24,7 @@ export default function AmazonPt2() {
 
             <section>
                 <h3 className='text-xl font-semibold border-b border-border pb-4 mb-4'>Quick Points</h3>
-                <ul className='list-disc list-outside mb-4'>
+                <ul className='pl-4 list-disc list-outside mb-4'>
                     <li>
                         Devised and executed an event-driven architecture with AWS Lambda, S3, and DynamoDB to process
                         and analyze product data, expediting clawback initiatives for millions of ASINs
@@ -39,7 +40,7 @@ export default function AmazonPt2() {
                 </ul>
             </section>
 
-            <section>
+            <section className='pb-4 mb-4'>
                 <h3 className='text-xl font-semibold border-b border-border pb-4 mb-4'>My Experience</h3>
                 <div className='leading-relaxed flex flex-col gap-4'>
                     <p>
@@ -79,6 +80,12 @@ export default function AmazonPt2() {
                     </p>
                 </div>
             </section>
+            <Link
+                to='/work'
+                className='hover:text-primary text-l transition-opacity'
+            >
+                <span>&#8592;</span> Back
+            </Link>
         </PageWrapper>
     );
 }

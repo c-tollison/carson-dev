@@ -26,7 +26,7 @@ export default function WorkExperience({ route, name, title, date, imageUrl }: W
                     <p className='text-muted-foreground'>{title}</p>
                     <p className='text-muted-foreground'>{date}</p>
                 </div>
-                <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>→</div>
+                <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>&#8594;</div>
             </div>
         </Link>
     );
