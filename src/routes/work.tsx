@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react';
-import WorkExperience from '../components/work-experience/work-experience';
+import PageWrapper from '../components/page-wrapper';
+import WorkExperience from '../components/work-experience';
 
 export default function Work() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
-
     return (
-        <div className={`transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <div className='py-10 md:w-1/2'>
+        <PageWrapper>
+            <div className='py-10'>
                 <h1 className='text-primary text-5xl font-bold min-h-[3.5rem]'>Work</h1>
-                <h2 className='text-2xl font-medium'>Companies I've gotten a chance to create at</h2>
+                <h2 className='text-2xl font-semibold text-foreground'>Companies I've gotten a chance to create at</h2>
             </div>
 
             <div className='flex flex-col gap-4'>
@@ -38,6 +32,6 @@ export default function Work() {
                     imageUrl='amazon.png'
                 />
             </div>
-        </div>
+        </PageWrapper>
     );
 }
