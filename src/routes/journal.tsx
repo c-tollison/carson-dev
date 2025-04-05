@@ -3,9 +3,9 @@ import PageWrapper from '../components/page-wrapper';
 export default function Journal() {
     return (
         <PageWrapper>
-            <div className='flex flex-col gap-4'>
-                <h1 className='text-3xl font-bold'>Journal</h1>
-                <p className='text-lg'>Coming soon...</p>
+            <div className='py-10'>
+                <h1 className='text-primary text-5xl font-bold min-h-[3.5rem]'>Journal</h1>
+                <h2 className='text-2xl font-semibold text-foreground'>Recent thoughts</h2>
             </div>
         </PageWrapper>
     );

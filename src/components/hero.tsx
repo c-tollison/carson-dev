@@ -34,7 +34,7 @@ export default function Hero() {
                     <img
                         src='ct.jpeg'
                         alt='Carson'
-                        className='w-full h-full object-cover rounded-lg'
+                        className='w-full h-full object-cover rounded-lg shadow-lg'
                     />
                 </div>
             </div>
