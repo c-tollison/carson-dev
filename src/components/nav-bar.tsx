@@ -37,7 +37,7 @@ export default function NavBar() {
         <>
             <nav className='flex justify-between items-center w-full border-b pb-4 border-border'>
                 <div className='flex justify-between items-center w-full'>
-                    <h1 className='text-l'>
+                    <h1 className='text-2xl'>
                         <Link
                             to='/'
                             onClick={() => {

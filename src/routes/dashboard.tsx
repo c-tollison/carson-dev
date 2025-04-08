@@ -9,9 +9,15 @@ function Dashboard() {
     return (
         <PageWrapper>
             <Hero />
-            <div className='flex flex-col md:flex-row gap-4'>
-                <div className='mt-4 md:w-1/4 w-full'>
-                    <h3 className='mx-auto border-b pb-4 border-border text-xl'>Recent Journals</h3>
+            <div className='flex flex-col md:flex-row md:gap-4'>
+                <div className='mt-4 md:w-2/6 w-full'>
+                    <h3 className='mx-auto flex justify-between items-end border-b pb-4 border-border text-xl'>
+                        <span>Recent Journals</span>
+                        <span className='text-sm'>
+                            <Link to='/journal'>More</Link>
+                        </span>
+                    </h3>
+
                     <ul className='mt-4 flex flex-col'>
                         {latestJournals.map((journal, i) => (
                             <li key={i}>
@@ -31,12 +37,25 @@ function Dashboard() {
                         ))}
                     </ul>
                 </div>
-                <div className='mt-4 md:w-3/4 w-full'>
-                    <h3 className='mx-auto border-b pb-4 border-border text-xl'>About me</h3>
+                <div className='mt-4 md:w-4/6 w-full'>
+                    <h3 className='mx-auto border-b pb-4 border-border text-xl'>About Me</h3>
+                    <p className='mt-4 text-xl leading-relaxed'>
+                        I am a software engineer specializing in software architecture and backend systems. I graduated
+                        from Clemson University with a B.S. in Computer Science and have since contributed to projects
+                        in the healthcare sector. I enjoy working with TypeScript and Go, and I'm passionate about
+                        building scalable systems. Outside of work, I like to watch anime or traveling with my fiancée
+                        for a tattoo.
+                    </p>
                 </div>
             </div>
             <div className='w-full mt-4'>
-                <h3 className='border-b pb-4 border-border text-xl'>Projects</h3>
+                <h3 className='flex justify-between items-end border-b pb-4 border-border text-xl'>
+                    <span>Something Fun</span>
+                    <span className='text-sm'>
+                        <Link to='/projects'>More</Link>
+                    </span>
+                </h3>
+
                 <ul className='mt-4 flex flex-col'></ul>
             </div>
         </PageWrapper>

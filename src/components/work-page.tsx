@@ -14,6 +14,12 @@ export interface WorkPageProps {
 export default function WorkPage({ company, title, dates, location, imageUrl, points, children }: WorkPageProps) {
     return (
         <PageWrapper>
+            <Link
+                to='/work'
+                className='hover:text-primary text-l transition-opacity'
+            >
+                <span>&#8592;</span> Back
+            </Link>
             <div className='py-10 flex flex-row justify-between items-center'>
                 <div>
                     <h1 className='text-5xl font-bold text-primary'>{company}</h1>

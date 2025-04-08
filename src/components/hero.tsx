@@ -3,7 +3,7 @@ import Github from './buttons/github';
 import LinkedIn from './buttons/linkedin';
 
 export default function Hero() {
-    const heroText = "Hey, I'm Carson";
+    const heroText = "Hi, I'm Carson";
     const [displayedText, setDisplayedText] = useState('');
     const indexRef = useRef(0);
 
@@ -29,7 +29,7 @@ export default function Hero() {
                     <LinkedIn />
                 </div>
             </div>
-            <div className='md:w-1/2 flex justify-end'>
+            <div className='md:w-1/2 w-0 flex justify-end'>
                 <div className='w-full max-w-md aspect-square'>
                     <img
                         src='ct.jpeg'
