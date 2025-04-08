@@ -35,7 +35,7 @@ export default function NavBar() {
 
     return (
         <>
-            <nav className='flex justify-between items-center w-full border-b pb-4 border-border'>
+            <nav className='flex justify-between items-center w-full border-b py-4 border-border'>
                 <div className='flex justify-between items-center w-full'>
                     <h1 className='text-2xl'>
                         <Link

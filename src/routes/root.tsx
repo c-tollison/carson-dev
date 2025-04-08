@@ -4,10 +4,13 @@ import Footer from '../components/footer';
 
 export default function Root() {
     return (
-        <div className='min-h-screen w-full bg-background py-4 px-6 flex justify-center text-foreground transition-all duration-300 ease-in-out'>
-            <div className='max-w-5xl w-full flex flex-col gap-4'>
+        <div className='min-h-screen w-full bg-background px-6 flex justify-center text-foreground transition-all duration-300 ease-in-out'>
+            <div className='max-w-5xl w-full flex flex-col gap-4 min-h-screen'>
                 <NavBar />
-                <Outlet />
+                {/* Wrap the outlet in a <main> tag with flex-grow */}
+                <main className='flex-grow'>
+                    <Outlet />
+                </main>
                 <Footer />
             </div>
         </div>
