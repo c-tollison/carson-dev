@@ -29,13 +29,14 @@ export default function Journal() {
             </div>
 
             <div className='flex flex-col gap-4'>
-                {reversedJournals.slice(currentPage * 5, currentPage * 5 + 5).map((journal) => (
+                {reversedJournals.slice(currentPage * 5, currentPage * 5 + 5).map((journal, index) => (
                     <JournalCard
                         title={journal.title}
                         date={journal.date}
                         route={journal.route}
                         thumbnail={journal.thumbnail}
                         topics={journal.topics}
+                        key={index}
                     />
                 ))}
             </div>
