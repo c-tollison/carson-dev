@@ -1,5 +1,6 @@
 import PageWrapper from '../components/page-wrapper';
 import WorkExperience from '../components/work-experience';
+import works from './works/works';
 
 export default function Work() {
     return (
@@ -10,27 +11,16 @@ export default function Work() {
             </div>
 
             <div className='flex flex-col gap-4'>
-                <WorkExperience
-                    route='chirohd'
-                    name='ChiroHD'
-                    title='Software Engineer'
-                    date='Nov 2021 - Present'
-                    imageUrl='chirohd_logo.png'
-                />
-                <WorkExperience
-                    route='amazon-pt2'
-                    name='Amazon - APM'
-                    title='Software Development Engineer Intern'
-                    date='May 2023 - Aug 2023'
-                    imageUrl='amazon.png'
-                />
-                <WorkExperience
-                    route='amazon-pt1'
-                    name='Amazon - Benefits'
-                    title='Software Development Engineer Intern'
-                    date='May 2022 - Aug 2022'
-                    imageUrl='amazon.png'
-                />
+                {works.map((work) => (
+                    <WorkExperience
+                        key={work.route}
+                        route={work.route}
+                        name={work.name}
+                        title={work.title}
+                        date={work.date}
+                        imageUrl={work.imageUrl}
+                    />
+                ))}
             </div>
         </PageWrapper>
     );

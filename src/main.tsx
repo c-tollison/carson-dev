@@ -8,9 +8,18 @@ import Root from './routes/root';
 import Journal from './routes/journal';
 import { ColorThemeProvider } from './components/core/providers/color-mode-provider/color-mode-provider';
 import Projects from './routes/projects';
-import ChiroHD from './routes/works/chirohd';
-import AmazonPt1 from './routes/works/amazon-pt1';
-import AmazonPt2 from './routes/works/amazon-pt2';
+import works from './routes/works/works';
+import journals from './routes/journals/journals';
+
+const workChildRoutes = works.map((work) => ({
+    path: `work/${work.route}`,
+    Component: work.component,
+}));
+
+const journalChildRoutes = journals.map((journal) => ({
+    path: `journal/${journal.route}`,
+    Component: journal.component,
+}));
 
 const router = createBrowserRouter([
     {
@@ -33,18 +42,8 @@ const router = createBrowserRouter([
                 path: 'projects',
                 Component: Projects,
             },
-            {
-                path: 'work/chirohd',
-                Component: ChiroHD,
-            },
-            {
-                path: 'work/amazon-pt1',
-                Component: AmazonPt1,
-            },
-            {
-                path: 'work/amazon-pt2',
-                Component: AmazonPt2,
-            },
+            ...workChildRoutes,
+            ...journalChildRoutes,
         ],
     },
 ]);

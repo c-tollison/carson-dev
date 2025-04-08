@@ -37,7 +37,7 @@ export default function NavBar() {
         <>
             <nav className='flex justify-between items-center w-full border-b pb-4 border-border'>
                 <div className='flex justify-between items-center w-full'>
-                    <h1 className='text-xl '>
+                    <h1 className='text-l'>
                         <Link
                             to='/'
                             onClick={() => {
@@ -58,7 +58,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/work'
-                            className={`${activePage === NavBarPages.Work ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors`}
+                            className={`${activePage === NavBarPages.Work ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
                         >
                             Work
                         </Link>
@@ -66,7 +66,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/journal'
-                            className={`${activePage === NavBarPages.Journal ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors`}
+                            className={`${activePage === NavBarPages.Journal ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
                         >
                             Journal
                         </Link>
@@ -74,7 +74,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/projects'
-                            className={`${activePage === NavBarPages.Projects ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors`}
+                            className={`${activePage === NavBarPages.Projects ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
                         >
                             Projects
                         </Link>

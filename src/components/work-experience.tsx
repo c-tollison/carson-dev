@@ -15,7 +15,7 @@ export default function WorkExperience({ route, name, title, date, imageUrl }: W
                 <div className='w-16 h-16 flex-shrink-0'>
                     <img
                         src={imageUrl}
-                        alt='ChiroHD Logo'
+                        alt='Company logo'
                         className='w-full h-full object-contain rounded-md'
                     />
                 </div>

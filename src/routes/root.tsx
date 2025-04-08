@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from '../components/nav-bar';
+import Footer from '../components/footer';
 
 export default function Root() {
     return (
@@ -7,6 +8,7 @@ export default function Root() {
             <div className='max-w-5xl w-full flex flex-col gap-4'>
                 <NavBar />
                 <Outlet />
+                <Footer />
             </div>
         </div>
     );
