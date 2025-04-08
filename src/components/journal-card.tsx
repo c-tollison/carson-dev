@@ -5,15 +5,15 @@ export interface JournalCardProps {
     date: string;
     route: string;
     topics: string[];
-    thumbnail?: string;
+    thumbnail: string;
 }
 
 export default function JournalCard({ title, date, route, thumbnail, topics }: JournalCardProps) {
     return (
         <Link to={`/journal/${route}`}>
-            <div className='group w-full flex items-center gap-6 p-8 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
+            <div className='group w-full flex items-center gap-6 p-12 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
                 {thumbnail && (
-                    <div className='w-16 h-16 flex-shrink-0'>
+                    <div className='w-20 h-20 flex-shrink-0'>
                         <img
                             src={thumbnail}
                             alt={`${title} thumbnail`}
