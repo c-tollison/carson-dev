@@ -43,8 +43,8 @@ function Dashboard() {
                         I am a software engineer specializing in software architecture and backend systems. I graduated
                         from Clemson University with a B.S. in Computer Science and have since contributed to projects
                         in the healthcare sector. I enjoy working with TypeScript and Go, and I'm passionate about
-                        building scalable systems. Outside of work, I like to watch anime or traveling with my fiancée
-                        for a tattoo.
+                        building scalable systems. Outside of work, I like to watch anime, get tattoos, or travel with
+                        my fiancée.
                     </p>
                 </div>
             </div>

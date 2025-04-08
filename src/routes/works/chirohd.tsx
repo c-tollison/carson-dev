@@ -65,8 +65,8 @@ export default function ChiroHD() {
                 Working on our insurance platform was my first customer-facing project at ChiroHD. Before that, I had
                 mostly worked on smaller features and internal improvements, like revamping our pipelines and getting
                 our testing infrastructure up and running. Stepping into the insurance work gave me real ownership over
-                something. More recently, I've shifted toward our ledger systems and double-entry accounting. This is me
-                trying to even understand ledger. (Double-entry accounting is diabolical.)
+                something. More recently, I've shifted toward our ledger system and double-entry accounting.
+                (Double-entry accounting is diabolical.)
             </p>
 
             <div className='w-full flex justify-center items-center flex-shrink-0'>

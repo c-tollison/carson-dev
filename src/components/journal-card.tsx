@@ -29,7 +29,7 @@ export default function JournalCard({ title, date, route, thumbnail, topics }: J
                             {topics.map((topic, index) => (
                                 <span
                                     key={index}
-                                    className='px-2 py-1 rounded-full bg-card border border-border text-sm transition-colors'
+                                    className='px-2 py-1 rounded-full bg-card border border-border text-sm transition-colors duration-300 ease-in-out text-foreground'
                                 >
                                     {topic}
                                 </span>

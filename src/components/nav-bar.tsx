@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import DropDownButton from './buttons/drop-down-button';
 import { useEffect, useState } from 'react';
 import { NavBarPages } from '../enums/NavBarPages.enum';
+import PageWrapper from './page-wrapper';
 
 export default function NavBar() {
     const location = useLocation();
@@ -37,7 +38,7 @@ export default function NavBar() {
         <>
             <nav className='flex justify-between items-center w-full border-b py-4 border-border'>
                 <div className='flex justify-between items-center w-full'>
-                    <h1 className='text-2xl'>
+                    <h1 className='text-xl'>
                         <Link
                             to='/'
                             onClick={() => {
@@ -83,28 +84,32 @@ export default function NavBar() {
                 </ul>
             </nav>
             {navbarOpen && (
-                <div className='md:hidden flex flex-col gap-2'>
-                    <Link
-                        to='work'
-                        className='w-full p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
-                        onClick={toggleNavBar}
-                    >
-                        Work
-                    </Link>
-                    <Link
-                        to='journal'
-                        className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
-                        onClick={toggleNavBar}
-                    >
-                        Journal
-                    </Link>
-                    <Link
-                        to='projects'
-                        className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
-                        onClick={toggleNavBar}
-                    >
-                        Projects
-                    </Link>
+                <div className='md:hidden'>
+                    <PageWrapper>
+                        <div className='flex flex-col gap-2'>
+                            <Link
+                                to='work'
+                                className='w-full p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                                onClick={toggleNavBar}
+                            >
+                                Work
+                            </Link>
+                            <Link
+                                to='journal'
+                                className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                                onClick={toggleNavBar}
+                            >
+                                Journal
+                            </Link>
+                            <Link
+                                to='projects'
+                                className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                                onClick={toggleNavBar}
+                            >
+                                Projects
+                            </Link>
+                        </div>
+                    </PageWrapper>
                 </div>
             )}
         </>
