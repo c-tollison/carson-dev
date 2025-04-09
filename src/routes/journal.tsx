@@ -23,8 +23,8 @@ export default function Journal() {
 
     return (
         <PageWrapper>
-            <div className='py-10'>
-                <h1 className='text-primary text-5xl font-bold min-h-[3.5rem]'>Journal</h1>
+            <div className='py-10 flex flex-col gap-3'>
+                <h1 className='text-primary text-5xl font-bold'>Journal</h1>
                 <h2 className='text-2xl font-semibold text-foreground'>Recent thoughts</h2>
             </div>
 
@@ -41,34 +41,36 @@ export default function Journal() {
                 ))}
             </div>
 
-            <div className='flex items-center justify-center mt-8 gap-4'>
-                <button
-                    onClick={() => selectPage(currentPage - 1)}
-                    disabled={currentPage <= 0}
-                    className='px-4 py-2 rounded-lg bg-card hover:bg-popover hover:shadow-lg disabled:pointer-events-none transition-all duration-300 ease-in-out border border-border disabled:opacity-50'
-                >
-                    {'<'}
-                </button>
-                {Array.from({ length: endPage - startPage + 1 }).map((_, i) => {
-                    const pageIndex = startPage + i;
-                    return (
-                        <button
-                            key={pageIndex}
-                            onClick={() => selectPage(pageIndex)}
-                            className={`p-1 text-l ${currentPage === pageIndex ? 'font-semibold' : ''}`}
-                        >
-                            {pageIndex + 1}
-                        </button>
-                    );
-                })}
-                <button
-                    onClick={() => selectPage(currentPage + 1)}
-                    disabled={currentPage >= totalPages - 1}
-                    className='px-4 py-2 rounded-lg bg-card hover:bg-popover hover:shadow-lg disabled:pointer-events-none transition-all duration-300 ease-in-out border border-border disabled:opacity-50'
-                >
-                    {'>'}
-                </button>
-            </div>
+            {totalPages > 5 && (
+                <div className='flex items-center justify-center mt-8 gap-4'>
+                    <button
+                        onClick={() => selectPage(currentPage - 1)}
+                        disabled={currentPage <= 0}
+                        className='px-4 py-2 rounded-lg bg-card hover:bg-popover hover:shadow-lg disabled:pointer-events-none transition-all duration-300 ease-in-out border border-border disabled:opacity-50'
+                    >
+                        {'<'}
+                    </button>
+                    {Array.from({ length: endPage - startPage + 1 }).map((_, i) => {
+                        const pageIndex = startPage + i;
+                        return (
+                            <button
+                                key={pageIndex}
+                                onClick={() => selectPage(pageIndex)}
+                                className={`p-1 text-l ${currentPage === pageIndex ? 'font-semibold' : ''}`}
+                            >
+                                {pageIndex + 1}
+                            </button>
+                        );
+                    })}
+                    <button
+                        onClick={() => selectPage(currentPage + 1)}
+                        disabled={currentPage >= totalPages - 1}
+                        className='px-4 py-2 rounded-lg bg-card hover:bg-popover hover:shadow-lg disabled:pointer-events-none transition-all duration-300 ease-in-out border border-border disabled:opacity-50'
+                    >
+                        {'>'}
+                    </button>
+                </div>
+            )}
         </PageWrapper>
     );
 }
