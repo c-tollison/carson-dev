@@ -8,7 +8,7 @@ export default function WebServerInGo() {
             topics={['Go']}
             thumbnail='./../go-gopher.png'
         >
-            <p>Test</p>
+            <p>If you're reading this, you're to soon :), first article dropping in a few day</p>
         </JournalPage>
     );
 }

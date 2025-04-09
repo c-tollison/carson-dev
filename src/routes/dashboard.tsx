@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/hero';
 import PageWrapper from '../components/page-wrapper';
 import journals from './journals/journals';
+import ParticleCanvas from '../components/particleCanvas';
 
 function Dashboard() {
     const latestJournals = journals.slice(journals.length - 5).reverse();
@@ -56,7 +57,9 @@ function Dashboard() {
                     </span>
                 </h3>
 
-                <ul className='mt-4 flex flex-col'></ul>
+                <ul className='mt-4'>
+                    <ParticleCanvas />
+                </ul>
             </div>
         </PageWrapper>
     );
