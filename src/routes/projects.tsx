@@ -39,7 +39,7 @@ export default function Projects() {
                                             aria-label={`${project.title} GitHub repository`}
                                         >
                                             <GitHubIcon className='w-6 h-6' />
-                                            <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover/github:opacity-100 transition-opacity pointer-events-none'>
+                                            <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-popover-foreground bg-popover border border-border rounded shadow-sm whitespace-nowrap opacity-0 group-hover/github:opacity-100 transition-opacity pointer-events-none'>
                                                 View source
                                             </span>
                                         </a>
@@ -53,7 +53,7 @@ export default function Projects() {
                                             aria-label={`${project.title} live site`}
                                         >
                                             <span className='text-xl font-medium'>↗</span>
-                                            <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover/live:opacity-100 transition-opacity pointer-events-none'>
+                                            <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-popover-foreground bg-popover border border-border rounded shadow-sm whitespace-nowrap opacity-0 group-hover/live:opacity-100 transition-opacity pointer-events-none'>
                                                 View live
                                             </span>
                                         </a>

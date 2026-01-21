@@ -21,7 +21,7 @@ export default function Hero() {
 
     return (
         <div className='flex flex-row gap-4 items-center justify-center md:justify-between'>
-            <div className='py-6 md:py-10 flex flex-col items-center md:items-start gap-2 md:gap-3 md:w-1/2 w-full'>
+            <div className='py-2 md:py-10 flex flex-col items-center md:items-start gap-1 md:gap-3 md:w-1/2 w-full'>
                 {/* Mobile circular image - centered above text */}
                 <div className='md:hidden w-24 h-24 mb-2'>
                     <img

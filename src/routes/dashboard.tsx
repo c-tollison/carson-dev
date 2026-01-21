@@ -52,7 +52,7 @@ function Dashboard() {
 
             <div className='mt-8 md:mt-12 w-full'>
                 <h3 className='border-b pb-4 border-border text-xl'>Skills</h3>
-                <div className='mt-6 grid grid-cols-2 md:grid-cols-4 gap-6'>
+                <div className='mt-6 grid grid-cols-1 md:grid-cols-4 gap-6'>
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Languages</h4>
                         <div className='flex flex-wrap gap-2'>
