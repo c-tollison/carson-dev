@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import JournalCard from '../components/journal-card';
+import LogCard from '../components/log/log-card';
 import PageWrapper from '../components/page-wrapper';
-import journals from './journals/journals';
+import logs from './log/logs';
 
-export default function Journal() {
+export default function Log() {
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const reversedJournals = [...journals].reverse();
-    const totalPages = Math.ceil(journals.length / 5);
+    const reversedLogs = [...logs].reverse();
+    const totalPages = Math.ceil(logs.length / 5);
 
     const selectPage = (index: number) => {
         setCurrentPage(index);
@@ -24,18 +24,18 @@ export default function Journal() {
     return (
         <PageWrapper>
             <div className='py-10 flex flex-col gap-3'>
-                <h1 className='text-primary text-5xl font-bold'>Journal</h1>
-                <h2 className='text-2xl font-semibold text-foreground'>Recent thoughts</h2>
+                <h1 className='text-primary text-5xl font-bold'>Log</h1>
+                <h2 className='text-2xl font-semibold text-foreground'>Recent logs</h2>
             </div>
 
             <div className='flex flex-col gap-4'>
-                {reversedJournals.slice(currentPage * 5, currentPage * 5 + 5).map((journal, index) => (
-                    <JournalCard
-                        title={journal.title}
-                        date={journal.date}
-                        route={journal.route}
-                        thumbnail={journal.thumbnail}
-                        topics={journal.topics}
+                {reversedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
+                    <LogCard
+                        title={log.title}
+                        date={log.date}
+                        route={log.route}
+                        thumbnail={log.thumbnail}
+                        topics={log.topics}
                         key={index}
                     />
                 ))}

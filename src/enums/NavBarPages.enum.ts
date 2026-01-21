@@ -1,6 +1,6 @@
 export enum NavBarPages {
     Home = 'home',
     Work = 'work',
-    Journal = 'journal',
+    Log = 'log',
     Projects = 'projects',
 }

@@ -5,20 +5,20 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Dashboard from './routes/dashboard';
 import Work from './routes/work';
 import Root from './routes/root';
-import Journal from './routes/journal';
+import Log from './routes/log';
 import { ColorThemeProvider } from './components/core/providers/color-mode-provider/color-mode-provider';
 import Projects from './routes/projects';
 import works from './routes/works/works';
-import journals from './routes/journals/journals';
+import logs from './routes/log/logs';
 
 const workChildRoutes = works.map((work) => ({
     path: `work/${work.route}`,
     Component: work.component,
 }));
 
-const journalChildRoutes = journals.map((journal) => ({
-    path: `journal/${journal.route}`,
-    Component: journal.component,
+const logChildRoutes = logs.map((log) => ({
+    path: `log/${log.route}`,
+    Component: log.component,
 }));
 
 const router = createBrowserRouter([
@@ -35,15 +35,15 @@ const router = createBrowserRouter([
                 Component: Work,
             },
             {
-                path: 'journal',
-                Component: Journal,
+                path: 'log',
+                Component: Log,
             },
             {
                 path: 'projects',
                 Component: Projects,
             },
             ...workChildRoutes,
-            ...journalChildRoutes,
+            ...logChildRoutes,
         ],
     },
 ]);

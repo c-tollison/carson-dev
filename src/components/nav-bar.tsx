@@ -23,8 +23,8 @@ export default function NavBar() {
             case 'work':
                 setActivePage(NavBarPages.Work);
                 break;
-            case 'journal':
-                setActivePage(NavBarPages.Journal);
+            case 'log':
+                setActivePage(NavBarPages.Log);
                 break;
             case 'projects':
                 setActivePage(NavBarPages.Projects);
@@ -66,10 +66,10 @@ export default function NavBar() {
                     </li>
                     <li>
                         <Link
-                            to='/journal'
-                            className={`${activePage === NavBarPages.Journal ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
+                            to='/log'
+                            className={`${activePage === NavBarPages.Log ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
                         >
-                            Journal
+                            Log
                         </Link>
                     </li>
                     <li>
@@ -95,11 +95,11 @@ export default function NavBar() {
                                 Work
                             </Link>
                             <Link
-                                to='journal'
+                                to='log'
                                 className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
                                 onClick={toggleNavBar}
                             >
-                                Journal
+                                Log
                             </Link>
                             <Link
                                 to='projects'

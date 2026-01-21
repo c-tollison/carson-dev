@@ -1,14 +1,14 @@
-import JournalPage from '../../components/journal-page';
+import LogPage from '../../components/log/log-page';
 
 export default function WebServerInGo() {
     return (
-        <JournalPage
+        <LogPage
             title='Web Server with Go'
             date='Apr 8th, 2025'
             topics={['Go']}
             thumbnail='./../go-gopher.png'
         >
             <p>If you're reading this, you're to soon :), first article dropping in a few day</p>
-        </JournalPage>
+        </LogPage>
     );
 }

@@ -1,11 +1,11 @@
-import { JournalCardProps } from '../../components/journal-card';
+import { LogCardProps } from '../../components/log/log-card';
 import WebServerInGo from './web-server-in-go';
 
-interface Journal extends JournalCardProps {
+interface Log extends LogCardProps {
     component: () => JSX.Element;
 }
 
-const journals: Journal[] = [
+const logs: Log[] = [
     {
         title: 'Web Server with Go',
         date: 'Apr 8th, 2025',
@@ -16,4 +16,4 @@ const journals: Journal[] = [
     },
 ];
 
-export default journals;
+export default logs;

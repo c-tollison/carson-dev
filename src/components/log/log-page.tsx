@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import PageWrapper from './page-wrapper';
+import PageWrapper from '../page-wrapper';
 
-export interface JournalPageProps {
+export interface LogPageProps {
     title: string;
     date: string;
     topics: string[];
@@ -9,11 +9,11 @@ export interface JournalPageProps {
     children: React.ReactNode;
 }
 
-export default function JournalPage({ title, date, topics, thumbnail, children }: JournalPageProps) {
+export default function LogPage({ title, date, topics, thumbnail, children }: LogPageProps) {
     return (
         <PageWrapper>
             <Link
-                to='/journal'
+                to='/log'
                 className='hover:text-primary text-l transition-opacity'
             >
                 <span>&#8592;</span> Back
@@ -47,7 +47,7 @@ export default function JournalPage({ title, date, topics, thumbnail, children }
                 <div className='leading-relaxed flex flex-col gap-4'>{children}</div>
             </section>
             <Link
-                to='/journal'
+                to='/log'
                 className='hover:text-primary text-l transition-opacity'
             >
                 <span>&#8592;</span> Back

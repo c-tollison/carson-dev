@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export interface JournalCardProps {
+export interface LogCardProps {
     title: string;
     date: string;
     route: string;
@@ -8,9 +8,9 @@ export interface JournalCardProps {
     thumbnail: string;
 }
 
-export default function JournalCard({ title, date, route, thumbnail, topics }: JournalCardProps) {
+export default function LogCard({ title, date, route, thumbnail, topics }: LogCardProps) {
     return (
-        <Link to={`/journal/${route}`}>
+        <Link to={`/log/${route}`}>
             <div className='group w-full flex items-center gap-6 p-12 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
                 {thumbnail && (
                     <div className='w-20 h-20 flex-shrink-0'>
