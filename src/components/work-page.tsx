@@ -21,7 +21,7 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
             >
                 <span>&#8592;</span> Back
             </Link>
-            <div className='py-8 flex flex-row justify-between items-start gap-6 mb-8'>
+            <div className='mt-6 flex flex-row justify-between items-start gap-6 mb-8'>
                 <div className='flex-1 min-w-0'>
                     <h1 className='text-3xl font-bold text-primary mb-2'>{company}</h1>
                     <h2 className='text-lg font-semibold text-foreground mb-3'>{title}</h2>
@@ -31,7 +31,7 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
                         <span>{location}</span>
                     </div>
                 </div>
-                <div className='hidden md:block w-16 h-16 flex-shrink-0'>
+                <div className='hidden md:block w-20 h-20 flex-shrink-0'>
                     <img
                         src={imageUrl}
                         alt='Company Logo'

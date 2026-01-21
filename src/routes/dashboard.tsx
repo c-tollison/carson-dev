@@ -9,8 +9,8 @@ function Dashboard() {
     return (
         <PageWrapper>
             <Hero />
-            <div className='flex flex-col md:flex-row md:gap-4'>
-                <div className='mt-4 md:w-2/6 w-full order-2 md:order-1'>
+            <div className='mt-8 flex flex-col md:flex-row md:gap-8'>
+                <div className='mt-8 md:mt-0 md:w-2/6 w-full order-2 md:order-1'>
                     <h3 className='flex justify-between items-end border-b pb-4 border-border text-xl'>
                         <span>Recent Logs</span>
                         <span className='text-sm'>
@@ -18,7 +18,7 @@ function Dashboard() {
                         </span>
                     </h3>
 
-                    <ul className='mt-4 flex flex-col'>
+                    <ul className='mt-6 flex flex-col'>
                         {latestLogs.length === 0 ? (
                             <li className='text-muted-foreground py-2'>No logs yet.</li>
                         ) : (
@@ -41,18 +41,18 @@ function Dashboard() {
                         )}
                     </ul>
                 </div>
-                <div className='mt-4 md:w-4/6 w-full order-1 md:order-2'>
+                <div className='md:w-4/6 w-full order-1 md:order-2'>
                     <h3 className='border-b pb-4 border-border text-xl'>About Me</h3>
-                    <p className='mt-4 text-md leading-relaxed'>
+                    <p className='mt-6 text-md leading-relaxed'>
                         I'm a backend-leaning software engineer who enjoys designing scalable systems in TypeScript and thinking through backend architecture. I focus on building APIs and data models that hold up in production and are easy to evolve over time. While I lean backend, I've built full production frontends when the project called for it - most recently shipping an entire SaaS application end-to-end. I hold a B.S. in Computer Science from Clemson University and have worked on systems in healthcare and SaaS environments. Outside of engineering, I enjoy traveling with my wife, getting tattoos, and watching anime.
                     </p>
 
                 </div>
             </div>
 
-            <div className='mt-8 w-full'>
+            <div className='mt-8 md:mt-12 w-full'>
                 <h3 className='border-b pb-4 border-border text-xl'>Skills</h3>
-                <div className='mt-4 grid grid-cols-2 md:grid-cols-4 gap-6'>
+                <div className='mt-6 grid grid-cols-2 md:grid-cols-4 gap-6'>
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Languages</h4>
                         <div className='flex flex-wrap gap-2'>

@@ -39,7 +39,7 @@ export default function Hero() {
             </div>
             {/* Desktop large image */}
             <div className='hidden md:flex md:w-1/2 justify-end'>
-                <div className='w-full max-w-md aspect-square'>
+                <div className='w-full max-w-sm aspect-square'>
                     <img
                         src='ct.jpg'
                         alt='Carson'

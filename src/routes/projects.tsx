@@ -25,20 +25,20 @@ export default function Projects() {
                             </div>
                         )}
                         <div className='p-6 flex flex-col flex-1'>
-                            <div className='flex items-start justify-between gap-4 mb-3'>
+                            <div className='flex items-center justify-between gap-4 mb-3'>
                                 <h3 className='text-base font-semibold text-foreground'>
                                     {project.title}
                                 </h3>
-                                <div className='flex items-center gap-2 flex-shrink-0 mt-0.5'>
+                                <div className='flex items-center gap-1 flex-shrink-0 -mx-2'>
                                     {project.githubLink && (
                                         <a
                                             href={project.githubLink}
                                             target='_blank'
                                             rel='noopener noreferrer'
-                                            className='relative group/github text-muted-foreground hover:text-primary transition-colors'
+                                            className='relative group/github text-muted-foreground hover:text-primary transition-colors p-2'
                                             aria-label={`${project.title} GitHub repository`}
                                         >
-                                            <GitHubIcon />
+                                            <GitHubIcon className='w-6 h-6' />
                                             <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover/github:opacity-100 transition-opacity pointer-events-none'>
                                                 View source
                                             </span>
@@ -49,10 +49,10 @@ export default function Projects() {
                                             href={project.link}
                                             target='_blank'
                                             rel='noopener noreferrer'
-                                            className='relative group/live text-primary hover:text-primary/80 transition-colors'
+                                            className='relative group/live text-primary hover:text-primary/80 transition-colors p-2'
                                             aria-label={`${project.title} live site`}
                                         >
-                                            <span className='text-lg font-medium'>↗</span>
+                                            <span className='text-xl font-medium'>↗</span>
                                             <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-white bg-gray-900 dark:bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover/live:opacity-100 transition-opacity pointer-events-none'>
                                                 View live
                                             </span>
