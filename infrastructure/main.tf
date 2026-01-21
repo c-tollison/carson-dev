@@ -33,7 +33,6 @@ module "cloudfront" {
    
     main_bucket_regional_domain_name = module.s3.bucket_regional_domain_name
     domain_name                      = var.domain_name
-    certificate_arn                  = module.acm.arn
+    certificate_arn                  = aws_acm_certificate_validation.cert.certificate_arn
     project_name                     = var.project_name
-
 }

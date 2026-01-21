@@ -13,7 +13,7 @@ variable "project_name" {
 variable "route53_zone_id" {
     type        = string
     description = "The Route 53 Hosted Zone ID for the domain"
-    default     =  "Z0582374AWGNA0XPENC8"
+    default     =  "Z09346381DFHQT90S36X5"
 }
 
 variable "region" {
