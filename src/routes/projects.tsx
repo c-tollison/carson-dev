@@ -26,7 +26,7 @@ export default function Projects() {
                             <div className='p-6 flex flex-col flex-1'>
                                 <div className='flex items-start justify-between gap-4 mb-3'>
                                     <h3
-                                        className={`text-xl font-semibold text-foreground transition-colors ${
+                                        className={`text-base font-semibold text-foreground transition-colors ${
                                             project.link ? 'group-hover:text-primary' : ''
                                         }`}
                                     >
@@ -38,7 +38,7 @@ export default function Projects() {
                                         </span>
                                     )}
                                 </div>
-                                <p className='text-base text-foreground leading-relaxed mb-4 flex-1'>
+                                <p className='text-sm text-foreground leading-relaxed mb-4 flex-1'>
                                     {project.description}
                                 </p>
                                 {project.topics && project.topics.length > 0 && (

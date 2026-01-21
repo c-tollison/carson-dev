@@ -20,11 +20,11 @@ export default function WorkExperience({ route, name, title, date, imageUrl }: W
                     />
                 </div>
                 <div className='flex-1 min-w-0'>
-                    <h3 className='text-xl font-semibold text-foreground group-hover:text-primary transition-colors truncate'>
+                    <h3 className='text-base font-semibold text-foreground group-hover:text-primary transition-colors truncate'>
                         {name}
                     </h3>
-                    <p className='text-base text-foreground font-medium mt-0.5'>{title}</p>
-                    <p className='text-base text-muted-foreground mt-1'>{date}</p>
+                    <p className='text-sm text-foreground font-medium mt-0.5'>{title}</p>
+                    <p className='text-sm text-muted-foreground mt-1'>{date}</p>
                 </div>
                 <div className='text-primary text-lg opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0'>&#8594;</div>
             </div>

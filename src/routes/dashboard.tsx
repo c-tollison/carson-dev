@@ -10,7 +10,7 @@ function Dashboard() {
         <PageWrapper>
             <Hero />
             <div className='flex flex-col md:flex-row md:gap-4'>
-                <div className='mt-4 md:w-2/6 w-full'>
+                <div className='mt-4 md:w-2/6 w-full order-2 md:order-1'>
                     <h3 className='flex justify-between items-end border-b pb-4 border-border text-xl'>
                         <span>Recent Logs</span>
                         <span className='text-sm'>
@@ -29,10 +29,10 @@ function Dashboard() {
                                         className='group flex justify-between items-center py-2 transition-all duration-300 ease-in-out'
                                     >
                                         <div>
-                                            <h4 className='text-xl font-bold text-foreground'>{log.title}</h4>
+                                            <h4 className='text-base font-semibold text-foreground'>{log.title}</h4>
                                             <p className='text-sm text-muted-foreground'>{log.date}</p>
                                         </div>
-                                        <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>
+                                        <div className='text-primary text-base opacity-0 group-hover:opacity-100 transition-opacity'>
                                             &#8594;
                                         </div>
                                     </Link>
@@ -41,14 +41,10 @@ function Dashboard() {
                         )}
                     </ul>
                 </div>
-                <div className='mt-4 md:w-4/6 w-full'>
+                <div className='mt-4 md:w-4/6 w-full order-1 md:order-2'>
                     <h3 className='border-b pb-4 border-border text-xl'>About Me</h3>
-                    <p className='mt-4 text-xl leading-relaxed'>
-                        I am a software engineer specializing in software architecture and backend systems. I graduated
-                        from Clemson University with a B.S. in Computer Science and have since contributed to projects
-                        in the healthcare sector. I enjoy working with TypeScript and I'm passionate about
-                        building scalable systems. Outside of work, I like to watch anime, get tattoos, or travel with
-                        my wife.
+                    <p className='mt-4 text-md leading-relaxed'>
+                        I'm a backend-leaning software engineer who enjoys designing scalable systems in TypeScript and thinking through backend architecture. I focus on building APIs and data models that hold up in production and are easy to evolve over time. I hold a B.S. in Computer Science from Clemson University and have worked on backend systems in healthcare and SaaS environments. Outside of engineering, I enjoy traveling with my wife, getting tattoos, and watching anime
                     </p>
                 </div>
             </div>

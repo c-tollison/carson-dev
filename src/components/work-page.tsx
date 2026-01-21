@@ -17,15 +17,15 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
         <PageWrapper>
             <Link
                 to='/work'
-                className='hover:text-primary text-l transition-opacity'
+                className='hover:text-primary text-sm transition-opacity'
             >
                 <span>&#8592;</span> Back
             </Link>
             <div className='py-8 flex flex-row justify-between items-start gap-6 mb-8'>
                 <div className='flex-1 min-w-0'>
                     <h1 className='text-3xl font-bold text-primary mb-2'>{company}</h1>
-                    <h2 className='text-xl font-semibold text-foreground mb-3'>{title}</h2>
-                    <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-base text-muted-foreground'>
+                    <h2 className='text-lg font-semibold text-foreground mb-3'>{title}</h2>
+                    <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-sm text-muted-foreground'>
                         <span>{dates}</span>
                         {location && <span className='hidden sm:inline'>•</span>}
                         <span>{location}</span>
@@ -43,13 +43,13 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
             {tldr && (
                 <section className='mb-8'>
                     <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>TLDR</h3>
-                    <p className='text-base leading-relaxed text-foreground'>{tldr}</p>
+                    <p className='text-sm leading-relaxed text-foreground'>{tldr}</p>
                 </section>
             )}
 
             <section className='mb-8'>
                 <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Key Achievements</h3>
-                <ul className='pl-5 list-disc list-outside space-y-2 text-base leading-relaxed'>
+                <ul className='pl-5 list-disc list-outside space-y-2 text-sm leading-relaxed'>
                     {points.map((point, index) => (
                         <li key={index} className='text-foreground'>{point}</li>
                     ))}
@@ -58,11 +58,11 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
 
             <section className='pb-4 mb-6'>
                 <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Experience</h3>
-                <div className='leading-relaxed flex flex-col gap-4 text-base'>{children}</div>
+                <div className='leading-relaxed flex flex-col gap-4 text-sm'>{children}</div>
             </section>
             <Link
                 to='/work'
-                className='hover:text-primary text-l transition-opacity'
+                className='hover:text-primary text-sm transition-opacity'
             >
                 <span>&#8592;</span> Back
             </Link>

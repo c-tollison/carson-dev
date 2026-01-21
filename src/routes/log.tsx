@@ -59,7 +59,7 @@ export default function Log() {
                             <button
                                 key={pageIndex}
                                 onClick={() => selectPage(pageIndex)}
-                                className={`p-1 text-l ${currentPage === pageIndex ? 'font-semibold' : ''}`}
+                                className={`p-1 text-sm ${currentPage === pageIndex ? 'font-semibold' : ''}`}
                             >
                                 {pageIndex + 1}
                             </button>

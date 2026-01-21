@@ -20,16 +20,25 @@ export default function Hero() {
     }, []);
 
     return (
-        <div className='flex flex-row gap-4 items-center md:justify-between'>
-            <div className='py-10 flex flex-col gap-3 md:w-1/2'>
-                <h1 className='text-primary text-5xl font-bold'>{displayedText}</h1>
-                <h2 className='text-2xl font-medium'>Software Engineer out of Greenville, SC</h2>
+        <div className='flex flex-row gap-4 items-center justify-center md:justify-between'>
+            <div className='py-6 md:py-10 flex flex-col items-center md:items-start gap-2 md:gap-3 md:w-1/2 w-full'>
+                {/* Mobile circular image - centered above text */}
+                <div className='md:hidden w-24 h-24 mb-2'>
+                    <img
+                        src='ct.jpg'
+                        alt='Carson'
+                        className='w-full h-full object-cover rounded-full shadow-lg'
+                    />
+                </div>
+                <h1 className='text-primary text-3xl md:text-5xl font-bold'>{displayedText}</h1>
+                <h2 className='text-sm md:text-xl font-medium'>Software Engineer out of Greenville, SC</h2>
                 <div className='flex gap-4'>
                     <Github />
                     <LinkedIn />
                 </div>
             </div>
-            <div className='md:w-1/2 w-0 flex justify-end'>
+            {/* Desktop large image */}
+            <div className='hidden md:flex md:w-1/2 justify-end'>
                 <div className='w-full max-w-md aspect-square'>
                     <img
                         src='ct.jpg'

@@ -14,14 +14,14 @@ export default function LogPage({ title, date, topics, thumbnail, children }: Lo
         <PageWrapper>
             <Link
                 to='/log'
-                className='hover:text-primary text-l transition-opacity'
+                className='hover:text-primary text-sm transition-opacity'
             >
                 <span>&#8592;</span> Back
             </Link>
             <div className='py-8 flex flex-row justify-between items-start gap-6 mb-8'>
                 <div className='flex-1 min-w-0'>
                     <h1 className='text-3xl font-bold text-primary mb-2'>{title}</h1>
-                    <p className='text-base text-muted-foreground mb-3'>{date}</p>
+                    <p className='text-sm text-muted-foreground mb-3'>{date}</p>
                     <div className='flex flex-wrap gap-2'>
                         {topics.map((topic, index) => (
                             <span
@@ -43,11 +43,11 @@ export default function LogPage({ title, date, topics, thumbnail, children }: Lo
             </div>
 
             <section className='pb-4 mb-6'>
-                <div className='leading-relaxed flex flex-col gap-4 text-base'>{children}</div>
+                <div className='leading-relaxed flex flex-col gap-4 text-sm'>{children}</div>
             </section>
             <Link
                 to='/log'
-                className='hover:text-primary text-l transition-opacity'
+                className='hover:text-primary text-sm transition-opacity'
             >
                 <span>&#8592;</span> Back
             </Link>

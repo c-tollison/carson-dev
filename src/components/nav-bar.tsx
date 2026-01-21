@@ -59,7 +59,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/work'
-                            className={`${activePage === NavBarPages.Work ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
+                            className={`${activePage === NavBarPages.Work ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-sm`}
                         >
                             Work
                         </Link>
@@ -67,7 +67,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/log'
-                            className={`${activePage === NavBarPages.Log ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
+                            className={`${activePage === NavBarPages.Log ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-sm`}
                         >
                             Logs
                         </Link>
@@ -75,7 +75,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/projects'
-                            className={`${activePage === NavBarPages.Projects ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
+                            className={`${activePage === NavBarPages.Projects ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-sm`}
                         >
                             Projects
                         </Link>
@@ -89,21 +89,21 @@ export default function NavBar() {
                         <div className='flex flex-col gap-2'>
                             <Link
                                 to='work'
-                                className='w-full p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                                className='w-full p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border text-sm'
                                 onClick={toggleNavBar}
                             >
                                 Work
                             </Link>
                             <Link
                                 to='log'
-                                className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                                className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border text-sm'
                                 onClick={toggleNavBar}
                             >
                                 Logs
                             </Link>
                             <Link
                                 to='projects'
-                                className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
+                                className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border text-sm'
                                 onClick={toggleNavBar}
                             >
                                 Projects
