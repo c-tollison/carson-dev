@@ -2,12 +2,12 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt2() {
     const points: string[] = [
-        `Devised and executed an event-driven architecture with AWS Lambda, S3, and DynamoDB to 
-         process and analyze product data, expediting clawback initiatives for millions of ASINs`,
-        `Engineered a memory-efficient file reader in Java, boosting data processing speed by
-         25% and improving file type handling`,
-        `Implemented comprehensive unit and integration tests, achieving 100% code coverage to
-         strengthen system reliability`,
+        `Built an event-driven architecture with AWS Lambda, S3, and DynamoDB to 
+         process and analyze product data, speeding up clawback work for millions of ASINs`,
+        `Built a memory-efficient file reader in Java that made data processing 25% faster
+         and improved file type handling`,
+        `Wrote unit and integration tests, achieving 100% code coverage to
+         improve system reliability`,
     ];
 
     return (
@@ -18,6 +18,7 @@ export default function AmazonPt2() {
             location={'Hybrid/Seattle, WA'}
             imageUrl={'./../amazon.png'}
             points={points}
+            tldr={"My second internship at Amazon, this time on the Automated Profitability Management team working with microservices and Java. This was the first time I truly felt like a developer, making decisions and contributing as a collaborator instead of just an intern."}
         >
             <p>
                 Summer 2023 took me back to Seattle for the second time, once again joined by my fiancée. This time, I

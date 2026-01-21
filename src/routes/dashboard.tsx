@@ -19,22 +19,26 @@ function Dashboard() {
                     </h3>
 
                     <ul className='mt-4 flex flex-col'>
-                        {latestLogs.map((log) => (
-                            <li key={log.route}>
-                                <Link
-                                    to={`/log/${log.route}`}
-                                    className='group flex justify-between items-center py-2 transition-all duration-300 ease-in-out'
-                                >
-                                    <div>
-                                        <h4 className='text-xl font-bold text-foreground'>{log.title}</h4>
-                                        <p className='text-sm text-muted-foreground'>{log.date}</p>
-                                    </div>
-                                    <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>
-                                        &#8594;
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
+                        {latestLogs.length === 0 ? (
+                            <li className='text-muted-foreground py-2'>No logs yet.</li>
+                        ) : (
+                            latestLogs.map((log) => (
+                                <li key={log.route}>
+                                    <Link
+                                        to={`/log/${log.route}`}
+                                        className='group flex justify-between items-center py-2 transition-all duration-300 ease-in-out'
+                                    >
+                                        <div>
+                                            <h4 className='text-xl font-bold text-foreground'>{log.title}</h4>
+                                            <p className='text-sm text-muted-foreground'>{log.date}</p>
+                                        </div>
+                                        <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>
+                                            &#8594;
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))
+                        )}
                     </ul>
                 </div>
                 <div className='mt-4 md:w-4/6 w-full'>
@@ -42,7 +46,7 @@ function Dashboard() {
                     <p className='mt-4 text-xl leading-relaxed'>
                         I am a software engineer specializing in software architecture and backend systems. I graduated
                         from Clemson University with a B.S. in Computer Science and have since contributed to projects
-                        in the healthcare sector. I enjoy working with TypeScript and Go, and I'm passionate about
+                        in the healthcare sector. I enjoy working with TypeScript and I'm passionate about
                         building scalable systems. Outside of work, I like to watch anime, get tattoos, or travel with
                         my wife.
                     </p>

@@ -2,18 +2,12 @@ import WorkPage from '../../components/work-page';
 
 export default function ChiroHD() {
     const points: string[] = [
-        `Engineered an X12 insurance EOB parser using SFTP and AWS Lambda, accelerating billing for
+        `Built an X12 insurance EOB parser using SFTP and AWS Lambda, speeding up billing for
          1,000+ chiropractic offices`,
-        `Developed a double-entry accounting system at the line-item level, providing detailed
-         financial insights for enhanced practice management`,
-        `Managed fully serverless AWS architecture serving millions of daily customer requests,
-         leveraging API Gateway, Lambda, S3, and RDS to ensure scalability and resilience`,
-        `Built an internal application with AWS (RDS, Lambda, ALB), React, and GitHub Actions to  
-         automate environment management and streamline deployments.`,
-        `Integrated HIPAA-compliant Twilio messaging with opt-in/out functionality to secure patient
-         communications`,
-        `Implemented PostgreSQL row-level security to protect data privacy, ensure HIPAA compliance, 
-         and address vulnerabilities`,
+        `Built a double-entry accounting system at the line-item level, giving detailed
+         financial insights for practice management`,
+        `Maintained a fully serverless AWS architecture serving millions of daily customer requests,
+         using API Gateway, Lambda, S3, and RDS`,
     ];
 
     return (
@@ -24,6 +18,7 @@ export default function ChiroHD() {
             location={'Remote/Greenville, SC'}
             imageUrl={'./../chirohd_logo.png'}
             points={points}
+            tldr={"Started as an intern with barely any development experience and joined full-time in December 2023. Built customer-facing features for thousands of chiropractic offices, from insurance billing to double-entry accounting systems, all on a fully serverless AWS architecture."}
         >
             <p>
                 One day, I got a call from my mom: "Hey Carson, one of my coworker's boyfriends runs a software company
@@ -48,7 +43,7 @@ export default function ChiroHD() {
             </p>
 
             <p>
-                Being part of a lean team meant I got to jump into many challenges early. In December 2023, I joined
+                Being part of a small team meant I got to jump into many challenges early. In December 2023, I joined
                 full-time and since then, I've grown quite a bit. The fast-paced environment doesn't leave you with much
                 of a choice.
             </p>

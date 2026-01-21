@@ -24,23 +24,27 @@ export default function Log() {
     return (
         <PageWrapper>
             <div className='mb-6'>
-                <h1 className='text-2xl font-semibold text-foreground'>Log</h1>
+                <h1 className='text-2xl font-semibold text-foreground'>Logs</h1>
             </div>
 
             <div className='flex flex-col gap-3'>
-                {reversedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
-                    <LogCard
-                        title={log.title}
-                        date={log.date}
-                        route={log.route}
-                        thumbnail={log.thumbnail}
-                        topics={log.topics}
-                        key={index}
-                    />
-                ))}
+                {logs.length === 0 ? (
+                    <p className='text-muted-foreground'>No logs yet.</p>
+                ) : (
+                    reversedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
+                        <LogCard
+                            title={log.title}
+                            date={log.date}
+                            route={log.route}
+                            thumbnail={log.thumbnail}
+                            topics={log.topics}
+                            key={index}
+                        />
+                    ))
+                )}
             </div>
 
-            {totalPages > 5 && (
+            {logs.length > 0 && totalPages > 5 && (
                 <div className='flex items-center justify-center mt-8 gap-4'>
                     <button
                         onClick={() => selectPage(currentPage - 1)}

@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt1() {
     const points: string[] = [
-        `Designed and implemented a scalable, event-driven architecture on AWS to process global pay and timecard data, using AWS CDK for infrastructure as code`,
-        `Leveraged AWS SQS FIFO queues to handle burst traffic and ensure ordered processing, preventing downstream service overloads`,
-        `Automated ingestion and transformation of JSON datasets with Python on AWS Lambda, streamlining global timecard operations and reducing manual data engineering efforts`,
+        `Built an event-driven architecture on AWS to process global pay and timecard data, using AWS CDK for infrastructure as code`,
+        `Used AWS SQS FIFO queues to handle burst traffic and keep processing in order, preventing downstream service overloads`,
+        `Automated ingestion and transformation of JSON datasets with Python on AWS Lambda, reducing manual data work for global timecard operations`,
     ];
 
     return (
@@ -15,6 +15,7 @@ export default function AmazonPt1() {
             location={'Remote/Seattle, WA'}
             imageUrl={'./../amazon.png'}
             points={points}
+            tldr={"My first internship at Amazon, working on the Benefits team to process global pay and timecard data. I moved to Seattle for the summer, expecting to work in an office, but ended up on a fully remote team — which meant I got to work from the Amazon Spheres almost every day."}
         >
             <p>
                 Summer 2022 was my first time living outside of South Carolina. I applied to this internship while
@@ -71,7 +72,7 @@ export default function AmazonPt1() {
             </p>
 
             <p>
-                This internship was transformative in so many ways. I learned how to write production-level code. I
+                This internship changed a lot for me. I learned how to write production-level code. I
                 started to really understand the serverless model and how to work at a scale I hadn't even imagined
                 before. And on top of that, I got to experience Seattle with my fiancée. It'll always feel like our home
                 away from home — and it's where I proposed to her.

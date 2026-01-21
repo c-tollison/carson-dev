@@ -69,7 +69,7 @@ export default function NavBar() {
                             to='/log'
                             className={`${activePage === NavBarPages.Log ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-l`}
                         >
-                            Log
+                            Logs
                         </Link>
                     </li>
                     <li>
@@ -99,7 +99,7 @@ export default function NavBar() {
                                 className='p-3 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'
                                 onClick={toggleNavBar}
                             >
-                                Log
+                                Logs
                             </Link>
                             <Link
                                 to='projects'

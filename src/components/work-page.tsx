@@ -8,10 +8,11 @@ export interface WorkPageProps {
     location: string;
     imageUrl: string;
     points: string[];
+    tldr?: string;
     children: React.ReactNode;
 }
 
-export default function WorkPage({ company, title, dates, location, imageUrl, points, children }: WorkPageProps) {
+export default function WorkPage({ company, title, dates, location, imageUrl, points, tldr, children }: WorkPageProps) {
     return (
         <PageWrapper>
             <Link
@@ -38,6 +39,13 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
                     />
                 </div>
             </div>
+
+            {tldr && (
+                <section className='mb-8'>
+                    <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>TLDR</h3>
+                    <p className='text-base leading-relaxed text-foreground'>{tldr}</p>
+                </section>
+            )}
 
             <section className='mb-8'>
                 <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Key Achievements</h3>
