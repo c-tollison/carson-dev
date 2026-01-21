@@ -5,12 +5,11 @@ import works from './works/works';
 export default function Work() {
     return (
         <PageWrapper>
-            <div className='py-10 flex flex-col gap-3'>
-                <h1 className='text-primary text-5xl font-bold'>Work</h1>
-                <h2 className='text-2xl font-semibold text-foreground'>Companies I've gotten a chance to create at</h2>
+            <div className='py-8 flex flex-col gap-2 mb-8'>
+                <h1 className='text-primary text-3xl font-bold'>Work Experience</h1>
             </div>
 
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-3'>
                 {works.map((work) => (
                     <WorkExperience
                         key={work.route}

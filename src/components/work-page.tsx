@@ -20,16 +20,17 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
             >
                 <span>&#8592;</span> Back
             </Link>
-            <div className='py-10 flex flex-row justify-between items-center'>
-                <div>
-                    <h1 className='text-5xl font-bold text-primary'>{company}</h1>
-                    <h2 className='text-2xl font-semibold'>{title}</h2>
-                    <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-muted-foreground'>
-                        <h3>{dates}</h3>
-                        <h4>{location}</h4>
+            <div className='py-8 flex flex-row justify-between items-start gap-6 mb-8'>
+                <div className='flex-1 min-w-0'>
+                    <h1 className='text-3xl font-bold text-primary mb-2'>{company}</h1>
+                    <h2 className='text-xl font-semibold text-foreground mb-3'>{title}</h2>
+                    <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-base text-muted-foreground'>
+                        <span>{dates}</span>
+                        {location && <span className='hidden sm:inline'>•</span>}
+                        <span>{location}</span>
                     </div>
                 </div>
-                <div className='hidden md:block w-20 h-20 flex-shrink-0'>
+                <div className='hidden md:block w-16 h-16 flex-shrink-0'>
                     <img
                         src={imageUrl}
                         alt='Company Logo'
@@ -38,18 +39,18 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
                 </div>
             </div>
 
-            <section>
-                <h3 className='text-xl font-semibold border-b border-border pb-4 mb-4'>Quick Points</h3>
-                <ul className='pl-4 list-disc list-outside mb-4'>
+            <section className='mb-8'>
+                <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Key Achievements</h3>
+                <ul className='pl-5 list-disc list-outside space-y-2 text-base leading-relaxed'>
                     {points.map((point, index) => (
-                        <li key={index}>{point}</li>
+                        <li key={index} className='text-foreground'>{point}</li>
                     ))}
                 </ul>
             </section>
 
-            <section className='pb-4 mb-4'>
-                <h3 className='text-xl font-semibold border-b border-border pb-4 mb-4'>My Experience</h3>
-                <div className='leading-relaxed flex flex-col gap-4'>{children}</div>
+            <section className='pb-4 mb-6'>
+                <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Experience</h3>
+                <div className='leading-relaxed flex flex-col gap-4 text-base'>{children}</div>
             </section>
             <Link
                 to='/work'

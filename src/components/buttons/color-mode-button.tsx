@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ColorModeContext } from '../core/providers/color-mode-provider/color-mode-provider';
+import { ColorModeContext } from '../core/providers/color-mode-provider/color-mode-context';
 import { ColorMode } from '../core/providers/color-mode-provider/color-mode.enum';
 
 export default function ColorModeButton() {

@@ -20,7 +20,7 @@ export default function ChiroHD() {
         <WorkPage
             company={'ChiroHD'}
             title={'Software Engineer'}
-            dates={'Nov 2021 - Present'}
+            dates={'Nov 2021 - Aug 2025'}
             location={'Remote/Greenville, SC'}
             imageUrl={'./../chirohd_logo.png'}
             points={points}

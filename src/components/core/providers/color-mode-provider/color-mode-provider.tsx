@@ -1,17 +1,6 @@
-import { ReactNode, createContext, useState, useEffect } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { ColorMode } from './color-mode.enum';
-
-interface ColorModeContextI {
-    colorMode: ColorMode;
-    toggleColorMode: () => void;
-}
-
-const defaultContext = {
-    colorMode: ColorMode.Light,
-    toggleColorMode: () => {},
-};
-
-export const ColorModeContext = createContext<ColorModeContextI>(defaultContext);
+import { ColorModeContext, defaultContext } from './color-mode-context';
 
 interface ColorThemeProviderProps {
     children: ReactNode;
