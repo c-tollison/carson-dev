@@ -14,7 +14,7 @@ function Dashboard() {
                     <h3 className='flex justify-between items-end border-b pb-4 border-border text-xl'>
                         <span>Recent Logs</span>
                         <span className='text-sm'>
-                            <Link to='/log'>More</Link>
+                            <Link to='/log' className='text-muted-foreground hover:text-primary transition-colors'>More</Link>
                         </span>
                     </h3>
 

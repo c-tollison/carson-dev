@@ -32,7 +32,7 @@ export default function Hero() {
             <div className='md:w-1/2 w-0 flex justify-end'>
                 <div className='w-full max-w-md aspect-square'>
                     <img
-                        src='ct.jpeg'
+                        src='ct.jpg'
                         alt='Carson'
                         className='w-full h-full object-cover rounded-lg shadow-lg'
                     />

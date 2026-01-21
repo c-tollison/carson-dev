@@ -23,8 +23,8 @@ export default function Log() {
 
     return (
         <PageWrapper>
-            <div className='py-8 flex flex-col gap-2 mb-8'>
-                <h1 className='text-primary text-3xl font-bold'>Log</h1>
+            <div className='mb-6'>
+                <h1 className='text-2xl font-semibold text-foreground'>Log</h1>
             </div>
 
             <div className='flex flex-col gap-3'>

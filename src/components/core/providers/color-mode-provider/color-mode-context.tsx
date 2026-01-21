@@ -7,7 +7,7 @@ interface ColorModeContextI {
 }
 
 export const defaultContext = {
-    colorMode: ColorMode.Light,
+    colorMode: ColorMode.Dark,
     toggleColorMode: () => {},
 };
 

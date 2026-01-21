@@ -4,8 +4,8 @@ import projects from './projects/projects';
 export default function Projects() {
     return (
         <PageWrapper>
-            <div className='py-8 flex flex-col gap-2 mb-8'>
-                <h1 className='text-primary text-3xl font-bold'>Projects</h1>
+            <div className='mb-6'>
+                <h1 className='text-2xl font-semibold text-foreground'>Projects</h1>
             </div>
 
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
@@ -70,7 +70,7 @@ export default function Projects() {
                     ) : (
                         <div
                             key={index}
-                            className='flex flex-col rounded-lg bg-card border border-border overflow-hidden'
+                            className='flex flex-col rounded-lg bg-card border border-border overflow-hidden transition-colors duration-300 ease-in-out'
                         >
                             {CardContent}
                         </div>

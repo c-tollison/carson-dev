@@ -5,6 +5,7 @@ export default function Github() {
             target='_blank'
             rel='noopener noreferrer'
             aria-label='GitHub'
+            className='text-muted-foreground hover:text-primary transition-colors'
         >
             <svg
                 xmlns='http://www.w3.org/2000/svg'

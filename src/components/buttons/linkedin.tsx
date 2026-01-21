@@ -5,6 +5,7 @@ export default function LinkedIn() {
             target='_blank'
             rel='noopener noreferrer'
             aria-label='LinkedIn'
+            className='text-muted-foreground hover:text-primary transition-colors'
         >
             <svg
                 xmlns='http://www.w3.org/2000/svg'
