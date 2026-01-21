@@ -4,7 +4,7 @@ import PageWrapper from '../components/page-wrapper';
 import logs from './log/logs';
 
 function Dashboard() {
-    const latestLogs = logs.slice(logs.length - 5).reverse();
+    const latestLogs = logs.slice(0, 5);
 
     return (
         <PageWrapper>

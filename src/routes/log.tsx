@@ -5,7 +5,7 @@ import logs from './log/logs';
 
 export default function Log() {
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const reversedLogs = [...logs].reverse();
+    const sortedLogs = logs;
     const totalPages = Math.ceil(logs.length / 5);
 
     const selectPage = (index: number) => {
@@ -31,7 +31,7 @@ export default function Log() {
                 {logs.length === 0 ? (
                     <p className='text-muted-foreground'>No logs yet.</p>
                 ) : (
-                    reversedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
+                    sortedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
                         <LogCard
                             title={log.title}
                             date={log.date}
@@ -44,7 +44,7 @@ export default function Log() {
                 )}
             </div>
 
-            {logs.length > 0 && totalPages > 5 && (
+            {logs.length > 0 && totalPages > 1 && (
                 <div className='flex items-center justify-center mt-8 gap-4'>
                     <button
                         onClick={() => selectPage(currentPage - 1)}
