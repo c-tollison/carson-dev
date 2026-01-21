@@ -11,9 +11,9 @@ export interface LogCardProps {
 export default function LogCard({ title, date, route, thumbnail, topics }: LogCardProps) {
     return (
         <Link to={`/log/${route}`}>
-            <div className='group w-full flex items-center gap-6 p-12 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
+            <div className='group w-full flex items-center gap-5 p-6 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
                 {thumbnail && (
-                    <div className='w-20 h-20 flex-shrink-0'>
+                    <div className='w-14 h-14 flex-shrink-0'>
                         <img
                             src={thumbnail}
                             alt={`${title} thumbnail`}
@@ -21,22 +21,22 @@ export default function LogCard({ title, date, route, thumbnail, topics }: LogCa
                         />
                     </div>
                 )}
-                <div className='flex justify-between items-center w-full'>
-                    <div>
-                        <h4 className='text-xl font-bold text-foreground'>{title}</h4>
-                        <p className='text-sm text-muted-foreground'>{date}</p>
+                <div className='flex justify-between items-center w-full min-w-0'>
+                    <div className='flex-1 min-w-0'>
+                        <h4 className='text-lg font-semibold text-foreground group-hover:text-primary transition-colors truncate'>{title}</h4>
+                        <p className='text-base text-muted-foreground mt-0.5'>{date}</p>
                         <div className='mt-2 flex flex-wrap gap-2'>
                             {topics.map((topic, index) => (
                                 <span
                                     key={index}
-                                    className='px-2 py-1 rounded-full bg-card border border-border text-sm transition-colors duration-300 ease-in-out text-foreground'
+                                    className='px-2 py-1 rounded-full bg-card border border-border text-xs transition-colors duration-300 ease-in-out text-foreground'
                                 >
                                     {topic}
                                 </span>
                             ))}
                         </div>
                     </div>
-                    <div className='text-primary text-xl opacity-0 group-hover:opacity-100 transition-opacity'>
+                    <div className='text-primary text-lg opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0'>
                         &#8594;
                     </div>
                 </div>

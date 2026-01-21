@@ -4,57 +4,78 @@ import projects from './projects/projects';
 export default function Projects() {
     return (
         <PageWrapper>
-            <div className='py-10 flex flex-col gap-3'>
-                <h1 className='text-primary text-5xl font-bold'>Projects</h1>
-                <h2 className='text-2xl font-semibold text-foreground'>Hopefully I finish some of these</h2>
+            <div className='py-8 flex flex-col gap-2 mb-8'>
+                <h1 className='text-primary text-3xl font-bold'>Projects</h1>
             </div>
-            <div className=''>
-                {projects.map((project, index) => (
-                    <div
-                        className='flex flex-col md:flex-row items-center gap-4 mt-4'
-                        key={index}
-                    >
-                        <div className={`flex-1 ${index % 2 === 0 ? 'md:order-last' : ''}`}>
-                            <h3 className='text-xl font-bold text-primary'>{project.title}</h3>
-                            <p className='mt-2 text-foreground'>{project.description}</p>
-                            {project.topics && (
-                                <div className='mt-2 flex flex-wrap gap-2'>
-                                    {project.topics.map((topic, index) => (
-                                        <span
-                                            key={index}
-                                            className='px-2 py-1 rounded-full bg-card border border-border text-sm transition-colors duration-300 ease-in-out text-foreground'
-                                        >
-                                            {topic}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
-                            {project.link && (
-                                <div className='mt-2'>
-                                    <a
-                                        href={project.link}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className='text-secondary hover:underline'
-                                    >
-                                        Visit Project
-                                    </a>
-                                </div>
-                            )}
-                        </div>
-                        <div
-                            className={`flex-1 ${index % 2 === 0 ? 'md:order-first' : ''} w-full flex justify-center items-center`}
-                        >
+
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                {projects.map((project, index) => {
+                    const CardContent = (
+                        <>
                             {project.thumbnail && (
-                                <img
-                                    src={project.thumbnail}
-                                    alt={`${project.title} thumbnail`}
-                                    className='object-contain rounded-lg shadow-lg'
-                                />
+                                <div className='w-full h-48 overflow-hidden bg-muted flex items-center justify-center'>
+                                    <img
+                                        src={project.thumbnail}
+                                        alt={`${project.title} thumbnail`}
+                                        className={`w-full h-full object-cover transition-transform duration-300 ${
+                                            project.link ? 'group-hover:scale-105' : ''
+                                        }`}
+                                    />
+                                </div>
                             )}
+                            <div className='p-6 flex flex-col flex-1'>
+                                <div className='flex items-start justify-between gap-4 mb-3'>
+                                    <h3
+                                        className={`text-xl font-semibold text-foreground transition-colors ${
+                                            project.link ? 'group-hover:text-primary' : ''
+                                        }`}
+                                    >
+                                        {project.title}
+                                    </h3>
+                                    {project.link && (
+                                        <span className='text-primary flex-shrink-0 mt-0.5 text-lg font-medium'>
+                                            ↗
+                                        </span>
+                                    )}
+                                </div>
+                                <p className='text-base text-foreground leading-relaxed mb-4 flex-1'>
+                                    {project.description}
+                                </p>
+                                {project.topics && project.topics.length > 0 && (
+                                    <div className='flex flex-wrap gap-2 mt-auto pt-2'>
+                                        {project.topics.map((topic, topicIndex) => (
+                                            <span
+                                                key={topicIndex}
+                                                className='px-2.5 py-1 rounded-full bg-card border border-border text-xs font-medium text-foreground transition-colors duration-300'
+                                            >
+                                                {topic}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    );
+
+                    return project.link ? (
+                        <a
+                            key={index}
+                            href={project.link}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='group flex flex-col rounded-lg bg-card border border-border hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out overflow-hidden cursor-pointer'
+                        >
+                            {CardContent}
+                        </a>
+                    ) : (
+                        <div
+                            key={index}
+                            className='flex flex-col rounded-lg bg-card border border-border overflow-hidden'
+                        >
+                            {CardContent}
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </PageWrapper>
     );

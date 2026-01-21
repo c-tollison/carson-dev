@@ -23,12 +23,11 @@ export default function Log() {
 
     return (
         <PageWrapper>
-            <div className='py-10 flex flex-col gap-3'>
-                <h1 className='text-primary text-5xl font-bold'>Log</h1>
-                <h2 className='text-2xl font-semibold text-foreground'>Recent logs</h2>
+            <div className='py-8 flex flex-col gap-2 mb-8'>
+                <h1 className='text-primary text-3xl font-bold'>Log</h1>
             </div>
 
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-3'>
                 {reversedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
                     <LogCard
                         title={log.title}
