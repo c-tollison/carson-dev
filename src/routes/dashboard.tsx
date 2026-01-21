@@ -56,7 +56,7 @@ function Dashboard() {
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Languages</h4>
                         <div className='flex flex-wrap gap-2'>
-                            {['TypeScript', 'Go', 'SQL'].map((skill) => (
+                            {['TypeScript', 'Go', 'Python', 'SQL'].map((skill) => (
                                 <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
                                     {skill}
                                 </span>
@@ -66,7 +66,7 @@ function Dashboard() {
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Backend</h4>
                         <div className='flex flex-wrap gap-2'>
-                            {['REST', 'Postgres', 'DynamoDB', 'Redis'].map((skill) => (
+                            {['REST', 'Postgres', 'DynamoDB', 'Redis', 'Supabase'].map((skill) => (
                                 <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
                                     {skill}
                                 </span>
@@ -76,7 +76,7 @@ function Dashboard() {
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>AWS</h4>
                         <div className='flex flex-wrap gap-2'>
-                            {['Lambda', 'S3', 'SQS', 'CDK', 'RDS'].map((skill) => (
+                            {['Lambda', 'S3', 'SQS', 'CDK', 'RDS', 'ECS/ECR', 'Amplify', 'Cognito'].map((skill) => (
                                 <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
                                     {skill}
                                 </span>
@@ -86,7 +86,7 @@ function Dashboard() {
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Tools</h4>
                         <div className='flex flex-wrap gap-2'>
-                            {['Git', 'CI/CD', 'Docker', 'Terraform'].map((skill) => (
+                            {['Git', 'CI/CD', 'Docker'].map((skill) => (
                                 <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
                                     {skill}
                                 </span>

@@ -13,10 +13,10 @@ export default function Projects() {
                 {projects.map((project, index) => (
                     <div
                         key={index}
-                        className='flex flex-col rounded-lg bg-card border border-border overflow-hidden'
+                        className='flex flex-col rounded-lg bg-card border border-border'
                     >
                         {project.thumbnail && (
-                            <div className='w-full h-48 overflow-hidden bg-muted flex items-center justify-center'>
+                            <div className='w-full h-48 overflow-hidden bg-muted flex items-center justify-center rounded-t-lg'>
                                 <img
                                     src={project.thumbnail}
                                     alt={`${project.title} thumbnail`}
