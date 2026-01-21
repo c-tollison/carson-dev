@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt1() {
     const points: string[] = [
-        `Built a system on AWS to process global pay and timecard data using CDK`,
-        `Used SQS FIFO queues to handle burst traffic and keep processing in order so we didn't overload downstream services`,
-        `Wrote Python Lambdas to automate ingestion and transformation of JSON datasets, cutting down manual work for global timecard ops`,
+        `Designed and built a data processing pipeline on AWS using CDK to ingest and transform global pay and timecard data for 1.5M+ employees`,
+        `Implemented SQS FIFO queues with dead-letter handling to manage burst traffic and ensure ordered processing without overloading downstream services`,
+        `Wrote Python Lambda functions to automate JSON dataset ingestion and transformation, reducing manual processing time for global timecard operations`,
     ];
 
     return (

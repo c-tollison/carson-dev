@@ -2,9 +2,10 @@ import WorkPage from '../../components/work-page';
 
 export default function ChiroHD() {
     const points: string[] = [
-        `Built an X12 insurance EOB parser using SFTP and Lambda, speeding up billing for 1,000+ chiropractic offices`,
-        `Built a double entry accounting system at the line item level for detailed financial tracking`,
-        `Maintained a serverless AWS architecture serving millions of daily requests with API Gateway, Lambda, S3, and RDS`,
+        `Built an X12 EDI insurance parser using SFTP and Lambda, automating claims reconciliation for 1,000+ chiropractic offices and reducing manual billing review time by 80%`,
+        `Designed and implemented a double-entry accounting system with line-item level tracking, processing thousands of financial transactions daily with full audit trails`,
+        `Maintained and scaled a serverless AWS architecture (API Gateway, Lambda, S3, RDS) handling millions of daily API requests with 99.9% uptime`,
+        `Led migration of legacy CI/CD pipelines to modern infrastructure, improving deployment reliability and reducing build times`,
     ];
 
     return (

@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt2() {
     const points: string[] = [
-        `Built a pipeline with Lambda, S3, and DynamoDB to process and analyze product data, speeding up clawback work for millions of ASINs`,
-        `Wrote a memory efficient file reader in Java that made data processing 25% faster and handled more file types`,
-        `Wrote unit and integration tests, hitting 100% code coverage`,
+        `Built an event-driven pipeline with Lambda, S3, and DynamoDB to process and analyze product profitability data across millions of ASINs, accelerating clawback identification workflows`,
+        `Engineered a memory-efficient streaming file reader in Java that improved data processing throughput by 25% and added support for additional file formats`,
+        `Achieved 100% code coverage with comprehensive unit and integration tests using JUnit and Mockito`,
     ];
 
     return (

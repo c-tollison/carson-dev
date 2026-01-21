@@ -31,7 +31,7 @@ export default function Hero() {
                     />
                 </div>
                 <h1 className='text-primary text-3xl md:text-5xl font-bold'>{displayedText}</h1>
-                <h2 className='text-sm md:text-xl font-medium'>Software Engineer out of Greenville, SC</h2>
+                <h2 className='text-sm md:text-xl font-medium'>Full-Stack Engineer | Backend Specialist</h2>
                 <div className='flex gap-4'>
                     <Github />
                     <LinkedIn />
