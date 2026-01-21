@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt1() {
     const points: string[] = [
-        `Built an event-driven architecture on AWS to process global pay and timecard data, using AWS CDK for infrastructure as code`,
-        `Used AWS SQS FIFO queues to handle burst traffic and keep processing in order, preventing downstream service overloads`,
-        `Automated ingestion and transformation of JSON datasets with Python on AWS Lambda, reducing manual data work for global timecard operations`,
+        `Built a system on AWS to process global pay and timecard data using CDK`,
+        `Used SQS FIFO queues to handle burst traffic and keep processing in order so we didn't overload downstream services`,
+        `Wrote Python Lambdas to automate ingestion and transformation of JSON datasets, cutting down manual work for global timecard ops`,
     ];
 
     return (
@@ -15,12 +15,12 @@ export default function AmazonPt1() {
             location={'Remote/Seattle, WA'}
             imageUrl={'./../amazon.png'}
             points={points}
-            tldr={"My first internship at Amazon, working on the Benefits team to process global pay and timecard data. I moved to Seattle for the summer, expecting to work in an office, but ended up on a fully remote team — which meant I got to work from the Amazon Spheres almost every day."}
+            tldr={"My first internship at Amazon, working on the Benefits team to process global pay and timecard data. I moved to Seattle for the summer expecting to work in an office, but ended up on a fully remote team. Silver lining was I got to work from the Amazon Spheres almost every day. This was also where I proposed to my fiancée."}
         >
             <p>
                 Summer 2022 was my first time living outside of South Carolina. I applied to this internship while
                 waiting for my data structures and algorithms class to start. Honestly, I didn't think I would hear back
-                — at the time, I had only been an intern at ChiroHD for maybe two months and didn't have much else on my
+                since at the time I had only been an intern at ChiroHD for maybe two months and didn't have much else on my
                 resume. I was still pretty early in my journey as a developer. Little did I know, it would turn out to
                 be one of the best summers of my life.
             </p>
@@ -37,7 +37,7 @@ export default function AmazonPt1() {
                 My fiancée and I moved out to Seattle about a week before the internship started. We rented a small
                 studio apartment in Capitol Hill. The recruiter had told me I needed to be in Seattle before my start
                 date, so we packed up and went. When the first day rolled around, I got an email from my manager asking
-                me to join a Zoom call bright and early — like 7:30 AM PST. I was a little confused but figured it was
+                me to join a Zoom call bright and early, like 7:30 AM PST. I was a little confused but figured it was
                 for onboarding and planning. I suited up, ready to meet my team, but I hadn't been given an office
                 address yet. I joined the Zoom call, and there was my manager, sitting outside on his porch in broad
                 daylight. Meanwhile, it was pitch black in Seattle. That's when I realized this was going to be an
@@ -75,7 +75,7 @@ export default function AmazonPt1() {
                 This internship changed a lot for me. I learned how to write production-level code. I
                 started to really understand the serverless model and how to work at a scale I hadn't even imagined
                 before. And on top of that, I got to experience Seattle with my fiancée. It'll always feel like our home
-                away from home — and it's where I proposed to her.
+                away from home, and it's where I proposed to her.
             </p>
         </WorkPage>
     );
