@@ -8,10 +8,10 @@ export default function Footer() {
                 <div className='flex flex-col items-center md:items-start gap-2'>
                     <div className='flex gap-4 items-center'>
                         <a
-                            href='mailto:tollisoncarson@gmail.com'
+                            href='mailto:tollison.carson@gmail.com'
                             className='text-muted-foreground hover:text-primary transition-colors text-sm'
                         >
-                            tollisoncarson@gmail.com
+                            tollison.carson@gmail.com
                         </a>
                         <a
                             href='https://www.linkedin.com/in/carson-tollison/'

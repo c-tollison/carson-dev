@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt2() {
     const points: string[] = [
-        `Built an event-driven data pipeline processing profitability data across millions of products using AWS Lambda, S3, and DynamoDB`,
-        `Developed a memory-efficient file reader in Java that increased data processing throughput by 25 percent`,
-        `Delivered production-ready code with full unit and integration test coverage`,
+        `Designed event-driven data pipeline ingesting profitability data across millions of ASINs using AWS Lambda, S3, and DynamoDB`,
+        `Wrote optimized Java file reader reducing memory footprint and increasing data throughput by 25%`,
+        `Delivered unit-tested, production-grade features integrated into critical data services`,
     ];
 
     return (
@@ -12,7 +12,7 @@ export default function AmazonPt2() {
             company={'Amazon - APM'}
             title={'Software Development Engineer Intern'}
             dates={'May 2023 - Aug 2023'}
-            location={'Hybrid/Seattle, WA'}
+            location={'Hybrid / Seattle, WA'}
             profileImage={'./../amazon.png'}
             points={points}
             tldr={"My second internship at Amazon, this time on the Automated Profitability Management team working with microservices and Java. This was the first time I truly felt like a developer, making decisions and contributing as a collaborator instead of just an intern. Got the return offer but decided not to take it since it meant moving across the country."}

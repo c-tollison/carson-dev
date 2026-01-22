@@ -2,9 +2,8 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt1() {
     const points: string[] = [
-        `Designed an AWS CDK-based pipeline to ingest and transform global payroll and timecard data for over 1.5 million employees`,
-        `Implemented FIFO queueing and failure handling to ensure ordered and resilient data processing`,
-        `Built Python Lambda functions to automate large-scale dataset ingestion and transformation`,
+        `Engineered AWS CDK-based pipeline to process global payroll and timecard data for 1.5M+ employees with strong ordering and failure handling guarantees`,
+        `Automated ingestion and transformation of multi-GB datasets using resilient Python Lambda functions and FIFO SQS queues`,
     ];
 
     return (
@@ -12,7 +11,7 @@ export default function AmazonPt1() {
             company={'Amazon - Benefits'}
             title={'Software Development Engineer Intern'}
             dates={'May 2022 - Aug 2022'}
-            location={'Remote/Seattle, WA'}
+            location={'Remote'}
             profileImage={'./../amazon.png'}
             points={points}
             tldr={"My first internship at Amazon, working on the Benefits team to process global pay and timecard data. I moved to Seattle for the summer expecting to work in an office, but ended up on a fully remote team. Silver lining was I got to work from the Amazon Spheres almost every day. This was also where I proposed to my fiancée."}

@@ -3,10 +3,10 @@ import FeluxLogo from '../../components/icons/felux-logo';
 
 export default function Felux() {
     const points: string[] = [
-        `Designed and built LLM-driven email ingestion workflows that convert unstructured RFQs and quotes into structured CRM data in a steel-industry workflow dominated by email`,
-        `Trained and iterated on ML models using Python and labeled customer email backfill data to improve quote classification, line item extraction, and purchase order detection`,
-        `Built a full-featured Kanban board with custom workflows, status transitions, and role-based visibility to manage RFQs and quotes across sales teams`,
-        `Architected multi-tenant application security using PostgreSQL Row Level Security in Supabase, supporting multiple steel companies with strict data isolation`,
+        `Built LLM-powered (Gemini 2 Flash) email ingestion pipelines transforming 100s of unstructured quotes into structured CRM data in real time, reducing manual entry time by 90%`,
+        `Trained classification models using Python on historical email datasets, improving quote and document type prediction accuracy by 30%`,
+        `Developed robust Kanban workflow platform with role-based access and dynamic status transitions to streamline quote and RFQ lifecycles across multiple sales teams`,
+        `Implemented PostgreSQL Row-Level Security (RLS) for multi-tenant data isolation, enabling secure operations across distinct steel companies in Supabase backend`,
     ];
 
     return (

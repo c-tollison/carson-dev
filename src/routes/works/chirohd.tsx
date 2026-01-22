@@ -2,10 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function ChiroHD() {
     const points: string[] = [
-        `Built an X12 EDI insurance parsing system that automated claims reconciliation for over 1,000 chiropractic offices`,
-        `Designed and implemented a double-entry accounting system with line-item level auditability, processing thousands of transactions daily`,
-        `Scaled a serverless AWS architecture handling millions of daily API requests with high availability and operational reliability`,
-        `Led modernization of CI/CD pipelines, improving deployment stability and reducing operational overhead`,
+        `Developed automated X12 EDI insurance claims parser handling claims reconciliation for 1,000+ chiropractic clinics, saving hours of weekly manual effort`,
+        `Designed and deployed a double-entry accounting system with line-item audit trails, processing thousands of transactions daily`,
+        `Scaled serverless architecture on AWS to support millions of monthly API requests, leveraging CI/CD, Lambda, and monitoring tools for reliability`,
     ];
 
     return (
@@ -13,7 +12,7 @@ export default function ChiroHD() {
             company={'ChiroHD'}
             title={'Software Engineer'}
             dates={'Nov 2021 - Aug 2025'}
-            location={'Remote/Greenville, SC'}
+            location={'Remote'}
             profileImage={'./../chirohd_logo.png'}
             points={points}
             tldr={"Started as an intern with barely any development experience and joined full time in December 2023. Built customer facing features for thousands of chiropractic offices, from insurance billing to double entry accounting. Working on a small team meant I got thrown into challenges early, which is exactly what I needed. Easily the most rewarding experience of my career so far."}
@@ -35,8 +34,7 @@ export default function ChiroHD() {
                 From day one, I was thrown into the deep end, but I'm glad I was. On the first day, Luke asked me to
                 write code to decode JWT tokens and verify them with Cognito (or something along those lines, it's been
                 a couple of years). My first thought was: <em>brother, what is this?</em> There were so many layers of
-                abstraction, and the whole serverless Lambda model was brand new to me. I didn't even realize a server
-                didn't have to be a physical computer. But Luke was a great mentor. He sat me down and walked me through
+                abstraction, and the whole serverless Lambda model was brand new to me. But Luke was a great mentor. He sat me down and walked me through
                 API Gateway and Lambda until it started to click.
             </p>
 
