@@ -36,7 +36,7 @@ export default function LogPage({ title, date, topics, thumbnail, children }: Lo
                 <div className='hidden md:block w-16 h-16 flex-shrink-0'>
                     <img
                         src={thumbnail}
-                        alt='Log thumbnail'
+                        alt='Dev log thumbnail'
                         className='w-full h-full object-contain rounded-md'
                     />
                 </div>

@@ -12,7 +12,7 @@ function Dashboard() {
             <div className='mt-8 flex flex-col md:flex-row md:gap-8'>
                 <div className='mt-8 md:mt-0 md:w-2/6 w-full order-2 md:order-1'>
                     <h3 className='flex justify-between items-end border-b pb-4 border-border text-xl'>
-                        <span>Recent Logs</span>
+                        <span>Recent Dev Logs</span>
                         <span className='text-sm'>
                             <Link to='/log' className='text-muted-foreground hover:text-primary transition-colors'>More</Link>
                         </span>
@@ -20,7 +20,7 @@ function Dashboard() {
 
                     <ul className='mt-6 flex flex-col'>
                         {latestLogs.length === 0 ? (
-                            <li className='text-muted-foreground py-2'>No logs yet.</li>
+                            <li className='text-muted-foreground py-2'>No dev logs yet.</li>
                         ) : (
                             latestLogs.map((log) => (
                                 <li key={log.route}>

@@ -24,12 +24,12 @@ export default function Log() {
     return (
         <PageWrapper>
             <div className='mb-6'>
-                <h1 className='text-2xl font-semibold text-foreground'>Logs</h1>
+                <h1 className='text-2xl font-semibold text-foreground'>Dev Logs</h1>
             </div>
 
             <div className='flex flex-col gap-3'>
                 {logs.length === 0 ? (
-                    <p className='text-muted-foreground'>No logs yet.</p>
+                    <p className='text-muted-foreground'>No dev logs yet.</p>
                 ) : (
                     sortedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
                         <LogCard
