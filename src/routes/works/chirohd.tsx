@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function ChiroHD() {
     const points: string[] = [
-        `Developed automated X12 EDI insurance claims parser handling claims reconciliation for 1,000+ chiropractic clinics, saving hours of weekly manual effort`,
-        `Designed and deployed a double-entry accounting system with line-item audit trails, processing thousands of transactions daily`,
-        `Scaled serverless architecture on AWS to support millions of monthly API requests, leveraging CI/CD, Lambda, and monitoring tools for reliability`,
+        `Saved hours of weekly manual reconciliation effort for 1,000+ chiropractic clinics by developing an automated X12 EDI insurance claims parser`,
+        `Processed thousands of daily financial transactions with full audit compliance by designing and deploying a double-entry accounting system with line-item tracking`,
+        `Scaled serverless architecture to handle millions of monthly API requests by implementing CI/CD pipelines, AWS Lambda functions, and monitoring infrastructure for high availability`,
     ];
 
     return (

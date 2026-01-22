@@ -2,8 +2,8 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt1() {
     const points: string[] = [
-        `Engineered AWS CDK-based pipeline to process global payroll and timecard data for 1.5M+ employees with strong ordering and failure handling guarantees`,
-        `Automated ingestion and transformation of multi-GB datasets using resilient Python Lambda functions and FIFO SQS queues`,
+        `Processed global payroll and timecard data for 1.5M+ employees by engineering an AWS CDK pipeline with strong message ordering and fault tolerance guarantees`,
+        `Automated ingestion and transformation of multi-gigabyte datasets by developing resilient Python Lambda functions integrated with FIFO SQS queues for guaranteed processing order`,
     ];
 
     return (
