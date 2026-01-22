@@ -49,52 +49,6 @@ function Dashboard() {
 
                 </div>
             </div>
-
-            <div className='mt-8 md:mt-12 w-full'>
-                <h3 className='border-b pb-4 border-border text-xl'>Skills</h3>
-                <div className='mt-6 grid grid-cols-1 md:grid-cols-4 gap-6'>
-                    <div>
-                        <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Languages</h4>
-                        <div className='flex flex-wrap gap-2'>
-                            {['TypeScript', 'Go', 'Python', 'SQL'].map((skill) => (
-                                <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                    <div>
-                        <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Backend</h4>
-                        <div className='flex flex-wrap gap-2'>
-                            {['REST', 'Postgres', 'DynamoDB', 'Redis', 'Supabase'].map((skill) => (
-                                <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                    <div>
-                        <h4 className='text-sm font-semibold text-muted-foreground mb-2'>AWS</h4>
-                        <div className='flex flex-wrap gap-2'>
-                            {['Lambda', 'S3', 'SQS', 'CDK', 'RDS', 'ECS', 'ECR'].map((skill) => (
-                                <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                    <div>
-                        <h4 className='text-sm font-semibold text-muted-foreground mb-2'>Tools</h4>
-                        <div className='flex flex-wrap gap-2'>
-                            {['Git', 'CI/CD', 'Docker'].map((skill) => (
-                                <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
         </PageWrapper>
     );
 }
