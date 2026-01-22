@@ -1,28 +1,29 @@
 import { WorkExperienceProps } from '../../components/work-experience';
+import FeluxLogo from '../../components/icons/felux-logo';
 import AmazonPt1 from './amazon-pt1';
 import AmazonPt2 from './amazon-pt2';
 import ChiroHD from './chirohd';
-// import Felux from './felux';
+import Felux from './felux';
 
 interface Work extends WorkExperienceProps {
     component: () => JSX.Element;
 }
 
 const works: Work[] = [
-    // {
-    //     route: 'felux',
-    //     name: 'Felux',
-    //     title: '',
-    //     date: 'Aug 2025 - Present',
-    //     imageUrl: '',
-    //     component: Felux,
-    // },
+    {
+        route: 'felux',
+        name: 'Felux',
+        title: 'Founding Software Engineer',
+        date: 'Aug 2025 - Present',
+        profileImage: FeluxLogo,
+        component: Felux,
+    },
     {
         route: 'chirohd',
         name: 'ChiroHD',
         title: 'Software Engineer',
         date: 'Nov 2021 - Aug 2025',
-        imageUrl: 'chirohd_logo.png',
+        profileImage: 'chirohd_logo.png',
         component: ChiroHD,
     },
     {
@@ -30,7 +31,7 @@ const works: Work[] = [
         name: 'Amazon - APM',
         title: 'Software Development Engineer Intern',
         date: 'May 2023 - Aug 2023',
-        imageUrl: 'amazon.png',
+        profileImage: 'amazon.png',
         component: AmazonPt2,
     },
     {
@@ -38,7 +39,7 @@ const works: Work[] = [
         name: 'Amazon - Benefits',
         title: 'Software Development Engineer Intern',
         date: 'May 2022 - Aug 2022',
-        imageUrl: 'amazon.png',
+        profileImage: 'amazon.png',
         component: AmazonPt1,
     },
 ];

@@ -6,13 +6,28 @@ export interface WorkPageProps {
     title: string;
     dates: string;
     location: string;
-    imageUrl: string;
+    profileImage: string | React.ComponentType<{ className?: string }>;
     points: string[];
     tldr?: string;
     children: React.ReactNode;
 }
 
-export default function WorkPage({ company, title, dates, location, imageUrl, points, tldr, children }: WorkPageProps) {
+export default function WorkPage({ company, title, dates, location, profileImage, points, tldr, children }: WorkPageProps) {
+    const renderProfileImage = () => {
+        if (typeof profileImage === 'string') {
+            return (
+                <img
+                    src={profileImage}
+                    alt='Company Logo'
+                    className='w-full h-full object-contain rounded-md'
+                />
+            );
+        } else {
+            const ImageComponent = profileImage;
+            return <ImageComponent className='w-full h-full object-contain rounded-md' />;
+        }
+    };
+
     return (
         <PageWrapper>
             <Link
@@ -32,11 +47,7 @@ export default function WorkPage({ company, title, dates, location, imageUrl, po
                     </div>
                 </div>
                 <div className='hidden md:block w-20 h-20 flex-shrink-0'>
-                    <img
-                        src={imageUrl}
-                        alt='Company Logo'
-                        className='w-full h-full object-contain rounded-md'
-                    />
+                    {renderProfileImage()}
                 </div>
             </div>
 

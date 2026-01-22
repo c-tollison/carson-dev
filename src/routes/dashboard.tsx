@@ -76,7 +76,7 @@ function Dashboard() {
                     <div>
                         <h4 className='text-sm font-semibold text-muted-foreground mb-2'>AWS</h4>
                         <div className='flex flex-wrap gap-2'>
-                            {['Lambda', 'S3', 'SQS', 'CDK', 'RDS', 'ECS/ECR', 'Amplify', 'Cognito'].map((skill) => (
+                            {['Lambda', 'S3', 'SQS', 'CDK', 'RDS', 'ECS', 'ECR'].map((skill) => (
                                 <span key={skill} className='px-3 py-1 rounded-full bg-card border border-border text-sm'>
                                     {skill}
                                 </span>

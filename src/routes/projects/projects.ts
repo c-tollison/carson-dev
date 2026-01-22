@@ -10,7 +10,7 @@ export interface Project {
 const projects: Project[] = [
     {
         title: 'Eagle Building Company',
-        description: `Full-stack project management system built for a construction company in Washington. Features include bid management with customizable forms, project tracking, and inventory management. The backend is a Python REST API deployed on AWS Lambda via Zappa, with PostgreSQL on RDS for data persistence. Frontend built with React and Tailwind CSS. Designed the database schema and API architecture to handle complex bid workflows and PDF generation. Senior capstone project at Clemson University, built for a real client.`,
+        description: `Built a full-stack project management system for a construction company supporting bid tracking, project workflows, and inventory management. Architected a Python REST API deployed on AWS Lambda with PostgreSQL on RDS to support complex bid and document workflows. Implemented automated PDF bid generation with persistent storage and export for client distribution.`,
         topics: ['Python', 'REST API', 'PostgreSQL', 'AWS Lambda', 'React'],
         thumbnail: 'eagle-dashboard.png',
     },

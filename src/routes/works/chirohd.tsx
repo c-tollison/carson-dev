@@ -2,10 +2,10 @@ import WorkPage from '../../components/work-page';
 
 export default function ChiroHD() {
     const points: string[] = [
-        `Built an X12 EDI insurance parser using SFTP and Lambda, automating claims reconciliation for 1,000+ chiropractic offices and reducing manual billing review time by 80%`,
-        `Designed and implemented a double-entry accounting system with line-item level tracking, processing thousands of financial transactions daily with full audit trails`,
-        `Maintained and scaled a serverless AWS architecture (API Gateway, Lambda, S3, RDS) handling millions of daily API requests with 99.9% uptime`,
-        `Led migration of legacy CI/CD pipelines to modern infrastructure, improving deployment reliability and reducing build times`,
+        `Built an X12 EDI insurance parsing system that automated claims reconciliation for over 1,000 chiropractic offices`,
+        `Designed and implemented a double-entry accounting system with line-item level auditability, processing thousands of transactions daily`,
+        `Scaled a serverless AWS architecture handling millions of daily API requests with high availability and operational reliability`,
+        `Led modernization of CI/CD pipelines, improving deployment stability and reducing operational overhead`,
     ];
 
     return (
@@ -14,7 +14,7 @@ export default function ChiroHD() {
             title={'Software Engineer'}
             dates={'Nov 2021 - Aug 2025'}
             location={'Remote/Greenville, SC'}
-            imageUrl={'./../chirohd_logo.png'}
+            profileImage={'./../chirohd_logo.png'}
             points={points}
             tldr={"Started as an intern with barely any development experience and joined full time in December 2023. Built customer facing features for thousands of chiropractic offices, from insurance billing to double entry accounting. Working on a small team meant I got thrown into challenges early, which is exactly what I needed. Easily the most rewarding experience of my career so far."}
         >

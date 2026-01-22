@@ -17,7 +17,7 @@ export default function Work() {
                         name={work.name}
                         title={work.title}
                         date={work.date}
-                        imageUrl={work.imageUrl}
+                        profileImage={work.profileImage}
                     />
                 ))}
             </div>
