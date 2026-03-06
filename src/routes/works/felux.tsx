@@ -3,10 +3,10 @@ import FeluxLogo from '../../components/icons/felux-logo';
 
 export default function Felux() {
     const points: string[] = [
-        `Reduced manual data entry time by 90% by architecting LLM-powered email ingestion pipelines using Gemini 2 Flash to transform hundreds of unstructured RFQs into structured CRM data in real time`,
-        `Improved quote and document classification accuracy by 30% by training Python machine learning models on historical email datasets`,
-        `Streamlined quote and RFQ lifecycle management for multiple sales teams by developing a Kanban workflow platform featuring role-based access control and dynamic status transitions`,
-        `Enabled secure multi-tenant operations for distinct steel companies by implementing PostgreSQL Row Level Security policies in a Supabase backend`,
+        `Architect full-stack SaaS platform from scratch: Vue.js frontend deployed via Amplify, Hono/Drizzle API on ECS Fargate, PostgreSQL through Supabase, and AWS infrastructure via CDK`,
+        `Build end-to-end email ingestion pipeline that syncs users' Outlook inboxes into Felux via Microsoft Graph API, including a historical backfill on first sign-in, converting Felux into users' primary email client`,
+        `Design LLM-powered classification system where a custom ML model (Cognita) triages incoming emails, then routes transactions to Gemini Flash for structured extraction into steel-industry formats, reducing manual data entry by 90%`,
+        `Enable real-time pipeline processing with a dedicated ingestion server, SQS queues, and Redis, transforming unstructured email volume into structured analytics that let management track transactions at scale`,
     ];
 
     return (
@@ -19,9 +19,7 @@ export default function Felux() {
             points={points}
             tldr={''}
         >
-            <p>
-                Content coming soon...
-            </p>
+            <p>Content coming soon...</p>
         </WorkPage>
     );
 }

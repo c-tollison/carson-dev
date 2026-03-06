@@ -14,7 +14,12 @@ function Dashboard() {
                     <h3 className='flex justify-between items-end border-b pb-4 border-border text-xl'>
                         <span>Recent Dev Logs</span>
                         <span className='text-sm'>
-                            <Link to='/log' className='text-muted-foreground hover:text-primary transition-colors'>More</Link>
+                            <Link
+                                to='/log'
+                                className='text-muted-foreground hover:text-primary transition-colors'
+                            >
+                                More
+                            </Link>
                         </span>
                     </h3>
 
@@ -44,9 +49,8 @@ function Dashboard() {
                 <div className='md:w-4/6 w-full order-1 md:order-2'>
                     <h3 className='border-b pb-4 border-border text-xl'>About Me</h3>
                     <p className='mt-6 text-md leading-relaxed'>
-                        I'm a software engineer who enjoys designing scalable systems in TypeScript and thinking through backend architecture. I focus on building APIs and data models that hold up in production and are easy to evolve over time. While I lean backend, I've shipped full production UIs when the project called for it. I hold a B.S. in Computer Science from Clemson University and have worked on systems in healthcare and SaaS environments. Outside of engineering, I enjoy traveling with my wife, getting tattoos, and watching anime.
+                        I build Software. When I'm not, I'm traveling with my wife, getting tattooed, or watching anime.
                     </p>
-
                 </div>
             </div>
         </PageWrapper>

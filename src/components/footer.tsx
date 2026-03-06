@@ -33,9 +33,7 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className='text-sm text-muted-foreground'>
-                    © {new Date().getFullYear()} Carson Tollison
-                </div>
+                <div className='text-sm text-muted-foreground'>© {new Date().getFullYear()} Carson Tollison</div>
             </div>
         </footer>
     );

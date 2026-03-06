@@ -12,7 +12,16 @@ export interface WorkPageProps {
     children: React.ReactNode;
 }
 
-export default function WorkPage({ company, title, dates, location, profileImage, points, tldr, children }: WorkPageProps) {
+export default function WorkPage({
+    company,
+    title,
+    dates,
+    location,
+    profileImage,
+    points,
+    tldr,
+    children,
+}: WorkPageProps) {
     const renderProfileImage = () => {
         if (typeof profileImage === 'string') {
             return (
@@ -46,9 +55,7 @@ export default function WorkPage({ company, title, dates, location, profileImage
                         <span>{location}</span>
                     </div>
                 </div>
-                <div className='hidden md:block w-20 h-20 flex-shrink-0'>
-                    {renderProfileImage()}
-                </div>
+                <div className='hidden md:block w-20 h-20 flex-shrink-0'>{renderProfileImage()}</div>
             </div>
 
             {tldr && (
@@ -62,7 +69,12 @@ export default function WorkPage({ company, title, dates, location, profileImage
                 <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Key Achievements</h3>
                 <ul className='pl-5 list-disc list-outside space-y-2 text-sm leading-relaxed'>
                     {points.map((point, index) => (
-                        <li key={index} className='text-foreground'>{point}</li>
+                        <li
+                            key={index}
+                            className='text-foreground'
+                        >
+                            {point}
+                        </li>
                     ))}
                 </ul>
             </section>

@@ -2,9 +2,7 @@ interface LinkedInIconProps {
     className?: string;
 }
 
-export default function LinkedInIcon({
-    className = 'w-5 h-5',
-}: LinkedInIconProps) {
+export default function LinkedInIcon({ className = 'w-5 h-5' }: LinkedInIconProps) {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'

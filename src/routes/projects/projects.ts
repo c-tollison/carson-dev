@@ -10,24 +10,24 @@ export interface Project {
 const projects: Project[] = [
     {
         title: 'Eagle Building Company',
-        description: `Developed full-stack construction management platform with features for bidding, workflow tracking, and inventory control. Built RESTful Python API on AWS Lambda with PostgreSQL (RDS), supporting complex document workflows. Implemented automated bid document generation with persistent PDF storage and distribution features.`,
+        description: `Full-stack platform I built for a construction company to manage their bidding, workflows, and inventory. The backend is a Python API running on Lambda with PostgreSQL, and it handles things like automatically generating bid documents and distributing them as PDFs.`,
         topics: ['Python', 'REST API', 'PostgreSQL', 'AWS Lambda', 'React'],
-        thumbnail: 'eagle-dashboard.png',
+        thumbnail: 'eagle-dashboard.webp',
     },
     {
         title: 'DSA Randomizer',
-        description: `A CLI tool built in Go for spaced repetition of coding problems. Features a SQLite database for local persistence, command-line interface for logging completed problems, and a randomization algorithm that weighs problems by time since last review. Designed with clean separation between the CLI layer, business logic, and data access layer.`,
+        description: `CLI tool I wrote in Go to keep me honest with coding problems. It uses spaced repetition — problems you haven't touched in a while get weighted higher. Everything is stored locally in SQLite, and I tried to keep the architecture clean with separate layers for the CLI, logic, and data access.`,
         topics: ['Go', 'SQLite', 'CLI', 'Data Structures'],
         githubLink: 'https://github.com/c-tollison/dsa-randomizer',
-        thumbnail: 'dsa-randomizer.png',
+        thumbnail: 'dsa-randomizer.webp',
     },
     {
         title: 'Unbeatable AI',
-        description: `Tic-Tac-Toe game with an unbeatable AI opponent powered by the minimax algorithm. The algorithm recursively evaluates all possible game states to select the optimal move, guaranteeing a win or draw. Built to explore game theory and recursive algorithms.`,
+        description: `Tic-Tac-Toe where you literally cannot win. The AI uses the minimax algorithm to evaluate every possible game state and always picks the best move. I built it to get a better feel for recursion and game theory.`,
         topics: ['JavaScript', 'Algorithms', 'Game Theory'],
         link: 'https://c-tollison.github.io/unbeatable-ai/',
         githubLink: 'https://github.com/c-tollison/unbeatable-ai',
-        thumbnail: 'unbeatable-ai.png',
+        thumbnail: 'unbeatable-ai.webp',
     },
 ];
 

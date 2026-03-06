@@ -23,7 +23,7 @@ const works: Work[] = [
         name: 'ChiroHD',
         title: 'Software Engineer',
         date: 'Nov 2021 - Aug 2025',
-        profileImage: 'chirohd_logo.png',
+        profileImage: 'chirohd_logo.webp',
         component: ChiroHD,
     },
     {
@@ -31,7 +31,7 @@ const works: Work[] = [
         name: 'Amazon - APM',
         title: 'Software Development Engineer Intern',
         date: 'May 2023 - Aug 2023',
-        profileImage: 'amazon.png',
+        profileImage: 'amazon.webp',
         component: AmazonPt2,
     },
     {
@@ -39,7 +39,7 @@ const works: Work[] = [
         name: 'Amazon - Benefits',
         title: 'Software Development Engineer Intern',
         date: 'May 2022 - Aug 2022',
-        profileImage: 'amazon.png',
+        profileImage: 'amazon.webp',
         component: AmazonPt1,
     },
 ];

@@ -2,9 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt2() {
     const points: string[] = [
-        `Ingested profitability data across millions of SKUs by designing an event-driven data pipeline using AWS Lambda, S3, and DynamoDB`,
-        `Increased data throughput by 25% while reducing memory consumption by optimizing Java file parsing logic for large-scale profitability datasets`,
-        `Delivered production-grade features to critical profitability services by implementing comprehensive unit tests and adhering to Amazon code quality standards`,
+        `Designed a multi-format file ingestion system that processed 100+ GBs of CSV and Excel data using AWS Lambda, S3, SQS, and DynamoDB`,
+        `Optimized Java file parsing logic for large-scale profitability datasets spanning millions of SKUs, increasing data throughput by 25% while reducing memory consumption`,
+        `Collaborated with a cross-functional team to build a microservice architecture delivering seller recommendations via downstream API integrations`,
     ];
 
     return (
@@ -13,9 +13,11 @@ export default function AmazonPt2() {
             title={'Software Development Engineer Intern'}
             dates={'May 2023 - Aug 2023'}
             location={'Hybrid / Seattle, WA'}
-            profileImage={'./../amazon.png'}
+            profileImage={'./../amazon.webp'}
             points={points}
-            tldr={"My second internship at Amazon, this time on the Automated Profitability Management team working with microservices and Java. This was the first time I truly felt like a developer, making decisions and contributing as a collaborator instead of just an intern. Got the return offer but decided not to take it since it meant moving across the country."}
+            tldr={
+                'My second internship at Amazon, this time on the Automated Profitability Management team working with microservices and Java. This was the first time I truly felt like a developer, making decisions and contributing as a collaborator instead of just an intern. Got the return offer but decided not to take it since it meant moving across the country.'
+            }
         >
             <p>
                 Summer 2023 took me back to Seattle for the second time, once again joined by my fiancée. This time, I
@@ -45,7 +47,7 @@ export default function AmazonPt2() {
 
             <div className='w-full flex justify-center items-center flex-shrink-0'>
                 <img
-                    src='./../riding-home.jpg'
+                    src='./../riding-home.webp'
                     alt='Seattle bridge on commute home'
                     className='w-72 object-contain rounded-lg shadow-lg'
                 />

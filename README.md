@@ -12,28 +12,28 @@
 
 ### Key Features
 
--   **Modern Stack**: Built with TypeScript, React, and Vite.
--   **Infrastructure as Code**: All AWS infrastructure is managed using Terraform and OpenTofu.
--   **CI/CD**: Utilizes GitHub Actions for automated builds and deployments.
--   **Cloud-Native**: Deployed on AWS, with S3, CloudFront, and Route 53.
+- **Modern Stack**: Built with TypeScript, React, and Vite.
+- **Infrastructure as Code**: All AWS infrastructure is managed using Terraform and OpenTofu.
+- **CI/CD**: Utilizes GitHub Actions for automated builds and deployments.
+- **Cloud-Native**: Deployed on AWS, with S3, CloudFront, and Route 53.
 
 ## Technology Stack
 
--   **Frontend**: React with TypeScript
--   **Build Tool**: Vite
--   **Runtime**: Node.js 20
--   **Infrastructure**: Terraform & OpenTofu
--   **CI/CD**: GitHub Actions
--   **Cloud Provider**: AWS
+- **Frontend**: React with TypeScript
+- **Build Tool**: Vite
+- **Runtime**: Node.js 20
+- **Infrastructure**: Terraform & OpenTofu
+- **CI/CD**: GitHub Actions
+- **Cloud Provider**: AWS
 
 ## Getting Started
 
 ### Prerequisites
 
--   Node.js 20
--   npm
--   AWS CLI configured with your credentials
--   Terraform or OpenTofu installed
+- Node.js 20
+- npm
+- AWS CLI configured with your credentials
+- Terraform or OpenTofu installed
 
 ### Local Development
 
@@ -105,7 +105,7 @@ The project utilizes a serverless architecture on AWS:
 
 Key components:
 
--   Route 53 for DNS management
--   CloudFront as CDN
--   S3 for static website hosting
--   Certificate Manager for SSL/TLS
+- Route 53 for DNS management
+- CloudFront as CDN
+- S3 for static website hosting
+- Certificate Manager for SSL/TLS

@@ -25,10 +25,8 @@ export default function Projects() {
                             </div>
                         )}
                         <div className='p-6 flex flex-col flex-1'>
-                            <div className='flex items-center justify-between gap-4 mb-3'>
-                                <h3 className='text-base font-semibold text-foreground'>
-                                    {project.title}
-                                </h3>
+                            <div className='flex items-center justify-between gap-4 mb-3 min-h-[40px]'>
+                                <h3 className='text-base font-semibold text-foreground'>{project.title}</h3>
                                 <div className='flex items-center gap-1 flex-shrink-0 -mx-2'>
                                     {project.githubLink && (
                                         <a
@@ -60,9 +58,7 @@ export default function Projects() {
                                     )}
                                 </div>
                             </div>
-                            <p className='text-sm text-foreground leading-relaxed mb-4 flex-1'>
-                                {project.description}
-                            </p>
+                            <p className='text-sm text-foreground leading-relaxed mb-4 flex-1'>{project.description}</p>
                             {project.topics && project.topics.length > 0 && (
                                 <div className='flex flex-wrap gap-2 mt-auto pt-2'>
                                     {project.topics.map((topic, topicIndex) => (

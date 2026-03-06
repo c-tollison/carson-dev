@@ -2,8 +2,9 @@ import WorkPage from '../../components/work-page';
 
 export default function AmazonPt1() {
     const points: string[] = [
-        `Processed global payroll and timecard data for 1.5M+ employees by engineering an AWS CDK pipeline with strong message ordering and fault tolerance guarantees`,
-        `Automated ingestion and transformation of multi-gigabyte datasets by developing resilient Python Lambda functions integrated with FIFO SQS queues for guaranteed processing order`,
+        `Developed a CDK-based event-driven pipeline to automate timecard processing for 1.5M+ global employees`,
+        `Automated batch ingestion and transformation of large datasets by developing Python Lambda functions with comprehensive unit test coverage`,
+        `Implemented dead-letter queues and alerting dashboards to surface failed file processing for on-call review cycles`,
     ];
 
     return (
@@ -12,21 +13,23 @@ export default function AmazonPt1() {
             title={'Software Development Engineer Intern'}
             dates={'May 2022 - Aug 2022'}
             location={'Remote'}
-            profileImage={'./../amazon.png'}
+            profileImage={'./../amazon.webp'}
             points={points}
-            tldr={"My first internship at Amazon, working on the Benefits team to process global pay and timecard data. I moved to Seattle for the summer expecting to work in an office, but ended up on a fully remote team. Silver lining was I got to work from the Amazon Spheres almost every day. This was also where I proposed to my fiancée."}
+            tldr={
+                'My first internship at Amazon, working on the Benefits team to process global pay and timecard data. I moved to Seattle for the summer expecting to work in an office, but ended up on a fully remote team. Silver lining was I got to work from the Amazon Spheres almost every day. This was also where I proposed to my fiancée.'
+            }
         >
             <p>
                 Summer 2022 was my first time living outside of South Carolina. I applied to this internship while
                 waiting for my data structures and algorithms class to start. Honestly, I didn't think I would hear back
-                since at the time I had only been an intern at ChiroHD for maybe two months and didn't have much else on my
-                resume. I was still pretty early in my journey as a developer. Little did I know, it would turn out to
-                be one of the best summers of my life.
+                since at the time I had only been an intern at ChiroHD for maybe two months and didn't have much else on
+                my resume. I was still pretty early in my journey as a developer. Little did I know, it would turn out
+                to be one of the best summers of my life.
             </p>
 
             <div className='w-full flex justify-center items-center flex-shrink-0'>
                 <img
-                    src='./../hello_world.JPG'
+                    src='./../hello_world.webp'
                     alt='hello-world'
                     className='w-72 object-contain rounded-lg shadow-lg'
                 />
@@ -55,7 +58,7 @@ export default function AmazonPt1() {
 
             <div className='w-full flex justify-center items-center flex-shrink-0'>
                 <img
-                    src='./../spheres.JPG'
+                    src='./../spheres.webp'
                     alt='amazon-spheres'
                     className='w-72 object-contain rounded-lg shadow-lg'
                 />
@@ -71,10 +74,10 @@ export default function AmazonPt1() {
             </p>
 
             <p>
-                This internship changed a lot for me. I learned how to write production-level code. I
-                started to really understand the serverless model and how to work at a scale I hadn't even imagined
-                before. And on top of that, I got to experience Seattle with my fiancée. It'll always feel like our home
-                away from home, and it's where I proposed to her.
+                This internship changed a lot for me. I learned how to write production-level code. I started to really
+                understand the serverless model and how to work at a scale I hadn't even imagined before. And on top of
+                that, I got to experience Seattle with my fiancée. It'll always feel like our home away from home, and
+                it's where I proposed to her.
             </p>
         </WorkPage>
     );
