@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import Hero from '../components/hero';
 import PageWrapper from '../components/page-wrapper';
-import logs from './log/logs';
+import logs from './converted-logs/logs';
 
 function Dashboard() {
-    const latestLogs = logs.slice(0, 5);
+    const latestLogs = logs.slice(-5).reverse();
 
     return (
         <PageWrapper>
@@ -34,7 +34,9 @@ function Dashboard() {
                                         className='group flex justify-between items-center py-2 transition-all duration-300 ease-in-out'
                                     >
                                         <div>
-                                            <h4 className='text-base font-semibold text-foreground'>{log.title}</h4>
+                                            <h4 className='text-base font-semibold text-foreground group-hover:underline'>
+                                                {log.title}
+                                            </h4>
                                             <p className='text-sm text-muted-foreground'>{log.date}</p>
                                         </div>
                                         <div className='text-primary text-base opacity-0 group-hover:opacity-100 transition-opacity'>

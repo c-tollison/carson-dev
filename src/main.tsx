@@ -9,7 +9,7 @@ import Log from './routes/log';
 import { ColorThemeProvider } from './components/core/providers/color-mode-provider/color-mode-provider';
 import Projects from './routes/projects';
 import works from './routes/works/works';
-import logs from './routes/log/logs';
+import logs from './routes/converted-logs/logs';
 
 const workChildRoutes = works.map((work) => ({
     path: `work/${work.route}`,
