@@ -5,7 +5,7 @@ description: Created a tool that will convert my markdown files to blog posts
 topics: [AST, Markdown, Tooling]
 ---
 
-Writing content for this site has always involved more ceremony than it should. Each new post required creating a component, copying boilerplate, and updating routes. None of it difficult, but enough friction that ideas would always died between "I should write about that" and actually doing it. The goal was to eliminate that gap entirely: write a markdown file, run a script, and have a fully rendered blog post with routing, metadata, and layout handled automatically.
+Writing content for this site has always involved more ceremony than it should. Each new post required creating a component, copying boilerplate, and updating routes. None of it difficult, but enough friction that ideas would always die between "I should write about that" and actually doing it. The goal was to eliminate that gap entirely: write a markdown file, run a script, and have a fully rendered blog post with routing, metadata, and layout handled automatically.
 
 ## The Approach
 
@@ -20,7 +20,7 @@ topics: [whatever, goes, here]
 ---
 ```
 
-A build script picks up every markdown file in the dev-logs directory, parses the frontmatter into a typed object, and converts the body into an AST using `mdast-util-from-markdown`. From there, it walks the tree and emits TSX components, route entries, and an index file that ties everything together. Adding a new post is a single file drop and a script invocation-no route updates, no boilerplate.
+A build script picks up every markdown file in the logs directory, parses the frontmatter into a typed object, and converts the body into an AST using `mdast-util-from-markdown`. From there, it walks the tree and emits TSX components, route entries, and an index file that ties everything together. Adding a new post is a single file drop and a script invocation.
 
 ## The Stack
 
@@ -42,20 +42,15 @@ Metadata in, AST out. Everything downstream is tree traversal and file emission.
 
 ## Incremental Builds
 
-The first version of the script rebuilt every generated file on each run. This worked, but it scaled poorly-regenerating twenty files because of a typo in one is wasteful, and the problem only compounds as the number of posts grows.
+The first version of the script rebuilt every generated file on each run. This worked, but it scaled poorly. Regenerating twenty files because of a typo in one is wasteful, and the problem only compounds as the number of posts grows.
 
-To address this, I added a manifest-based caching layer. Each source file is hashed with SHA-256, and the hashes are stored in `.cache/manifest.json`. On each subsequent run, the script compares current hashes against the manifest to produce four buckets:
+To address this, I added a manifest-based caching layer. Each source file is hashed with SHA-256, and the hashes are stored in `.cache/manifest.json`. On each subsequent run, the script compares current hashes against the manifest to create a diff.
 
-- **New files** - not yet in the manifest
-- **Modified files** - hash has changed
-- **Unchanged files** - hash matches, skip AST parsing entirely
-- **Deleted files** - present in the manifest but removed from disk
-
-Only new and modified files trigger regeneration. Deleted files have their generated TSX cleaned up. Unchanged files skip the expensive AST pass-the script reads only their frontmatter to rebuild the index. The manifest is written atomically after a successful run, so a failed build never leaves the cache in an inconsistent state.
+Only new and modified files trigger regeneration. Deleted files have their generated TSX cleaned up. Unchanged files skip generation. The script still reads unchanged files' frontmatter to rebuild the index. In the future, I might start writing that metadata to the manifest to prevent redundant reads. The manifest is written atomically after a successful run, so a failed build never leaves the cache in an inconsistent state.
 
 ## Walking the AST
 
-The AST produced by `mdast-util-from-markdown` is a tree of typed nodes. Each node carries a `type`-`heading`, `paragraph`, `text`, `strong`, `code`, and so on-with leaf nodes holding a `value` and parent nodes holding `children`. The mapping from AST to JSX is a recursive switch over node types:
+The AST produced by `mdast-util-from-markdown` is a tree of typed nodes. Each node carries a `type`, something like `heading`, `paragraph`, `text`, `strong`, `code`, and so on. With leaf nodes holding a `value` and parent nodes holding `children`. The mapping from AST to JSX is a recursive switch over node types:
 
 ```ts
 function parseNode(node: Node): string {
@@ -77,7 +72,7 @@ function parseNode(node: Node): string {
 }
 ```
 
-Each case maps a markdown node to a JSX string. Headings resolve to `h1` through `h6` based on depth, lists inspect `ordered` to choose `ol` or `ul`, and unhandled node types log a warning so gaps are visible immediately. Syntax highlighting is in place. Code blocks are routed through `prism-react-renderer` via a `CodeBlock` component, providing token-level coloring out of the box.
+Each case maps a markdown node to a JSX string. Headings resolve to `h1` through `h6` based on depth, lists inspect `ordered` to choose `ol` or `ul`, and unhandled node types are logged so we can handle that use case. Syntax highlighting is in place. Code blocks are routed through `prism-react-renderer` via a `CodeBlock` component, providing syntax highlighting out of the box.
 
 ## Generated Output
 

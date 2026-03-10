@@ -11,9 +11,9 @@ export default function MarkdownToBlogPosts() {
             <p className='text-foreground leading-relaxed'>
                 Writing content for this site has always involved more ceremony than it should. Each new post required
                 creating a component, copying boilerplate, and updating routes. None of it difficult, but enough
-                friction that ideas would always died between "I should write about that" and actually doing it. The
-                goal was to eliminate that gap entirely: write a markdown file, run a script, and have a fully rendered
-                blog post with routing, metadata, and layout handled automatically.
+                friction that ideas would always die between "I should write about that" and actually doing it. The goal
+                was to eliminate that gap entirely: write a markdown file, run a script, and have a fully rendered blog
+                post with routing, metadata, and layout handled automatically.
             </p>
             <h2 className='text-xl font-bold text-foreground'>The Approach</h2>
             <p className='text-foreground leading-relaxed'>
@@ -33,14 +33,13 @@ topics: [whatever, goes, here]
                 language='yaml'
             />
             <p className='text-foreground leading-relaxed'>
-                A build script picks up every markdown file in the dev-logs directory, parses the frontmatter into a
-                typed object, and converts the body into an AST using{' '}
+                A build script picks up every markdown file in the logs directory, parses the frontmatter into a typed
+                object, and converts the body into an AST using{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     mdast-util-from-markdown
                 </code>
                 . From there, it walks the tree and emits TSX components, route entries, and an index file that ties
-                everything together. Adding a new post is a single file drop and a script invocation-no route updates,
-                no boilerplate.
+                everything together. Adding a new post is a single file drop and a script invocation.
             </p>
             <h2 className='text-xl font-bold text-foreground'>The Stack</h2>
             <p className='text-foreground leading-relaxed'>The core tooling is minimal:</p>
@@ -77,8 +76,8 @@ const tree = fromMarkdown(fileData.content);`}
             <h2 className='text-xl font-bold text-foreground'>Incremental Builds</h2>
             <p className='text-foreground leading-relaxed'>
                 The first version of the script rebuilt every generated file on each run. This worked, but it scaled
-                poorly-regenerating twenty files because of a typo in one is wasteful, and the problem only compounds as
-                the number of posts grows.
+                poorly. Regenerating twenty files because of a typo in one is wasteful, and the problem only compounds
+                as the number of posts grows.
             </p>
             <p className='text-foreground leading-relaxed'>
                 To address this, I added a manifest-based caching layer. Each source file is hashed with SHA-256, and
@@ -86,38 +85,14 @@ const tree = fromMarkdown(fileData.content);`}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     .cache/manifest.json
                 </code>
-                . On each subsequent run, the script compares current hashes against the manifest to produce four
-                buckets:
+                . On each subsequent run, the script compares current hashes against the manifest to create a diff.
             </p>
-            <ul className='list-disc ml-5 space-y-2 text-foreground'>
-                <li className='leading-relaxed'>
-                    <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>New files</strong> - not yet in the manifest
-                    </p>
-                </li>
-                <li className='leading-relaxed'>
-                    <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>Modified files</strong> - hash has changed
-                    </p>
-                </li>
-                <li className='leading-relaxed'>
-                    <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>Unchanged files</strong> - hash matches, skip
-                        AST parsing entirely
-                    </p>
-                </li>
-                <li className='leading-relaxed'>
-                    <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>Deleted files</strong> - present in the
-                        manifest but removed from disk
-                    </p>
-                </li>
-            </ul>
             <p className='text-foreground leading-relaxed'>
                 Only new and modified files trigger regeneration. Deleted files have their generated TSX cleaned up.
-                Unchanged files skip the expensive AST pass-the script reads only their frontmatter to rebuild the
-                index. The manifest is written atomically after a successful run, so a failed build never leaves the
-                cache in an inconsistent state.
+                Unchanged files skip generation. The script still reads unchanged files' frontmatter to rebuild the
+                index. In the future, I might start writing that metadata to the manifest to prevent redundant reads.
+                The manifest is written atomically after a successful run, so a failed build never leaves the cache in
+                an inconsistent state.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Walking the AST</h2>
             <p className='text-foreground leading-relaxed'>
@@ -129,7 +104,7 @@ const tree = fromMarkdown(fileData.content);`}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     type
                 </code>
-                -
+                , something like{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     heading
                 </code>
@@ -149,7 +124,7 @@ const tree = fromMarkdown(fileData.content);`}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     code
                 </code>
-                , and so on-with leaf nodes holding a{' '}
+                , and so on. With leaf nodes holding a{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     value
                 </code>{' '}
@@ -200,8 +175,8 @@ const tree = fromMarkdown(fileData.content);`}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     ul
                 </code>
-                , and unhandled node types log a warning so gaps are visible immediately. Syntax highlighting is in
-                place. Code blocks are routed through{' '}
+                , and unhandled node types are logged so we can handle that use case. Syntax highlighting is in place.
+                Code blocks are routed through{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     prism-react-renderer
                 </code>{' '}
@@ -209,7 +184,7 @@ const tree = fromMarkdown(fileData.content);`}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     CodeBlock
                 </code>{' '}
-                component, providing token-level coloring out of the box.
+                component, providing syntax highlighting out of the box.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Generated Output</h2>
             <p className='text-foreground leading-relaxed'>
