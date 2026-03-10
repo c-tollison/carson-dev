@@ -9,7 +9,11 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     }, []);
 
     return (
-        <div className={`transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div
+            className={`transition-all duration-500 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+            }`}
+        >
             <ScrollToTop />
             {children}
         </div>

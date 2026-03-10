@@ -7,9 +7,9 @@ export default function Github() {
             target='_blank'
             rel='noopener noreferrer'
             aria-label='GitHub'
-            className='text-muted-foreground hover:text-primary transition-colors'
+            className='text-muted-foreground hover:text-primary transition-colors duration-200'
         >
-            <GitHubIcon className='w-12 h-12' />
+            <GitHubIcon className='w-8 h-8' />
         </a>
     );
 }

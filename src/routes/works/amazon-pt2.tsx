@@ -49,7 +49,7 @@ export default function AmazonPt2() {
                 <img
                     src='./../riding-home.webp'
                     alt='Seattle bridge on commute home'
-                    className='w-72 object-contain rounded-lg shadow-lg'
+                    className='w-72 object-contain rounded-lg ring-2 ring-border'
                 />
             </div>
 

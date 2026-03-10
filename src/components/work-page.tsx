@@ -41,17 +41,19 @@ export default function WorkPage({
         <PageWrapper>
             <Link
                 to='/work'
-                className='hover:text-primary text-sm transition-opacity'
+                className='inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors'
             >
                 <span>&#8592;</span> Back
             </Link>
-            <div className='mt-6 flex flex-row justify-between items-start gap-6 mb-8'>
+            <div className='mt-8 flex flex-row justify-between items-start gap-6 mb-10'>
                 <div className='flex-1 min-w-0'>
-                    <h1 className='text-3xl font-bold text-primary mb-2'>{company}</h1>
+                    <h1 className='font-display text-3xl md:text-4xl font-bold text-primary tracking-tight mb-2'>
+                        {company}
+                    </h1>
                     <h2 className='text-lg font-semibold text-foreground mb-3'>{title}</h2>
                     <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-sm text-muted-foreground'>
                         <span>{dates}</span>
-                        {location && <span className='hidden sm:inline'>•</span>}
+                        {location && <span className='hidden sm:inline text-border'>|</span>}
                         <span>{location}</span>
                     </div>
                 </div>
@@ -59,19 +61,21 @@ export default function WorkPage({
             </div>
 
             {tldr && (
-                <section className='mb-8'>
-                    <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>TLDR</h3>
-                    <p className='text-sm leading-relaxed text-foreground'>{tldr}</p>
+                <section className='mb-10'>
+                    <h3 className='font-display text-lg font-semibold border-b border-border pb-3 mb-5'>TLDR</h3>
+                    <p className='text-sm leading-relaxed text-foreground/90'>{tldr}</p>
                 </section>
             )}
 
-            <section className='mb-8'>
-                <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Key Achievements</h3>
-                <ul className='pl-5 list-disc list-outside space-y-2 text-sm leading-relaxed'>
+            <section className='mb-10'>
+                <h3 className='font-display text-lg font-semibold border-b border-border pb-3 mb-5'>
+                    Key Achievements
+                </h3>
+                <ul className='pl-5 list-disc list-outside space-y-3 text-sm leading-relaxed'>
                     {points.map((point, index) => (
                         <li
                             key={index}
-                            className='text-foreground'
+                            className='text-foreground/90'
                         >
                             {point}
                         </li>
@@ -79,13 +83,13 @@ export default function WorkPage({
                 </ul>
             </section>
 
-            <section className='pb-4 mb-6'>
-                <h3 className='text-lg font-semibold border-b border-border pb-2 mb-4'>Experience</h3>
-                <div className='leading-relaxed flex flex-col gap-4 text-sm'>{children}</div>
+            <section className='pb-4 mb-8'>
+                <h3 className='font-display text-lg font-semibold border-b border-border pb-3 mb-5'>Experience</h3>
+                <div className='leading-relaxed flex flex-col gap-4 text-sm text-foreground/90'>{children}</div>
             </section>
             <Link
                 to='/work'
-                className='hover:text-primary text-sm transition-opacity'
+                className='inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors'
             >
                 <span>&#8592;</span> Back
             </Link>

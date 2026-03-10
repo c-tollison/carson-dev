@@ -7,6 +7,10 @@ export default {
     },
     theme: {
         extend: {
+            fontFamily: {
+                display: ['"Bricolage Grotesque"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                body: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
             colors: {
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',

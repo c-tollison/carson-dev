@@ -33,44 +33,45 @@ export default function NavBar() {
         }
     }, [location]);
 
+    const navLinkClass = (page: NavBarPages) =>
+        `relative font-medium text-[15px] tracking-wide transition-colors ${
+            activePage === page ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+        }`;
+
     return (
         <div className='relative'>
-            <nav className='flex justify-between items-center w-full border-b py-4 border-border'>
-                <div className='flex justify-between items-center w-full'>
-                    <Link
-                        to='/'
-                        onClick={() => {
-                            if (navbarOpen) {
-                                toggleNavBar();
-                            }
-                        }}
-                        className={`${activePage === NavBarPages.Home ? 'text-primary' : 'text-muted-foreground'} hover:text-primary transition-colors text-sm`}
+            <nav className='flex justify-between items-center w-full border-b border-border py-5'>
+                <Link
+                    to='/'
+                    onClick={() => {
+                        if (navbarOpen) toggleNavBar();
+                    }}
+                    className={navLinkClass(NavBarPages.Home)}
+                >
+                    <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        strokeWidth={1.5}
+                        stroke='currentColor'
+                        className='w-[18px] h-[18px]'
                     >
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            strokeWidth={1.5}
-                            stroke='currentColor'
-                            className='w-4 h-4'
-                        >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                d='m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'
-                            />
-                        </svg>
-                    </Link>
-                    <div className='flex gap-4 h-full justify-center items-center md:hidden'>
-                        <ColorModeButton />
-                        <DropDownButton onClick={toggleNavBar} />
-                    </div>
+                        <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            d='m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'
+                        />
+                    </svg>
+                </Link>
+                <div className='flex gap-3 items-center md:hidden'>
+                    <ColorModeButton />
+                    <DropDownButton onClick={toggleNavBar} />
                 </div>
-                <ul className='hidden md:flex flex-col md:flex-row md:items-center md:gap-4 w-full md:w-auto'>
+                <ul className='hidden md:flex flex-row items-center gap-6'>
                     <li>
                         <Link
                             to='/work'
-                            className={`${activePage === NavBarPages.Work ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-sm`}
+                            className={navLinkClass(NavBarPages.Work)}
                         >
                             Work
                         </Link>
@@ -78,7 +79,7 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/log'
-                            className={`${activePage === NavBarPages.Log ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-sm whitespace-nowrap`}
+                            className={navLinkClass(NavBarPages.Log)}
                         >
                             Dev Logs
                         </Link>
@@ -86,39 +87,41 @@ export default function NavBar() {
                     <li>
                         <Link
                             to='/projects'
-                            className={`${activePage === NavBarPages.Projects ? 'text-primary' : 'text-muted-foreground '} hover:text-primary transition-colors text-sm`}
+                            className={navLinkClass(NavBarPages.Projects)}
                         >
                             Projects
                         </Link>
                     </li>
-                    <ColorModeButton />
+                    <li className='ml-2'>
+                        <ColorModeButton />
+                    </li>
                 </ul>
             </nav>
             {navbarOpen && (
                 <>
                     <div
-                        className='md:hidden fixed inset-0 top-0 z-10'
+                        className='md:hidden fixed inset-0 top-0 z-10 bg-background/60 backdrop-blur-sm'
                         onClick={toggleNavBar}
                     />
-                    <div className='md:hidden absolute right-0 top-full mt-2 z-20 w-40 rounded-lg bg-card border border-border shadow-lg'>
-                        <div className='flex flex-col py-1'>
+                    <div className='md:hidden absolute right-0 top-full mt-2 z-20 w-44 rounded-lg bg-card border border-border shadow-xl'>
+                        <div className='flex flex-col py-2'>
                             <Link
                                 to='work'
-                                className='px-4 py-2.5 hover:bg-popover transition-colors text-sm'
+                                className='px-5 py-3 text-sm font-medium hover:bg-muted transition-colors'
                                 onClick={toggleNavBar}
                             >
                                 Work
                             </Link>
                             <Link
                                 to='log'
-                                className='px-4 py-2.5 hover:bg-popover transition-colors text-sm'
+                                className='px-5 py-3 text-sm font-medium hover:bg-muted transition-colors'
                                 onClick={toggleNavBar}
                             >
                                 Dev Logs
                             </Link>
                             <Link
                                 to='projects'
-                                className='px-4 py-2.5 hover:bg-popover transition-colors text-sm'
+                                className='px-5 py-3 text-sm font-medium hover:bg-muted transition-colors'
                                 onClick={toggleNavBar}
                             >
                                 Projects

@@ -1,18 +1,13 @@
-import { useContext } from 'react';
-import { ColorModeContext } from '../core/providers/color-mode-provider/color-mode-context';
-import { ColorMode } from '../core/providers/color-mode-provider/color-mode.enum';
-
 interface DropDownButtonProps {
     onClick: () => void;
 }
 
 export default function DropDownButton({ onClick }: DropDownButtonProps) {
-    const colorModeContext = useContext(ColorModeContext);
-
     return (
-        <div
+        <button
             onClick={onClick}
-            className='p-1.5 rounded-md border border-border cursor-pointer m-0'
+            className='p-1.5 rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-foreground/20 cursor-pointer transition-colors duration-200'
+            aria-label='Toggle menu'
         >
             <svg
                 className='w-4 h-4'
@@ -22,23 +17,23 @@ export default function DropDownButton({ onClick }: DropDownButtonProps) {
             >
                 <path
                     d='M4 18L20 18'
-                    stroke={colorModeContext.colorMode === ColorMode.Dark ? 'white' : 'black'}
+                    stroke='currentColor'
                     strokeWidth='2'
                     strokeLinecap='round'
                 />
                 <path
                     d='M4 12L20 12'
-                    stroke={colorModeContext.colorMode === ColorMode.Dark ? 'white' : 'black'}
+                    stroke='currentColor'
                     strokeWidth='2'
                     strokeLinecap='round'
                 />
                 <path
                     d='M4 6L20 6'
-                    stroke={colorModeContext.colorMode === ColorMode.Dark ? 'white' : 'black'}
+                    stroke='currentColor'
                     strokeWidth='2'
                     strokeLinecap='round'
                 />
             </svg>
-        </div>
+        </button>
     );
 }

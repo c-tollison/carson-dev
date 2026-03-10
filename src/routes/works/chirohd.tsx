@@ -52,7 +52,7 @@ export default function ChiroHD() {
                 <img
                     src='./../junior.webp'
                     alt='Dog walking himself on leash'
-                    className='h-72 object-contain rounded-lg shadow-lg'
+                    className='h-72 object-contain rounded-lg ring-2 ring-border'
                 />
             </div>
 
@@ -68,7 +68,7 @@ export default function ChiroHD() {
                 <img
                     src='./../whiteboard.webp'
                     alt='My giant whiteboard filled with architecture diagrams'
-                    className='w-72 object-contain rounded-lg shadow-lg'
+                    className='w-72 object-contain rounded-lg ring-2 ring-border'
                 />
             </div>
 

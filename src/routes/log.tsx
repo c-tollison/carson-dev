@@ -25,37 +25,37 @@ export default function Log() {
 
     return (
         <PageWrapper>
-            <div className='mb-6'>
-                <h1 className='text-2xl font-semibold text-foreground'>Dev Logs</h1>
+            <div className='mb-8'>
+                <h1 className='font-display text-3xl font-bold tracking-tight text-foreground'>Dev Logs</h1>
             </div>
 
-            <ul className='mt-4 flex flex-col'>
+            <ul className='flex flex-col divide-y divide-border'>
                 {logs.length === 0 ? (
-                    <li className='text-muted-foreground py-2'>No dev logs yet.</li>
+                    <li className='text-muted-foreground py-4 text-sm'>No dev logs yet.</li>
                 ) : (
                     sortedLogs.slice(currentPage * PER_PAGE, currentPage * PER_PAGE + PER_PAGE).map((log) => (
                         <li key={log.route}>
                             <Link
                                 to={`/log/${log.route}`}
-                                className='group flex justify-between items-center py-2 transition-all duration-300 ease-in-out'
+                                className='group flex justify-between items-center py-4 transition-colors duration-200'
                             >
                                 <div className='min-w-0'>
-                                    <h4 className='text-base font-semibold text-foreground group-hover:underline'>
+                                    <h4 className='text-[15px] font-medium text-foreground group-hover:text-primary transition-colors'>
                                         {log.title}
                                     </h4>
-                                    <div className='mt-1 flex items-center flex-wrap gap-1.5'>
+                                    <div className='mt-1.5 flex items-center flex-wrap gap-2'>
                                         <span className='text-sm text-muted-foreground'>{log.date}</span>
                                         {log.topics.map((topic, i) => (
                                             <span
                                                 key={i}
-                                                className='px-1.5 py-px rounded-full border border-border text-[11px] text-muted-foreground'
+                                                className='px-2 py-0.5 rounded-full border border-border text-[11px] font-medium text-muted-foreground'
                                             >
                                                 {topic}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
-                                <div className='text-primary text-base opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-4'>
+                                <div className='text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-4'>
                                     &#8594;
                                 </div>
                             </Link>
@@ -65,13 +65,13 @@ export default function Log() {
             </ul>
 
             {logs.length > 0 && totalPages > 1 && (
-                <div className='flex items-center justify-center mt-8 gap-4'>
+                <div className='flex items-center justify-center mt-10 gap-2'>
                     <button
                         onClick={() => selectPage(currentPage - 1)}
                         disabled={currentPage <= 0}
-                        className='px-4 py-2 rounded-lg bg-card hover:bg-popover hover:shadow-lg disabled:pointer-events-none transition-all duration-300 ease-in-out border border-border disabled:opacity-50'
+                        className='px-3 py-1.5 rounded-md text-sm text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-colors'
                     >
-                        {'<'}
+                        &#8592;
                     </button>
                     {Array.from({ length: endPage - startPage + 1 }).map((_, i) => {
                         const pageIndex = startPage + i;
@@ -79,7 +79,11 @@ export default function Log() {
                             <button
                                 key={pageIndex}
                                 onClick={() => selectPage(pageIndex)}
-                                className={`p-1 text-sm ${currentPage === pageIndex ? 'font-semibold' : ''}`}
+                                className={`w-8 h-8 rounded-md text-sm transition-colors ${
+                                    currentPage === pageIndex
+                                        ? 'bg-primary text-primary-foreground font-semibold'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                                }`}
                             >
                                 {pageIndex + 1}
                             </button>
@@ -88,9 +92,9 @@ export default function Log() {
                     <button
                         onClick={() => selectPage(currentPage + 1)}
                         disabled={currentPage >= totalPages - 1}
-                        className='px-4 py-2 rounded-lg bg-card hover:bg-popover hover:shadow-lg disabled:pointer-events-none transition-all duration-300 ease-in-out border border-border disabled:opacity-50'
+                        className='px-3 py-1.5 rounded-md text-sm text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:pointer-events-none transition-colors'
                     >
-                        {'>'}
+                        &#8594;
                     </button>
                 </div>
             )}

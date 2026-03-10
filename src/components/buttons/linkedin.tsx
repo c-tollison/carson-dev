@@ -7,9 +7,9 @@ export default function LinkedIn() {
             target='_blank'
             rel='noopener noreferrer'
             aria-label='LinkedIn'
-            className='text-muted-foreground hover:text-primary transition-colors'
+            className='text-muted-foreground hover:text-primary transition-colors duration-200'
         >
-            <LinkedInIcon className='w-12 h-12' />
+            <LinkedInIcon className='w-8 h-8' />
         </a>
     );
 }

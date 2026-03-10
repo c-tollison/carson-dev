@@ -31,7 +31,7 @@ export default function AmazonPt1() {
                 <img
                     src='./../hello_world.webp'
                     alt='hello-world'
-                    className='w-72 object-contain rounded-lg shadow-lg'
+                    className='w-72 object-contain rounded-lg ring-2 ring-border'
                 />
             </div>
 
@@ -60,7 +60,7 @@ export default function AmazonPt1() {
                 <img
                     src='./../spheres.webp'
                     alt='amazon-spheres'
-                    className='w-72 object-contain rounded-lg shadow-lg'
+                    className='w-72 object-contain rounded-lg ring-2 ring-border'
                 />
             </div>
 
