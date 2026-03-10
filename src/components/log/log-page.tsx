@@ -5,11 +5,10 @@ export interface LogPageProps {
     title: string;
     date: string;
     topics: string[];
-    thumbnail: string;
     children: React.ReactNode;
 }
 
-export default function LogPage({ title, date, topics, thumbnail, children }: LogPageProps) {
+export default function LogPage({ title, date, topics, children }: LogPageProps) {
     return (
         <PageWrapper>
             <Link
@@ -18,7 +17,7 @@ export default function LogPage({ title, date, topics, thumbnail, children }: Lo
             >
                 <span>&#8592;</span> Back
             </Link>
-            <div className='py-8 flex flex-row justify-between items-start gap-6 mb-8'>
+            <div className='py-8 flex flex-row justify-between items-start gap-6 mb-2'>
                 <div className='flex-1 min-w-0'>
                     <h1 className='text-3xl font-bold text-primary mb-2'>{title}</h1>
                     <p className='text-sm text-muted-foreground mb-3'>{date}</p>
@@ -32,13 +31,6 @@ export default function LogPage({ title, date, topics, thumbnail, children }: Lo
                             </span>
                         ))}
                     </div>
-                </div>
-                <div className='hidden md:block w-16 h-16 flex-shrink-0'>
-                    <img
-                        src={thumbnail}
-                        alt='Dev log thumbnail'
-                        className='w-full h-full object-contain rounded-md'
-                    />
                 </div>
             </div>
 

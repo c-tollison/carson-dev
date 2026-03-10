@@ -1,0 +1,36 @@
+import { Highlight, themes } from 'prism-react-renderer';
+
+interface CodeBlockProps {
+    code: string;
+    language?: string;
+}
+
+export default function CodeBlock({ code, language = '' }: CodeBlockProps) {
+    return (
+        <Highlight
+            theme={themes.oneDark}
+            code={code.trim()}
+            language={language}
+        >
+            {({ tokens, getLineProps, getTokenProps }) => (
+                <pre className='bg-card border border-border rounded-lg p-4 overflow-x-auto text-xs'>
+                    <code>
+                        {tokens.map((line, i) => (
+                            <div
+                                key={i}
+                                {...getLineProps({ line })}
+                            >
+                                {line.map((token, key) => (
+                                    <span
+                                        key={key}
+                                        {...getTokenProps({ token })}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </code>
+                </pre>
+            )}
+        </Highlight>
+    );
+}

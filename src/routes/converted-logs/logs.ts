@@ -9,10 +9,10 @@ interface Log extends LogCardProps {
 const logs: Log[] = [
     {
         title: 'Markdown to Blog Posts',
-        date: 'Mar 8, 2026',
+        date: 'Mar 9, 2026',
         route: 'markdown-to-devlog',
         component: MarkdownToBlogPosts,
-        topics: ['AST', 'Markdown', 'Idk random'],
+        topics: ['AST', 'Markdown', 'Tooling'],
     },
 ];
 

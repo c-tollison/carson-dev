@@ -209,9 +209,20 @@ export default logs;
 }
 
 function createComponent(log: ConvertedLog): string {
-    return `export default function ${log.component}() {
+    const body = log.componentStructure.join('\n            ');
+
+    return `import LogPage from '../../components/log/log-page';
+import CodeBlock from '../../components/log/code-block';
+
+export default function ${log.component}() {
     return (
-        <h1>test</h1>
+        <LogPage
+            title="${log.fileDetails.title}"
+            date="${log.fileDetails.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}"
+            topics={[${log.fileDetails.topics.map((t) => `'${t}'`).join(', ')}]}
+        >
+            ${body}
+        </LogPage>
     );
 }`;
 }
@@ -258,8 +269,96 @@ function createComponentName(title: string): string {
     return splitTitle.join('');
 }
 
+const HEADING_STYLES: Record<number, string> = {
+    1: 'text-2xl font-bold text-primary',
+    2: 'text-xl font-bold text-foreground',
+    3: 'text-lg font-semibold text-foreground',
+    4: 'text-base font-semibold text-foreground',
+    5: 'text-sm font-semibold text-foreground',
+    6: 'text-sm font-medium text-muted-foreground',
+};
+
+function escapeJsx(text: string): string {
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/{/g, '&#123;')
+        .replace(/}/g, '&#125;');
+}
+
 function parseNode(node: Node): string {
-    return 'test';
+    switch (node.type) {
+        case 'heading': {
+            const heading = node as Parent & { depth: number };
+            const tag = `h${heading.depth}`;
+            const styles = HEADING_STYLES[heading.depth] ?? HEADING_STYLES[6];
+            const children = heading.children.map(parseNode).join('');
+            return `<${tag} className="${styles}">${children}</${tag}>`;
+        }
+        case 'paragraph': {
+            const paragraph = node as Parent;
+            const children = paragraph.children.map(parseNode).join('');
+            return `<p className="text-foreground leading-relaxed">${children}</p>`;
+        }
+        case 'text': {
+            return escapeJsx((node as any).value);
+        }
+        case 'strong': {
+            const children = (node as Parent).children.map(parseNode).join('');
+            return `<strong className="font-semibold text-foreground">${children}</strong>`;
+        }
+        case 'emphasis': {
+            const children = (node as Parent).children.map(parseNode).join('');
+            return `<em className="italic text-muted-foreground">${children}</em>`;
+        }
+        case 'code': {
+            const code = node as any;
+            const lang = code.lang ?? '';
+            const escaped = code.value.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+            return `<CodeBlock code={\`${escaped}\`} language="${lang}" />`;
+        }
+        case 'inlineCode': {
+            const escaped = escapeJsx((node as any).value);
+            return `<code className="bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground">${escaped}</code>`;
+        }
+        case 'link': {
+            const link = node as Parent & { url: string };
+            const children = link.children.map(parseNode).join('');
+            return `<a href="${link.url}" className="text-primary hover:underline transition-colors" target="_blank" rel="noopener noreferrer">${children}</a>`;
+        }
+        case 'list': {
+            const list = node as Parent & { ordered: boolean };
+            if (list.ordered) {
+                const children = list.children.map(parseNode).join('\n');
+                return `<ol className="list-decimal ml-5 space-y-2 text-foreground">\n${children}\n</ol>`;
+            }
+            const children = list.children.map(parseNode).join('\n');
+            return `<ul className="list-disc ml-5 space-y-2 text-foreground">\n${children}\n</ul>`;
+        }
+        case 'listItem': {
+            const children = (node as Parent).children.map(parseNode).join('');
+            return `<li className="leading-relaxed">${children}</li>`;
+        }
+        case 'blockquote': {
+            const children = (node as Parent).children.map(parseNode).join('\n');
+            return `<blockquote className="border-l-4 border-primary pl-4 py-2 italic text-muted-foreground">${children}</blockquote>`;
+        }
+        case 'thematicBreak': {
+            return `<hr className="border-border my-2" />`;
+        }
+        case 'break': {
+            return `<br />`;
+        }
+        case 'image': {
+            const img = node as any;
+            const alt = img.alt ? ` alt="${escapeJsx(img.alt)}"` : '';
+            return `<img src="${img.url}"${alt} className="rounded-lg border border-border max-w-full" />`;
+        }
+        default:
+            console.warn(`Unhandled node type: ${node.type}: ${node.data}`);
+            return '';
+    }
 }
 
 function parseTree(node: Parent): string[] {
