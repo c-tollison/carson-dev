@@ -5,8 +5,6 @@ import matter from 'gray-matter';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import type { Node, Parent } from 'mdast';
 import { createHash } from 'node:crypto';
-import { get } from 'node:http';
-import { FILE } from 'node:dns';
 
 const READ_FOLDER_PATH = '../routes/dev-logs';
 const WRITE_FOLDER_PATH = '../routes/converted-logs';
@@ -24,6 +22,7 @@ interface ConvertedLog {
     fileDetails: FileDetails;
     component: string;
     writeFile: string;
+    componentStructure: string[];
 }
 
 function getCurrentFolderPath(): string {
@@ -31,7 +30,7 @@ function getCurrentFolderPath(): string {
     return dirname(__fileName);
 }
 
-function generateFolderPath(folderPath: string): string {
+function createFolderPath(folderPath: string): string {
     return path.join(getCurrentFolderPath(), folderPath);
 }
 
@@ -108,11 +107,69 @@ function getFileStates(cacheFolderPath: string, readFolderPath: string) {
 function deleteUnusedFiles(writeFolderPath: string, fileNames: string[]) {
     for (const file of fileNames) {
         const componentName = createComponentFileName(file);
-        unlinkSync(path.join(writeFolderPath, componentName));
+        const filepath = path.join(writeFolderPath, componentName);
+
+        if (!existsSync(filepath)) {
+            continue;
+        }
+
+        unlinkSync(filepath);
     }
 }
 
-function generateLogsFile(logs: ConvertedLog[]): string {
+function createConvertedLogObject(readFolderPath: string, fileName: string): ConvertedLog {
+    const filePath = path.join(readFolderPath, fileName);
+    const fileData = matter.read(filePath);
+    const fileMetaData = frontMatterToFileDetails(fileData.data);
+
+    const componentStructure = parseTree(fromMarkdown(fileData.content));
+    const componentFileName = createComponentFileName(fileName);
+    const componentName = createComponentName(fileMetaData.title);
+    return {
+        fileDetails: fileMetaData,
+        component: componentName,
+        writeFile: componentFileName,
+        componentStructure: componentStructure,
+    };
+}
+
+function createNewLogs(readFolderPath: string, writeFolderPath: string, fileNames: string[]): ConvertedLog[] {
+    const convertedLogs: ConvertedLog[] = [];
+
+    for (const file of fileNames) {
+        const log = createConvertedLogObject(readFolderPath, file);
+        const logFileComponent = createComponent(log);
+        writeFileSync(path.join(writeFolderPath, log.writeFile), logFileComponent);
+        convertedLogs.push(log);
+    }
+
+    return convertedLogs;
+}
+
+function createOldLogs(readFolderPath: string, fileNames: string[]): ConvertedLog[] {
+    const convertedLogs: ConvertedLog[] = [];
+
+    for (const file of fileNames) {
+        const filePath = path.join(readFolderPath, file);
+        const fileData = matter.read(filePath);
+        const fileMetaData = frontMatterToFileDetails(fileData.data);
+        const componentFileName = createComponentFileName(file);
+        const componentName = createComponentName(fileMetaData.title);
+
+        convertedLogs.push({
+            fileDetails: fileMetaData,
+            component: componentName,
+            writeFile: componentFileName,
+            componentStructure: [],
+        });
+    }
+
+    return convertedLogs;
+}
+
+function createLogsFile(logs: ConvertedLog[]): string {
+    logs.sort((a, b) => a.fileDetails.date.getTime() - b.fileDetails.date.getTime());
+
     const imports = logs
         .map((log) => `import ${log.component} from './${log.writeFile.replace('.tsx', '')}';`)
         .join('\n');
@@ -150,7 +207,7 @@ export default logs;
 `;
 }
 
-function generateComponent(log: ConvertedLog): string {
+function createComponent(log: ConvertedLog): string {
     return `export default function ${log.component}() {
     return (
         <h1>test</h1>
@@ -173,7 +230,7 @@ function frontMatterToFileDetails(frontMatter: { [key: string]: any }): FileDeta
         title: frontMatter.title,
         date: new Date(frontMatter.date),
         description: frontMatter.description,
-        topics: frontMatter.topics.split(',').map((val: string) => {
+        topics: frontMatter.topics.map((val: string) => {
             const cleaned = val.trim();
             return cleaned[0].toUpperCase() + cleaned.slice(1);
         }),
@@ -208,50 +265,31 @@ function parseTree(node: Parent): string[] {
     return node.children.map((val) => parseNode(val));
 }
 
-async function main(): Promise<string[]> {
-    const readFolderPath = generateFolderPath(READ_FOLDER_PATH);
-    const writeFolderPath = generateFolderPath(WRITE_FOLDER_PATH);
-    const cacheFolderPath = generateFolderPath(CACHE_FOLDER_PATH);
-    const processedFiles: string[] = [];
+async function main(): Promise<number> {
+    const readFolderPath = createFolderPath(READ_FOLDER_PATH);
+    const writeFolderPath = createFolderPath(WRITE_FOLDER_PATH);
+    const cacheFolderPath = createFolderPath(CACHE_FOLDER_PATH);
 
     const fileStates = getFileStates(cacheFolderPath, readFolderPath);
     deleteUnusedFiles(writeFolderPath, fileStates.files.deletedFiles);
 
-    // const convertedLogs: ConvertedLog[] = [];
+    const oldLogs = createOldLogs(readFolderPath, [...fileStates.files.unchangedFiles]);
+    const createdLogs = createNewLogs(readFolderPath, writeFolderPath, [
+        ...fileStates.files.modifiedFiles,
+        ...fileStates.files.newFiles,
+    ]);
 
-    // for (const file of files) {
-    //     const filePath = path.join(readFolderPath, file);
-    //     const fileData = matter.read(filePath);
-
-    //     const fileMetaData = frontMatterToFileDetails(fileData.data);
-    //     const componentStructure = parseTree(fromMarkdown(fileData.content));
-
-    //     const writeFile = createFileName(fileMetaData.title);
-    //     const componentName = createComponentName(fileMetaData.title);
-
-    //     convertedLogs.push({
-    //         fileDetails: fileMetaData,
-    //         component: componentName,
-    //         writeFile: writeFile,
-    //     });
-    // }
-
-    // convertedLogs.sort((a, b) => a.fileDetails.date.getTime() - b.fileDetails.date.getTime());
-
-    // for (const log of convertedLogs) {
-    //     const logFileComponent = generateComponent(log);
-    //     writeFileSync(path.join(writeFolderPath, log.writeFile), logFileComponent);
-    // }
-
-    // const logFileContent = generateLogsFile(convertedLogs);
-    // writeFileSync(path.join(writeFolderPath, 'logs.ts'), logFileContent);
+    const logFileContent = createLogsFile([...oldLogs, ...createdLogs]);
+    writeFileSync(path.join(writeFolderPath, 'logs.ts'), logFileContent);
 
     writeFileSync(
         path.join(cacheFolderPath, MANIFEST_FILE),
         JSON.stringify(Object.fromEntries(fileStates.hashes.entries())),
     );
 
-    return processedFiles;
+    return createdLogs.length;
 }
 
-main().catch((error) => console.log(error));
+main()
+    .then((generatedFileCount) => console.log(`Generated ${generatedFileCount} files`))
+    .catch((error) => console.log(error));

@@ -10,7 +10,7 @@ const logs: Log[] = [
     {
         title: 'Markdown to blog posts',
         date: 'Mar 8, 2026',
-        route: 'markdown-to-blog-posts',
+        route: 'markdown-to-devlog',
         component: MarkdownToBlogPosts,
         topics: ['AST', 'Markdown', 'Idk random'],
     },
