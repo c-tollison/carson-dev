@@ -1,5 +1,5 @@
 ---
-title: Markdown to blog posts
+title: Markdown to Blog Posts
 date: 03/08/26
 description: Created a tool that will convert my markdown files to blog posts
 topics: [AST, Markdown, idk random]

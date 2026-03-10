@@ -8,7 +8,7 @@ interface Log extends LogCardProps {
 
 const logs: Log[] = [
     {
-        title: 'Markdown to blog posts',
+        title: 'Markdown to Blog Posts',
         date: 'Mar 8, 2026',
         route: 'markdown-to-devlog',
         component: MarkdownToBlogPosts,
