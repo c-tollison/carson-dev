@@ -13,7 +13,8 @@ export default function Projects() {
                 {projects.map((project, index) => (
                     <div
                         key={index}
-                        className='flex flex-col rounded-lg bg-card border border-border'
+                        id={project.title.toLowerCase().replace(/\s+/g, '-')}
+                        className='flex flex-col rounded-lg bg-card border border-border scroll-mt-24'
                     >
                         {project.thumbnail && (
                             <div className='w-full h-48 overflow-hidden bg-muted flex items-center justify-center rounded-t-lg'>
