@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import type { Node, Parent } from 'mdast';
 import { createHash } from 'node:crypto';
+import { exec } from 'node:child_process';
 
 const READ_FOLDER_PATH = '../routes/dev-logs';
 const WRITE_FOLDER_PATH = '../routes/converted-logs';
@@ -146,7 +147,7 @@ function createNewLogs(readFolderPath: string, writeFolderPath: string, fileName
     return convertedLogs;
 }
 
-function createOldLogs(readFolderPath: string, fileNames: string[]): ConvertedLog[] {
+function getOldLogs(readFolderPath: string, fileNames: string[]): ConvertedLog[] {
     const convertedLogs: ConvertedLog[] = [];
 
     for (const file of fileNames) {
@@ -167,7 +168,7 @@ function createOldLogs(readFolderPath: string, fileNames: string[]): ConvertedLo
     return convertedLogs;
 }
 
-function createLogsFile(logs: ConvertedLog[]): string {
+function createLogsIndex(logs: ConvertedLog[]): string {
     logs.sort((a, b) => a.fileDetails.date.getTime() - b.fileDetails.date.getTime());
 
     const imports = logs
@@ -273,19 +274,21 @@ async function main(): Promise<number> {
     const fileStates = getFileStates(cacheFolderPath, readFolderPath);
     deleteUnusedFiles(writeFolderPath, fileStates.files.deletedFiles);
 
-    const oldLogs = createOldLogs(readFolderPath, [...fileStates.files.unchangedFiles]);
+    const oldLogs = getOldLogs(readFolderPath, [...fileStates.files.unchangedFiles]);
     const createdLogs = createNewLogs(readFolderPath, writeFolderPath, [
         ...fileStates.files.modifiedFiles,
         ...fileStates.files.newFiles,
     ]);
 
-    const logFileContent = createLogsFile([...oldLogs, ...createdLogs]);
+    const logFileContent = createLogsIndex([...oldLogs, ...createdLogs]);
     writeFileSync(path.join(writeFolderPath, 'logs.ts'), logFileContent);
 
     writeFileSync(
         path.join(cacheFolderPath, MANIFEST_FILE),
         JSON.stringify(Object.fromEntries(fileStates.hashes.entries())),
     );
+
+    exec('npm run format');
 
     return createdLogs.length;
 }
