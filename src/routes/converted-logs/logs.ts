@@ -1,6 +1,6 @@
 import { LogCardProps } from '../../components/log/log-card';
 
-import MarkdownToBlogPosts from './markdown-to-blog-posts';
+import MarkdownToBlogPosts from './markdown-to-devlog';
 
 interface Log extends LogCardProps {
     component: () => JSX.Element;
@@ -13,7 +13,7 @@ const logs: Log[] = [
         route: 'markdown-to-blog-posts',
         component: MarkdownToBlogPosts,
         topics: ['AST', 'Markdown', 'Idk random'],
-    }
+    },
 ];
 
 export default logs;

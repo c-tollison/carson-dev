@@ -98,7 +98,18 @@ function getFileStates(cacheFolderPath: string, readFolderPath: string) {
     const newfileHashes = hashFiles(readFolderPath);
     const res = compareHashFiles(oldFileHashes, newfileHashes);
     console.info(res);
-    return res;
+
+    return {
+        files: res,
+        hashes: newfileHashes,
+    };
+}
+
+function deleteUnusedFiles(writeFolderPath: string, fileNames: string[]) {
+    for (const file of fileNames) {
+        const componentName = createComponentFileName(file);
+        unlinkSync(path.join(writeFolderPath, componentName));
+    }
 }
 
 function generateLogsFile(logs: ConvertedLog[]): string {
@@ -169,14 +180,14 @@ function frontMatterToFileDetails(frontMatter: { [key: string]: any }): FileDeta
     };
 }
 
-function createFileName(title: string): string {
-    const splitTitle = title.split(' ');
+function createComponentFileName(mdFileName: string): string {
+    const split = mdFileName.slice(0, -3).split('-');
 
-    for (let i = 0; i < splitTitle.length; i++) {
-        splitTitle[i] = splitTitle[i].toLowerCase();
+    for (let i = 0; i < split.length; i++) {
+        split[i] = split[i].toLowerCase();
     }
 
-    return splitTitle.join('-') + '.tsx';
+    return split.join('-') + '.tsx';
 }
 
 function createComponentName(title: string): string {
@@ -204,6 +215,7 @@ async function main(): Promise<string[]> {
     const processedFiles: string[] = [];
 
     const fileStates = getFileStates(cacheFolderPath, readFolderPath);
+    deleteUnusedFiles(writeFolderPath, fileStates.files.deletedFiles);
 
     // const convertedLogs: ConvertedLog[] = [];
 
@@ -233,6 +245,11 @@ async function main(): Promise<string[]> {
 
     // const logFileContent = generateLogsFile(convertedLogs);
     // writeFileSync(path.join(writeFolderPath, 'logs.ts'), logFileContent);
+
+    writeFileSync(
+        path.join(cacheFolderPath, MANIFEST_FILE),
+        JSON.stringify(Object.fromEntries(fileStates.hashes.entries())),
+    );
 
     return processedFiles;
 }
