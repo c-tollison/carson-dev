@@ -1,9 +1,17 @@
-import { readdirSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import type { Node, Parent } from 'mdast';
+import { createHash } from 'node:crypto';
+import { get } from 'node:http';
+import { FILE } from 'node:dns';
+
+const READ_FOLDER_PATH = '../routes/dev-logs';
+const WRITE_FOLDER_PATH = '../routes/converted-logs';
+const CACHE_FOLDER_PATH = '../../.cache';
+const MANIFEST_FILE = 'manifest.json';
 
 interface FileDetails {
     title: string;
@@ -16,7 +24,81 @@ interface ConvertedLog {
     fileDetails: FileDetails;
     component: string;
     writeFile: string;
-    // componentStructure
+}
+
+function getCurrentFolderPath(): string {
+    const __fileName = fileURLToPath(import.meta.url);
+    return dirname(__fileName);
+}
+
+function generateFolderPath(folderPath: string): string {
+    return path.join(getCurrentFolderPath(), folderPath);
+}
+
+function getOldFileHashes(cacheFolderPath: string): Map<string, string> {
+    const file = path.join(cacheFolderPath, MANIFEST_FILE);
+    if (!existsSync(file)) {
+        return new Map();
+    }
+
+    const content = readFileSync(file, 'utf-8');
+    return new Map(Object.entries(JSON.parse(content)));
+}
+
+function hashFiles(folder: string): Map<string, string> {
+    const fileHashes = new Map<string, string>();
+    const files = readdirSync(folder);
+
+    for (const file of files) {
+        const filePath = path.join(folder, file);
+        const fileContent = readFileSync(filePath);
+        const hash = createHash('sha256').update(fileContent).digest('hex');
+
+        fileHashes.set(file, hash);
+    }
+
+    return fileHashes;
+}
+
+function compareHashFiles(oldHashes: Map<string, string>, newHashes: Map<string, string>) {
+    const deletedFiles = [];
+    const unchangedFiles = [];
+    const modifiedFiles = [];
+    const newFiles = [];
+
+    for (const [key, _] of oldHashes) {
+        if (!newHashes.has(key)) {
+            deletedFiles.push(key);
+        }
+    }
+
+    for (const [key, value] of newHashes) {
+        if (!oldHashes.has(key)) {
+            newFiles.push(key);
+        } else {
+            const oldHash = oldHashes.get(key)!;
+            if (oldHash === value) {
+                unchangedFiles.push(key);
+            } else {
+                modifiedFiles.push(key);
+            }
+        }
+    }
+
+    return {
+        deletedFiles,
+        unchangedFiles,
+        modifiedFiles,
+        newFiles,
+    };
+}
+
+function getFileStates(cacheFolderPath: string, readFolderPath: string) {
+    const oldFileHashes = getOldFileHashes(cacheFolderPath);
+    const newfileHashes = hashFiles(readFolderPath);
+    const res = compareHashFiles(oldFileHashes, newfileHashes);
+    console.info(res);
+    return res;
 }
 
 function generateLogsFile(logs: ConvertedLog[]): string {
@@ -115,53 +197,44 @@ function parseTree(node: Parent): string[] {
     return node.children.map((val) => parseNode(val));
 }
 
-async function main(): Promise<number> {
-    const __fileName = fileURLToPath(import.meta.url);
-    const __dirName = dirname(__fileName);
-    const folderPath = path.join(__dirName, '../routes/dev-logs');
-    const writeFolderPath = path.join(__dirName, '../routes/converted-logs');
+async function main(): Promise<string[]> {
+    const readFolderPath = generateFolderPath(READ_FOLDER_PATH);
+    const writeFolderPath = generateFolderPath(WRITE_FOLDER_PATH);
+    const cacheFolderPath = generateFolderPath(CACHE_FOLDER_PATH);
+    const processedFiles: string[] = [];
 
-    let count = 0;
+    const fileStates = getFileStates(cacheFolderPath, readFolderPath);
 
-    const files = readdirSync(folderPath);
-    const oldConvertedFiles = readdirSync(writeFolderPath);
-    const convertedLogs: ConvertedLog[] = [];
+    // const convertedLogs: ConvertedLog[] = [];
 
-    for (const file of oldConvertedFiles) {
-        unlinkSync(path.join(writeFolderPath, file));
-    }
+    // for (const file of files) {
+    //     const filePath = path.join(readFolderPath, file);
+    //     const fileData = matter.read(filePath);
 
-    for (const file of files) {
-        const filePath = path.join(folderPath, file);
-        const fileData = matter.read(filePath);
+    //     const fileMetaData = frontMatterToFileDetails(fileData.data);
+    //     const componentStructure = parseTree(fromMarkdown(fileData.content));
 
-        const fileMetaData = frontMatterToFileDetails(fileData.data);
-        const componentStructure = parseTree(fromMarkdown(fileData.content));
+    //     const writeFile = createFileName(fileMetaData.title);
+    //     const componentName = createComponentName(fileMetaData.title);
 
-        const writeFile = createFileName(fileMetaData.title);
-        const componentName = createComponentName(fileMetaData.title);
+    //     convertedLogs.push({
+    //         fileDetails: fileMetaData,
+    //         component: componentName,
+    //         writeFile: writeFile,
+    //     });
+    // }
 
-        convertedLogs.push({
-            fileDetails: fileMetaData,
-            component: componentName,
-            writeFile: writeFile,
-        });
-    }
+    // convertedLogs.sort((a, b) => a.fileDetails.date.getTime() - b.fileDetails.date.getTime());
 
-    convertedLogs.sort((a, b) => a.fileDetails.date.getTime() - b.fileDetails.date.getTime());
+    // for (const log of convertedLogs) {
+    //     const logFileComponent = generateComponent(log);
+    //     writeFileSync(path.join(writeFolderPath, log.writeFile), logFileComponent);
+    // }
 
-    for (const log of convertedLogs) {
-        const logFileComponent = generateComponent(log);
-        writeFileSync(path.join(writeFolderPath, log.writeFile), logFileComponent);
-        count++;
-    }
+    // const logFileContent = generateLogsFile(convertedLogs);
+    // writeFileSync(path.join(writeFolderPath, 'logs.ts'), logFileContent);
 
-    const logFileContent = generateLogsFile(convertedLogs);
-    writeFileSync(path.join(writeFolderPath, 'logs.ts'), logFileContent);
-
-    return count;
+    return processedFiles;
 }
 
-main()
-    .then((numberProcessed) => console.log(`Finished processing ${numberProcessed} docs`))
-    .catch((error) => console.log(error));
+main().catch((error) => console.log(error));
