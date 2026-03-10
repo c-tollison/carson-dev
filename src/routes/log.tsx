@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import LogCard from '../components/log/log-card';
+import { Link } from 'react-router-dom';
 import PageWrapper from '../components/page-wrapper';
-import logs from './log/logs';
+import logs from './converted-logs/logs';
+
+const PER_PAGE = 10;
 
 export default function Log() {
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const sortedLogs = logs;
-    const totalPages = Math.ceil(logs.length / 5);
+    const sortedLogs = [...logs].reverse();
+    const totalPages = Math.ceil(logs.length / PER_PAGE);
 
     const selectPage = (index: number) => {
         setCurrentPage(index);
@@ -27,22 +29,40 @@ export default function Log() {
                 <h1 className='text-2xl font-semibold text-foreground'>Dev Logs</h1>
             </div>
 
-            <div className='flex flex-col gap-3'>
+            <ul className='mt-4 flex flex-col'>
                 {logs.length === 0 ? (
-                    <p className='text-muted-foreground'>No dev logs yet.</p>
+                    <li className='text-muted-foreground py-2'>No dev logs yet.</li>
                 ) : (
-                    sortedLogs.slice(currentPage * 5, currentPage * 5 + 5).map((log, index) => (
-                        <LogCard
-                            title={log.title}
-                            date={log.date}
-                            route={log.route}
-                            thumbnail={log.thumbnail}
-                            topics={log.topics}
-                            key={index}
-                        />
+                    sortedLogs.slice(currentPage * PER_PAGE, currentPage * PER_PAGE + PER_PAGE).map((log) => (
+                        <li key={log.route}>
+                            <Link
+                                to={`/log/${log.route}`}
+                                className='group flex justify-between items-center py-2 transition-all duration-300 ease-in-out'
+                            >
+                                <div className='min-w-0'>
+                                    <h4 className='text-base font-semibold text-foreground group-hover:underline'>
+                                        {log.title}
+                                    </h4>
+                                    <div className='mt-1 flex items-center flex-wrap gap-1.5'>
+                                        <span className='text-sm text-muted-foreground'>{log.date}</span>
+                                        {log.topics.map((topic, i) => (
+                                            <span
+                                                key={i}
+                                                className='px-1.5 py-px rounded-full border border-border text-[11px] text-muted-foreground'
+                                            >
+                                                {topic}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className='text-primary text-base opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-4'>
+                                    &#8594;
+                                </div>
+                            </Link>
+                        </li>
                     ))
                 )}
-            </div>
+            </ul>
 
             {logs.length > 0 && totalPages > 1 && (
                 <div className='flex items-center justify-center mt-8 gap-4'>

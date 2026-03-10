@@ -1,11 +1,5 @@
 # Carson-dev.com
 
-![Node.js](https://img.shields.io/badge/Node.js-20-green)
-![React](https://img.shields.io/badge/React-Latest-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue)
-![Vite](https://img.shields.io/badge/Vite-Latest-purple)
-![OpenTofu](https://img.shields.io/badge/OpenTofu-Latest-orange)
-
 ## Project Overview
 
 [carson-dev.com](https://carson-dev.com) serves as a showcase of my projects and professional experience. This portfolio is built with React/Vite and attempts best practices in cloud infrastructure and continuous deployment.

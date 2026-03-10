@@ -5,22 +5,12 @@ export interface LogCardProps {
     date: string;
     route: string;
     topics: string[];
-    thumbnail: string;
 }
 
-export default function LogCard({ title, date, route, thumbnail, topics }: LogCardProps) {
+export default function LogCard({ title, date, route, topics }: LogCardProps) {
     return (
         <Link to={`/log/${route}`}>
             <div className='group w-full flex items-center gap-5 p-6 rounded-lg bg-card hover:bg-popover hover:shadow-lg transition-all duration-300 ease-in-out border border-border'>
-                {thumbnail && (
-                    <div className='w-14 h-14 flex-shrink-0'>
-                        <img
-                            src={thumbnail}
-                            alt={`${title} thumbnail`}
-                            className='w-full h-full object-contain rounded-md'
-                        />
-                    </div>
-                )}
                 <div className='flex justify-between items-center w-full min-w-0'>
                     <div className='flex-1 min-w-0'>
                         <h4 className='text-base font-semibold text-foreground group-hover:text-primary transition-colors truncate'>

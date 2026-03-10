@@ -14,12 +14,12 @@ jobs:
 
         steps:
             - name: Checkout UI
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Set up Node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
-                  node-version: '20.11.0'
+                  node-version: '24.12.0'
 
             - name: Install dependencies
               run: npm ci
@@ -28,7 +28,7 @@ jobs:
               run: npm run build
 
             - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v4
+              uses: aws-actions/configure-aws-credentials@v6
               with:
                   role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ACCESS_ROLE }}
                   aws-region: ${{ secrets.AWS_REGION }}
