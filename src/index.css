@@ -6,9 +6,9 @@
     :root {
         --background: 45 30% 97%;
         --foreground: 30 15% 12%;
-        --primary: 155 32% 30%;
+        --primary: 140 35% 30%;
         --primary-foreground: 45 30% 97%;
-        --secondary: 155 15% 55%;
+        --secondary: 140 18% 55%;
         --secondary-foreground: 30 15% 12%;
         --muted: 40 15% 90%;
         --muted-foreground: 30 10% 42%;
@@ -20,16 +20,16 @@
         --popover-foreground: 30 15% 12%;
         --border: 40 14% 84%;
         --input: 40 14% 84%;
-        --ring: 155 32% 30%;
+        --ring: 140 35% 30%;
         --radius: 0.625rem;
     }
 
     .dark {
         --background: 210 12% 7%;
         --foreground: 40 12% 88%;
-        --primary: 155 38% 48%;
+        --primary: 140 42% 48%;
         --primary-foreground: 210 12% 7%;
-        --secondary: 155 12% 32%;
+        --secondary: 140 15% 32%;
         --secondary-foreground: 40 12% 90%;
         --muted: 210 8% 14%;
         --muted-foreground: 40 8% 55%;
@@ -41,12 +41,12 @@
         --popover-foreground: 40 12% 88%;
         --border: 210 8% 20%;
         --input: 210 8% 20%;
-        --ring: 155 38% 48%;
-        --chart-1: 155 35% 45%;
+        --ring: 140 42% 48%;
+        --chart-1: 140 38% 45%;
         --chart-2: 40 15% 40%;
         --chart-3: 25 30% 45%;
         --chart-4: 180 25% 40%;
-        --chart-5: 155 12% 35%;
+        --chart-5: 140 15% 35%;
     }
 
     * {
