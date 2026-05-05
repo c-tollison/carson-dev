@@ -38,7 +38,7 @@ export default function Hero() {
                     className='pointer-events-none absolute -bottom-3 -right-3 w-4 h-4 border-b-2 border-r-2 border-primary/70'
                 />
                 <img
-                    src='ct.webp'
+                    src='profile-pic.jpeg'
                     alt='Carson'
                     className='w-full h-full object-cover rounded-full shadow-lg ring-2 ring-border'
                 />
