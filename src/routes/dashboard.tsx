@@ -106,12 +106,30 @@ function Projects() {
                             className='flex flex-col md:flex-row gap-8 md:gap-14 items-center'
                         >
                             <div className={`w-full md:w-1/2 flex-shrink-0 ${!isEven ? 'md:order-last' : ''}`}>
-                                <div className='rounded-xl overflow-hidden border border-border bg-card aspect-video'>
-                                    <img
-                                        src={project.thumbnail}
-                                        alt={project.title}
-                                        className='w-full h-full object-cover'
+                                <div className='relative'>
+                                    <span
+                                        aria-hidden='true'
+                                        className='pointer-events-none absolute -top-2 -left-2 w-3 h-3 border-t-2 border-l-2 border-primary/50 z-10'
                                     />
+                                    <span
+                                        aria-hidden='true'
+                                        className='pointer-events-none absolute -top-2 -right-2 w-3 h-3 border-t-2 border-r-2 border-primary/50 z-10'
+                                    />
+                                    <span
+                                        aria-hidden='true'
+                                        className='pointer-events-none absolute -bottom-2 -left-2 w-3 h-3 border-b-2 border-l-2 border-primary/50 z-10'
+                                    />
+                                    <span
+                                        aria-hidden='true'
+                                        className='pointer-events-none absolute -bottom-2 -right-2 w-3 h-3 border-b-2 border-r-2 border-primary/50 z-10'
+                                    />
+                                    <div className='rounded-xl overflow-hidden border border-border bg-card aspect-video'>
+                                        <img
+                                            src={project.thumbnail}
+                                            alt={project.title}
+                                            className='w-full h-full object-cover'
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -228,9 +246,8 @@ function Dashboard() {
     return (
         <PageWrapper>
             <div className='flex flex-col gap-24'>
-                {/* Hero + About + Dev Logs */}
-                <div className='hidden md:flex md:flex-row md:items-stretch md:gap-12'>
-                    <div className='md:w-3/5 flex flex-col gap-8'>
+                <div className='flex flex-col gap-10 md:flex-row md:items-stretch md:gap-12'>
+                    <div className='flex flex-col gap-8 md:w-3/5'>
                         <Hero />
                         <p className='text-[15px] leading-relaxed text-foreground/80'>
                             Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
@@ -241,16 +258,6 @@ function Dashboard() {
                     <div className='md:w-2/5 md:border-l md:border-border md:pl-12'>
                         <DevLogs latestLogs={latestLogs} />
                     </div>
-                </div>
-
-                <div className='flex flex-col gap-10 md:hidden'>
-                    <Hero />
-                    <p className='text-[15px] leading-relaxed text-foreground/80'>
-                        Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
-                        infrastructure, and ship data pipelines across the stack — primarily in TypeScript. Clemson
-                        grad.
-                    </p>
-                    <DevLogs latestLogs={latestLogs} />
                 </div>
 
                 <Projects />

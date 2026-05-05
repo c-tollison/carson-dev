@@ -1,15 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { NavBarPages } from '../enums/NavBarPages.enum';
 
 export default function NavBar() {
     const location = useLocation();
-    const [activePage, setActivePage] = useState<NavBarPages>(NavBarPages.Home);
-
-    useEffect(() => {
-        const base = location.pathname.split('/')[1];
-        setActivePage(base === 'log' ? NavBarPages.Log : NavBarPages.Home);
-    }, [location]);
+    const activePage = location.pathname.split('/')[1] === 'log' ? NavBarPages.Log : NavBarPages.Home;
 
     const navLinkClass = (page: NavBarPages) =>
         `relative font-medium text-[15px] tracking-wide transition-colors ${
