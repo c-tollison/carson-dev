@@ -9,7 +9,13 @@ export default function Hero() {
                     Carson Tollison
                 </h1>
                 <p className='text-lg font-medium text-muted-foreground tracking-wide'>Full-Stack Engineer</p>
-                <div className='flex gap-3 mt-1'>
+                <div className='flex flex-wrap items-center gap-3 mt-2'>
+                    <a
+                        href='mailto:tollisoncarson@gmail.com'
+                        className='inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity'
+                    >
+                        Get In Touch
+                    </a>
                     <Github />
                     <LinkedIn />
                 </div>

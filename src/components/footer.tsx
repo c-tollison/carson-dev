@@ -4,7 +4,7 @@ import LinkedInIcon from './icons/linkedin-icon';
 export default function Footer() {
     return (
         <footer className='w-full border-t border-border py-8'>
-            <div className='flex flex-col-reverse md:flex-row justify-between items-center gap-4'>
+            <div className='flex flex-row justify-between items-center gap-4'>
                 <p className='text-sm text-muted-foreground'>&copy; {new Date().getFullYear()} Carson Tollison</p>
                 <div className='flex gap-4 items-center'>
                     <a

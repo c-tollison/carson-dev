@@ -3,17 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Dashboard from './routes/dashboard';
-import Work from './routes/work';
 import Root from './routes/root';
 import Log from './routes/log';
-import Projects from './routes/projects';
-import works from './routes/works/works';
 import logs from './routes/converted-logs/logs';
-
-const workChildRoutes = works.map((work) => ({
-    path: `work/${work.route}`,
-    Component: work.component,
-}));
 
 const logChildRoutes = logs.map((log) => ({
     path: `log/${log.route}`,
@@ -30,18 +22,9 @@ const router = createBrowserRouter([
                 Component: Dashboard,
             },
             {
-                path: 'work',
-                Component: Work,
-            },
-            {
                 path: 'log',
                 Component: Log,
             },
-            {
-                path: 'projects',
-                Component: Projects,
-            },
-            ...workChildRoutes,
             ...logChildRoutes,
         ],
     },

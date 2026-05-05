@@ -16,7 +16,7 @@ const projects: Project[] = [
     },
     {
         title: 'DSA Randomizer',
-        description: `CLI tool I wrote in Go to keep me honest with coding problems. It uses spaced repetition — problems you haven't touched in a while get weighted higher. Everything is stored locally in SQLite, and I tried to keep the architecture clean with separate layers for the CLI, logic, and data access.`,
+        description: `CLI tool I wrote in Go to keep me honest with coding problems. It uses spaced repetition, so problems you haven't touched in a while get weighted higher. Everything is stored locally in SQLite, and I tried to keep the architecture clean with separate layers for the CLI, logic, and data access.`,
         topics: ['Go', 'SQLite', 'CLI', 'Data Structures'],
         githubLink: 'https://github.com/c-tollison/dsa-randomizer',
         thumbnail: 'dsa-randomizer.webp',
