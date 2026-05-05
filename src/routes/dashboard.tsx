@@ -233,11 +233,9 @@ function Dashboard() {
                     <div className='md:w-3/5 flex flex-col gap-8'>
                         <Hero />
                         <p className='text-[15px] leading-relaxed text-foreground/80'>
-                            Currently founding engineer at Felux, where I shipped an AI email pipeline processing 100k+
-                            messages and a real-time collaboration layer. Before that I spent four years at ChiroHD
-                            building insurance-claim parsers and double-entry accounting for 2,500+ clinics, and
-                            interned twice at Amazon on data ingestion and global timecard systems. Outside of code, I'm
-                            usually traveling with my wife, sitting in a tattoo chair, or deep in a new anime series.
+                            Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
+                            infrastructure, and ship data pipelines across the stack — primarily in TypeScript. Clemson
+                            grad.
                         </p>
                     </div>
                     <div className='md:w-2/5 md:border-l md:border-border md:pl-12'>
@@ -248,11 +246,9 @@ function Dashboard() {
                 <div className='flex flex-col gap-10 md:hidden'>
                     <Hero />
                     <p className='text-[15px] leading-relaxed text-foreground/80'>
-                        I'm a full-stack engineer who cares about the details — from how a system scales to how the UI
-                        feels. I've spent the last few years building real software for real users, from insurance
-                        billing at chiropractic clinics to LLM-powered pipelines at an early-stage startup. Outside of
-                        code, I'm usually traveling with my wife, sitting in a tattoo chair, or deep in a new anime
-                        series.
+                        Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
+                        infrastructure, and ship data pipelines across the stack — primarily in TypeScript. Clemson
+                        grad.
                     </p>
                     <DevLogs latestLogs={latestLogs} />
                 </div>

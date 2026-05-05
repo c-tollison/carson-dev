@@ -10,20 +10,20 @@ export interface Project {
 const projects: Project[] = [
     {
         title: 'Eagle Building Company',
-        description: `Full-stack platform I built for a construction company to manage their bidding, workflows, and inventory. The backend is a Python API running on Lambda with PostgreSQL, and it handles things like automatically generating bid documents and distributing them as PDFs.`,
+        description: `Full-stack platform for a construction company managing bidding, workflows, and inventory. Python API on Lambda with Postgres. Auto-generates bid documents and distributes them as PDFs.`,
         topics: ['Python', 'REST API', 'PostgreSQL', 'AWS Lambda', 'React'],
         thumbnail: 'eagle-dashboard.webp',
     },
     {
         title: 'DSA Randomizer',
-        description: `CLI tool I wrote in Go to keep me honest with coding problems. It uses spaced repetition, so problems you haven't touched in a while get weighted higher. Everything is stored locally in SQLite, and I tried to keep the architecture clean with separate layers for the CLI, logic, and data access.`,
+        description: `Go CLI that keeps me honest with coding problems using spaced repetition. Problems you haven't touched in a while get weighted higher. Local SQLite storage with clean separation between CLI, logic, and data layers.`,
         topics: ['Go', 'SQLite', 'CLI', 'Data Structures'],
         githubLink: 'https://github.com/c-tollison/dsa-randomizer',
         thumbnail: 'dsa-randomizer.webp',
     },
     {
         title: 'Unbeatable AI',
-        description: `Tic-Tac-Toe where you literally cannot win. The AI uses the minimax algorithm to evaluate every possible game state and always picks the best move. I built it to get a better feel for recursion and game theory.`,
+        description: `Tic-Tac-Toe where you literally cannot win. The AI uses minimax to evaluate every possible game state and always picks the best move. Built to get a better feel for recursion and game theory.`,
         topics: ['JavaScript', 'Algorithms', 'Game Theory'],
         link: 'https://c-tollison.github.io/unbeatable-ai/',
         githubLink: 'https://github.com/c-tollison/unbeatable-ai',
