@@ -1,14 +1,9 @@
-import { useContext } from 'react';
-import { ColorModeContext } from '../core/providers/color-mode-provider/color-mode-context';
-import { ColorMode } from '../core/providers/color-mode-provider/color-mode.enum';
-
 interface FeluxLogoProps {
     className?: string;
 }
 
 export default function FeluxLogo({ className = '' }: FeluxLogoProps) {
-    const colorModeContext = useContext(ColorModeContext);
-    const fillColor = colorModeContext.colorMode === ColorMode.Dark ? 'white' : 'black';
+    const fillColor = 'white';
 
     return (
         <svg

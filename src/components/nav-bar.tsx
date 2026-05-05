@@ -1,4 +1,3 @@
-import ColorModeButton from './buttons/color-mode-button';
 import { Link, useLocation } from 'react-router-dom';
 import DropDownButton from './buttons/drop-down-button';
 import { useEffect, useState } from 'react';
@@ -64,7 +63,6 @@ export default function NavBar() {
                     </svg>
                 </Link>
                 <div className='flex gap-3 items-center md:hidden'>
-                    <ColorModeButton />
                     <DropDownButton onClick={toggleNavBar} />
                 </div>
                 <ul className='hidden md:flex flex-row items-center gap-6'>
@@ -91,9 +89,6 @@ export default function NavBar() {
                         >
                             Projects
                         </Link>
-                    </li>
-                    <li className='ml-2'>
-                        <ColorModeButton />
                     </li>
                 </ul>
             </nav>

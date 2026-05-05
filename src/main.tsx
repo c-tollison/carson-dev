@@ -6,7 +6,6 @@ import Dashboard from './routes/dashboard';
 import Work from './routes/work';
 import Root from './routes/root';
 import Log from './routes/log';
-import { ColorThemeProvider } from './components/core/providers/color-mode-provider/color-mode-provider';
 import Projects from './routes/projects';
 import works from './routes/works/works';
 import logs from './routes/converted-logs/logs';
@@ -50,8 +49,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <ColorThemeProvider>
-            <RouterProvider router={router} />
-        </ColorThemeProvider>
+        <RouterProvider router={router} />
     </React.StrictMode>,
 );
