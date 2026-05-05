@@ -9,16 +9,16 @@ export default function MastraWorkflows() {
             topics={['Mastra', 'AI', 'Workflows', 'TypeScript']}
         >
             <p className='text-foreground leading-relaxed'>
-                I have been using Mastra to build the orchestration layer for a couple of AI features lately. The pitch
-                is that you can compose typed, durable workflow steps in TypeScript without rolling your own state
-                machine on top of a queue. After a few weeks with it, the parts I keep coming back to are the step
-                primitive, schema-validated I/O, and the durability guarantees.
+                I’ve been using Mastra to build the orchestration layer for several AI features lately. The core appeal
+                is the ability to compose typed, durable workflow steps in TypeScript without building a custom state
+                machine on top of a queue. After working with it for a few weeks, the most valuable parts are the step
+                primitives, schema-validated I/O, and the built-in durability.
             </p>
             <h2 className='text-xl font-bold text-foreground'>The Step Primitive</h2>
             <p className='text-foreground leading-relaxed'>
-                A step is a unit of work with declared input and output schemas. Mastra uses Zod for both, and the
-                schemas flow through composition so each downstream step gets correctly typed input from the previous
-                one.
+                A step is a unit of work with defined input and output schemas. Mastra uses Zod for both. These schemas
+                flow through the composition, ensuring each downstream step receives correctly typed data from the
+                previous one.
             </p>
             <CodeBlock
                 code={`import { createStep } from '@mastra/core/workflows';
@@ -43,12 +43,12 @@ const extractEntities = createStep({
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                The schemas are not just types. They are runtime validators on both ends, which means a step that
-                returns the wrong shape fails loudly at the boundary instead of corrupting whatever runs next.
+                These schemas act as runtime validators. If a step returns data in the wrong shape, it fails at the
+                boundary rather than passing corrupt data to the next function in the chain.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Composing Steps</h2>
             <p className='text-foreground leading-relaxed'>
-                Workflows chain steps with{' '}
+                Workflows chain steps using{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     .then()
                 </code>
@@ -56,11 +56,11 @@ const extractEntities = createStep({
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     .branch()
                 </code>
-                , and run things in parallel with{' '}
+                , and handle concurrency with{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     .parallel()
                 </code>
-                . The composition reads like a flowchart written as code.
+                . The resulting code reads like a flowchart.
             </p>
             <CodeBlock
                 code={`import { createWorkflow } from '@mastra/core/workflows';
@@ -78,73 +78,100 @@ export const enrichEmail = createWorkflow({
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                The compiler enforces that the output shape of{' '}
+                The compiler ensures that the output of{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     loadEmail
                 </code>{' '}
-                matches the input shape of{' '}
+                matches the input requirements of{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     extractEntities
                 </code>
-                , and so on down the chain. Restructuring a workflow becomes a refactor problem instead of a runtime
-                problem.
+                . Restructuring a workflow becomes a standard refactor rather than a hunt for runtime errors.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>Durability</h2>
+            <h2 className='text-xl font-bold text-foreground'>Native Structured Output</h2>
             <p className='text-foreground leading-relaxed'>
-                This is the part that turned me from skeptic to fan. Each step's input and output is checkpointed. If
-                the process crashes mid-workflow, a restart picks up at the last completed step rather than the
-                beginning. For workflows that hit external APIs, generate text, or write to side-effecting systems, that
-                means you do not pay twice for the work that already succeeded.
+                Mastra simplifies the bridge between raw LLM responses and structured data. Instead of writing a prompt
+                and manually parsing the resulting JSON, you can pass a Zod schema directly to the agent.
             </p>
             <p className='text-foreground leading-relaxed'>
-                The same machinery makes retries trivial. Steps can declare their own retry policies, and Mastra applies
-                them per step rather than per workflow, so a flaky LLM call does not force you to redo the deterministic
-                database write that came before it.
+                The engine uses provider-specific features—like OpenAI’s JSON mode or Anthropic’s tool use—to guarantee
+                the output matches your schema.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>Observability Comes for Free</h2>
+            <CodeBlock
+                code={`const generatePlan = createStep({
+    id: 'generate-plan',
+    execute: async ({ context }) => {
+        const agent = new Agent({
+            name: 'Planner',
+            model: { provider: 'OPENAI', name: 'gpt-4o' },
+        });
+
+        const response = await agent.generate('Plan my week', {
+            output: z.object({
+                tasks: z.array(
+                    z.object({
+                        title: z.string(),
+                        priority: z.enum(['high', 'low']),
+                    }),
+                ),
+            }),
+        });
+
+        return response.object; // Typed as { tasks: [...] }
+    },
+});`}
+                language='ts'
+            />
             <p className='text-foreground leading-relaxed'>
-                Because every step has a typed input, output, and lifecycle, the runtime can record all of it without
-                you having to wire up logging by hand. I get a per-run trace showing each step's input, output,
-                duration, and outcome, which means debugging an enrichment that produced bad output starts with a list
-                of the actual values that flowed through it, not a guess.
+                If a model fails to hit the schema, Mastra can use a secondary agent to fix the formatting. This removes
+                the need for fragile regex or manual retry loops.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>Where It Earns Its Keep</h2>
+            <h2 className='text-xl font-bold text-foreground'>Durability and Retries</h2>
             <p className='text-foreground leading-relaxed'>
-                I would not reach for Mastra to glue together two function calls. The framework starts paying off when
-                you have:
+                The durability model is a significant advantage. Every step's input and output is checkpointed. If the
+                process crashes mid-workflow, a restart resumes from the last completed step. For workflows involving
+                expensive LLM calls or external API side effects, this prevents paying for or executing the same work
+                twice.
+            </p>
+            <p className='text-foreground leading-relaxed'>
+                This architecture also makes retries straightforward. Steps can have individual retry policies. A
+                failing LLM call can be retried without re-running the successful database write that preceded it.
+            </p>
+            <h2 className='text-xl font-bold text-foreground'>Automatic Observability</h2>
+            <p className='text-foreground leading-relaxed'>
+                Because the runtime tracks every typed input, output, and lifecycle event, logging is handled
+                automatically. Every run produces a trace showing the exact values that flowed through each step and how
+                long they took. Debugging bad output starts with looking at the actual data passed between steps rather
+                than guessing.
+            </p>
+            <h2 className='text-xl font-bold text-foreground'>Use Cases</h2>
+            <p className='text-foreground leading-relaxed'>
+                Mastra is overkill for simple function calls, but it pays off in scenarios involving:
             </p>
             <ul className='list-disc ml-5 space-y-2 text-foreground'>
                 <li className='leading-relaxed'>
+                    <p className='text-foreground leading-relaxed'>Multiple LLM hops with distinct failure modes.</p>
+                </li>
+                <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        Multiple LLM hops, each with their own failure modes
+                        Side effects that should not be repeated on retry.
                     </p>
                 </li>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        Side effects that you do not want to repeat on retry
+                        Complex branching logic based on intermediate results.
                     </p>
                 </li>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        Branching logic that depends on intermediate results
-                    </p>
-                </li>
-                <li className='leading-relaxed'>
-                    <p className='text-foreground leading-relaxed'>
-                        A real need for observability into what step ran with what input
+                        A requirement for detailed audit trails of AI operations.
                     </p>
                 </li>
             </ul>
             <p className='text-foreground leading-relaxed'>
-                For all of those, the alternative is some combination of a queue, a state column on a row, and a pile of
-                try/catch. Mastra collapses that into a single composable surface where the wiring is the code.
+                The alternative is usually a messy combination of queues and status columns in a database. Mastra
+                collapses that infrastructure into a single, type-safe programming model.
             </p>
-            <blockquote className='border-l-4 border-primary pl-4 py-2 italic text-muted-foreground'>
-                <p className='text-foreground leading-relaxed'>
-                    Type-safe composition with durable execution is the combination I always end up wanting in this kind
-                    of system, and rarely build well from scratch.
-                </p>
-            </blockquote>
         </LogPage>
     );
 }

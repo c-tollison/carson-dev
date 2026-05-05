@@ -5,82 +5,79 @@ description: Wiring Mastra's observability layer to PostHog so step runs and LLM
 topics: [PostHog, Mastra, Observability, AI]
 ---
 
-Mastra gives you per-step traces inside its own runtime, which is great for debugging a single workflow run. The thing it does not do by itself is connect those traces to the rest of your product analytics. I wanted to be able to ask "for users on the new pricing page, what does our enrichment workflow look like end to end" without bouncing between two dashboards. The official `@mastra/posthog` exporter turned out to be the cleanest way to close that gap.
+Mastra provides per-step traces within its own runtime, which is useful for debugging individual workflow runs. However, it doesn't automatically connect those traces to the rest of your product analytics. I wanted to be able to see exactly what an enrichment workflow looks like for a specific user on a pricing page without switching between different dashboards. The `@mastra/posthog` exporter is the cleanest way to bridge that gap.
 
-What surprised me is how little code it actually takes. There is no manual instrumentation, no wrapper around `createStep`, no plumbing of trace IDs through `runtimeContext`. You install one package and register an exporter, and every step run, every LLM generation, and every tool call shows up in PostHog automatically.
+The implementation is surprisingly lean. There is no manual instrumentation, no wrappers around `createStep`, and no need to manually pass trace IDs through the `runtimeContext`. You simply install the package and register an exporter; every step, LLM generation, and tool call then flows into PostHog automatically.
 
 ## Setup
 
-The package is `@mastra/posthog`. It plugs into Mastra's existing `Observability` config.
+The `@mastra/posthog` package plugs directly into Mastra's existing `Observability` configuration.
 
 ```bash
 npm install @mastra/posthog
 ```
 
-Two env vars, both grabbed from the PostHog project settings:
+You'll need your PostHog API Key and Host (usually `https://us.i.posthog.com` or `https://eu.i.posthog.com`) from your project settings.
 
-```bash
-POSTHOG_API_KEY=phc_xxxxxxxxxxxxxxxx
-POSTHOG_HOST=https://us.i.posthog.com
-```
-
-Then in your Mastra entrypoint:
+In your Mastra entrypoint, register the exporter within the `observability` object. As of the latest updates, Mastra supports zero-config environment variables (`POSTHOG_API_KEY`, `POSTHOG_HOST`), but you can also pass them explicitly:
 
 ```ts
 import { Mastra } from '@mastra/core';
-import { Observability } from '@mastra/observability';
 import { PosthogExporter } from '@mastra/posthog';
 
 export const mastra = new Mastra({
-    observability: new Observability({
-        configs: {
-            posthog: {
-                serviceName: 'enrichment',
-                exporters: [new PosthogExporter()],
-            },
+    observability: {
+        serviceName: 'enrichment-service',
+        exporters: {
+            posthog: new PosthogExporter({
+                apiKey: process.env.POSTHOG_API_KEY!,
+                host: process.env.POSTHOG_HOST, // Defaults to US host if omitted
+            }),
         },
-    }),
+    },
 });
 ```
 
-That is the whole integration for the happy path. Step lifecycle events, tool calls, and LLM generations all start flowing into PostHog with no per-step changes anywhere in the workflow code.
+This setup covers the entire integration. Step lifecycle events and LLM generations begin appearing in PostHog without requiring any changes to your existing workflow code.
 
-## The Two Knobs You Actually Care About
+## Key Configuration Options
 
-The exporter accepts a handful of options. Two of them are worth thinking about up front.
+The exporter includes a few settings that are particularly useful for production environments.
 
-**Serverless mode.** The default batching flushes every 20 events or 10 seconds, whichever comes first. That works fine for a long-lived process. It is wrong for a Lambda that may exit in 200ms with three events queued and never flushed. Setting `serverless: true` lowers the thresholds to ten events and two seconds so short-lived runtimes actually deliver their events.
+**Short-lived Runtimes**
+By default, PostHog batches events. This is fine for long-lived processes but problematic for serverless functions (like AWS Lambda) that might exit before the buffer flushes. When running in these environments, you should set the `flushAt` and `flushInterval` lower to ensure events are sent immediately.
 
 ```ts
 new PosthogExporter({
     apiKey: process.env.POSTHOG_API_KEY!,
-    serverless: true,
+    flushAt: 1,
+    flushInterval: 0,
 });
 ```
 
-**Privacy mode.** By default, generation events include the prompt and the completion. That is great for debugging and useless if you are processing PII. `enablePrivacyMode: true` strips inputs and outputs from generation events while still reporting token usage, latency, and model.
+**Privacy and PII**
+Generation events usually include both the prompt and the completion. While helpful for debugging, this is a liability when processing PII. Mastra's latest telemetry updates allow for per-request redaction, but you can also use global flags in the exporter to strip text while still reporting token usage and latency.
 
 ```ts
 new PosthogExporter({
     apiKey: process.env.POSTHOG_API_KEY!,
-    enablePrivacyMode: true,
+    maskInputs: true,
+    maskOutputs: true,
 });
 ```
 
-For my own setup, the workflows that touch user email content run with privacy mode on, and the internal-only ones run without it. Token counts and latency are usually enough to investigate "is this slow, is it expensive, is it failing" without ever logging the customer's data.
+I typically run masking on for workflows handling user-generated content and off for internal tools. Token counts and latency are usually sufficient to diagnose cost or performance issues without logging sensitive customer data.
 
-## What You Get in PostHog
+## Analyzing Data in PostHog
 
-Once events flow, three views become useful that previously required gluing logs together:
+Once the data is flowing, you can build several views that previously required manual log aggregation:
 
-- A timeline per workflow run, with each step as a row and latency attached
-- Generation traces for every LLM call, with model, token counts, cost, and (privacy permitting) prompt and completion, threaded into the same trace as the surrounding step events
-- Funnels and breakdowns over the workflow itself, e.g. "what percentage of `enrich-email` runs reach `persistEnrichment`, broken down by model", the same kind of query you would write for a checkout flow, only over your AI pipeline
+- **Workflow Timelines:** View each workflow run as a sequence of steps with associated latency.
+- **Generation Traces:** Inspect LLM calls—including model types and costs—threaded directly into the surrounding step events.
+- **Performance Funnels:** Create breakdowns such as "what percentage of enrichment runs successfully reach the persistence step, categorized by model type."
 
-The last one is the part that justified the integration for me. The product team writes its own queries against AI workflows now, instead of asking engineering for SQL pulls.
+This last capability is the most significant benefit. It allows product teams to query AI workflows using the same tools they use for checkout flows or user sign-ups, removing the need for engineering to run custom SQL queries.
 
-## Where This Stops
+## Integration Limits
 
-The exporter speaks PostHog's event shape, not OpenTelemetry. If you also need distributed tracing across services with span hierarchies, you would run an OTel exporter alongside it and use PostHog as the AI-specific lens. Within a single Mastra runtime, though, the PostHog exporter on its own covers everything I have wanted to ask.
-
-> One install, one exporter, no manual instrumentation. The right amount of code for the value.
+The exporter is designed specifically for PostHog's event format rather than OpenTelemetry (OTel). If your architecture requires distributed tracing across multiple services with full span hierarchies, you should run an OTel exporter alongside this. However, for observing a single Mastra runtime, the PostHog exporter provides everything needed with zero manual instrumentation.

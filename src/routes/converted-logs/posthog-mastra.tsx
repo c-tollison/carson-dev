@@ -9,163 +9,173 @@ export default function PosthogForMastra() {
             topics={['PostHog', 'Mastra', 'Observability', 'AI']}
         >
             <p className='text-foreground leading-relaxed'>
-                Mastra gives you per-step traces inside its own runtime, which is great for debugging a single workflow
-                run. The thing it does not do by itself is connect those traces to the rest of your product analytics. I
-                wanted to be able to ask "for users on the new pricing page, what does our enrichment workflow look like
-                end to end" without bouncing between two dashboards. The official{' '}
+                Mastra provides per-step traces within its own runtime, which is useful for debugging individual
+                workflow runs. However, it doesn't automatically connect those traces to the rest of your product
+                analytics. I wanted to be able to see exactly what an enrichment workflow looks like for a specific user
+                on a pricing page without switching between different dashboards. The{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     @mastra/posthog
                 </code>{' '}
-                exporter turned out to be the cleanest way to close that gap.
+                exporter is the cleanest way to bridge that gap.
             </p>
             <p className='text-foreground leading-relaxed'>
-                What surprised me is how little code it actually takes. There is no manual instrumentation, no wrapper
-                around{' '}
+                The implementation is surprisingly lean. There is no manual instrumentation, no wrappers around{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     createStep
                 </code>
-                , no plumbing of trace IDs through{' '}
+                , and no need to manually pass trace IDs through the{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     runtimeContext
                 </code>
-                . You install one package and register an exporter, and every step run, every LLM generation, and every
-                tool call shows up in PostHog automatically.
+                . You simply install the package and register an exporter; every step, LLM generation, and tool call
+                then flows into PostHog automatically.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Setup</h2>
             <p className='text-foreground leading-relaxed'>
-                The package is{' '}
+                The{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     @mastra/posthog
-                </code>
-                . It plugs into Mastra's existing{' '}
+                </code>{' '}
+                package plugs directly into Mastra's existing{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     Observability
                 </code>{' '}
-                config.
+                configuration.
             </p>
             <CodeBlock
                 code={`npm install @mastra/posthog`}
                 language='bash'
             />
             <p className='text-foreground leading-relaxed'>
-                Two env vars, both grabbed from the PostHog project settings:
+                You'll need your PostHog API Key and Host (usually{' '}
+                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
+                    https://us.i.posthog.com
+                </code>{' '}
+                or{' '}
+                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
+                    https://eu.i.posthog.com
+                </code>
+                ) from your project settings.
+            </p>
+            <p className='text-foreground leading-relaxed'>
+                In your Mastra entrypoint, register the exporter within the{' '}
+                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
+                    observability
+                </code>{' '}
+                object. As of the latest updates, Mastra supports zero-config environment variables (
+                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
+                    POSTHOG_API_KEY
+                </code>
+                ,{' '}
+                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
+                    POSTHOG_HOST
+                </code>
+                ), but you can also pass them explicitly:
             </p>
             <CodeBlock
-                code={`POSTHOG_API_KEY=phc_xxxxxxxxxxxxxxxx
-POSTHOG_HOST=https://us.i.posthog.com`}
-                language='bash'
-            />
-            <p className='text-foreground leading-relaxed'>Then in your Mastra entrypoint:</p>
-            <CodeBlock
                 code={`import { Mastra } from '@mastra/core';
-import { Observability } from '@mastra/observability';
 import { PosthogExporter } from '@mastra/posthog';
 
 export const mastra = new Mastra({
-    observability: new Observability({
-        configs: {
-            posthog: {
-                serviceName: 'enrichment',
-                exporters: [new PosthogExporter()],
-            },
+    observability: {
+        serviceName: 'enrichment-service',
+        exporters: {
+            posthog: new PosthogExporter({
+                apiKey: process.env.POSTHOG_API_KEY!,
+                host: process.env.POSTHOG_HOST, // Defaults to US host if omitted
+            }),
         },
-    }),
+    },
 });`}
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                That is the whole integration for the happy path. Step lifecycle events, tool calls, and LLM generations
-                all start flowing into PostHog with no per-step changes anywhere in the workflow code.
+                This setup covers the entire integration. Step lifecycle events and LLM generations begin appearing in
+                PostHog without requiring any changes to your existing workflow code.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>The Two Knobs You Actually Care About</h2>
+            <h2 className='text-xl font-bold text-foreground'>Key Configuration Options</h2>
             <p className='text-foreground leading-relaxed'>
-                The exporter accepts a handful of options. Two of them are worth thinking about up front.
+                The exporter includes a few settings that are particularly useful for production environments.
             </p>
             <p className='text-foreground leading-relaxed'>
-                <strong className='font-semibold text-foreground'>Serverless mode.</strong> The default batching flushes
-                every 20 events or 10 seconds, whichever comes first. That works fine for a long-lived process. It is
-                wrong for a Lambda that may exit in 200ms with three events queued and never flushed. Setting{' '}
+                <strong className='font-semibold text-foreground'>Short-lived Runtimes</strong>
+                By default, PostHog batches events. This is fine for long-lived processes but problematic for serverless
+                functions (like AWS Lambda) that might exit before the buffer flushes. When running in these
+                environments, you should set the{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    serverless: true
+                    flushAt
                 </code>{' '}
-                lowers the thresholds to ten events and two seconds so short-lived runtimes actually deliver their
-                events.
+                and{' '}
+                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
+                    flushInterval
+                </code>{' '}
+                lower to ensure events are sent immediately.
             </p>
             <CodeBlock
                 code={`new PosthogExporter({
     apiKey: process.env.POSTHOG_API_KEY!,
-    serverless: true,
+    flushAt: 1,
+    flushInterval: 0,
 });`}
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                <strong className='font-semibold text-foreground'>Privacy mode.</strong> By default, generation events
-                include the prompt and the completion. That is great for debugging and useless if you are processing
-                PII.{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    enablePrivacyMode: true
-                </code>{' '}
-                strips inputs and outputs from generation events while still reporting token usage, latency, and model.
+                <strong className='font-semibold text-foreground'>Privacy and PII</strong>
+                Generation events usually include both the prompt and the completion. While helpful for debugging, this
+                is a liability when processing PII. Mastra's latest telemetry updates allow for per-request redaction,
+                but you can also use global flags in the exporter to strip text while still reporting token usage and
+                latency.
             </p>
             <CodeBlock
                 code={`new PosthogExporter({
     apiKey: process.env.POSTHOG_API_KEY!,
-    enablePrivacyMode: true,
+    maskInputs: true,
+    maskOutputs: true,
 });`}
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                For my own setup, the workflows that touch user email content run with privacy mode on, and the
-                internal-only ones run without it. Token counts and latency are usually enough to investigate "is this
-                slow, is it expensive, is it failing" without ever logging the customer's data.
+                I typically run masking on for workflows handling user-generated content and off for internal tools.
+                Token counts and latency are usually sufficient to diagnose cost or performance issues without logging
+                sensitive customer data.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>What You Get in PostHog</h2>
+            <h2 className='text-xl font-bold text-foreground'>Analyzing Data in PostHog</h2>
             <p className='text-foreground leading-relaxed'>
-                Once events flow, three views become useful that previously required gluing logs together:
+                Once the data is flowing, you can build several views that previously required manual log aggregation:
             </p>
             <ul className='list-disc ml-5 space-y-2 text-foreground'>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        A timeline per workflow run, with each step as a row and latency attached
+                        <strong className='font-semibold text-foreground'>Workflow Timelines:</strong> View each
+                        workflow run as a sequence of steps with associated latency.
                     </p>
                 </li>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        Generation traces for every LLM call, with model, token counts, cost, and (privacy permitting)
-                        prompt and completion, threaded into the same trace as the surrounding step events
+                        <strong className='font-semibold text-foreground'>Generation Traces:</strong> Inspect LLM
+                        calls—including model types and costs—threaded directly into the surrounding step events.
                     </p>
                 </li>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        Funnels and breakdowns over the workflow itself, e.g. "what percentage of{' '}
-                        <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                            enrich-email
-                        </code>{' '}
-                        runs reach{' '}
-                        <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                            persistEnrichment
-                        </code>
-                        , broken down by model", the same kind of query you would write for a checkout flow, only over
-                        your AI pipeline
+                        <strong className='font-semibold text-foreground'>Performance Funnels:</strong> Create
+                        breakdowns such as "what percentage of enrichment runs successfully reach the persistence step,
+                        categorized by model type."
                     </p>
                 </li>
             </ul>
             <p className='text-foreground leading-relaxed'>
-                The last one is the part that justified the integration for me. The product team writes its own queries
-                against AI workflows now, instead of asking engineering for SQL pulls.
+                This last capability is the most significant benefit. It allows product teams to query AI workflows
+                using the same tools they use for checkout flows or user sign-ups, removing the need for engineering to
+                run custom SQL queries.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>Where This Stops</h2>
+            <h2 className='text-xl font-bold text-foreground'>Integration Limits</h2>
             <p className='text-foreground leading-relaxed'>
-                The exporter speaks PostHog's event shape, not OpenTelemetry. If you also need distributed tracing
-                across services with span hierarchies, you would run an OTel exporter alongside it and use PostHog as
-                the AI-specific lens. Within a single Mastra runtime, though, the PostHog exporter on its own covers
-                everything I have wanted to ask.
+                The exporter is designed specifically for PostHog's event format rather than OpenTelemetry (OTel). If
+                your architecture requires distributed tracing across multiple services with full span hierarchies, you
+                should run an OTel exporter alongside this. However, for observing a single Mastra runtime, the PostHog
+                exporter provides everything needed with zero manual instrumentation.
             </p>
-            <blockquote className='border-l-4 border-primary pl-4 py-2 italic text-muted-foreground'>
-                <p className='text-foreground leading-relaxed'>
-                    One install, one exporter, no manual instrumentation. The right amount of code for the value.
-                </p>
-            </blockquote>
         </LogPage>
     );
 }

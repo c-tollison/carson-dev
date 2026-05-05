@@ -9,19 +9,18 @@ export default function MarkdownToBlogPosts() {
             topics={['AST', 'Markdown', 'Tooling']}
         >
             <p className='text-foreground leading-relaxed'>
-                Writing content for this site has always involved more ceremony than it should. Each new post required
-                creating a component, copying boilerplate, and updating routes. None of it difficult, but enough
-                friction that ideas would always die between "I should write about that" and actually doing it. The goal
-                was to eliminate that gap entirely: write a markdown file, run a script, and have a fully rendered blog
-                post with routing, metadata, and layout handled automatically.
+                Writing for this site used to involve too much ceremony. Every new post meant manually creating
+                components, copying boilerplate, and updating routes. It wasn't difficult, but the friction was enough
+                to let ideas die before I actually sat down to write them. To fix this, I built a tool to close the gap:
+                I write a markdown file, run a script, and the system handles the routing, metadata, and layout.
             </p>
             <h2 className='text-xl font-bold text-foreground'>The Approach</h2>
             <p className='text-foreground leading-relaxed'>
-                The pipeline is straightforward. Each post lives as a{' '}
+                The pipeline is simple. Posts are written as{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     .md
                 </code>{' '}
-                file with YAML frontmatter:
+                files with YAML frontmatter for metadata:
             </p>
             <CodeBlock
                 code={`---
@@ -33,37 +32,37 @@ topics: [whatever, goes, here]
                 language='yaml'
             />
             <p className='text-foreground leading-relaxed'>
-                A build script picks up every markdown file in the logs directory, parses the frontmatter into a typed
-                object, and converts the body into an AST using{' '}
+                A build script scans the directory, parses the frontmatter into typed objects, and converts the body
+                into an Abstract Syntax Tree (AST) using{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     mdast-util-from-markdown
                 </code>
-                . From there, it walks the tree and emits TSX components, route entries, and an index file that ties
-                everything together. Adding a new post is a single file drop and a script invocation.
+                . The script then walks this tree to generate TSX components, route entries, and a central index file.
+                Now, publishing a post only requires saving a file and running a command.
             </p>
             <h2 className='text-xl font-bold text-foreground'>The Stack</h2>
-            <p className='text-foreground leading-relaxed'>The core tooling is minimal:</p>
+            <p className='text-foreground leading-relaxed'>The tooling is kept lean:</p>
             <ul className='list-disc ml-5 space-y-2 text-foreground'>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>gray-matter</strong> for stripping and parsing
-                        the YAML frontmatter block
+                        <strong className='font-semibold text-foreground'>gray-matter</strong>: Extracts and parses the
+                        YAML frontmatter.
                     </p>
                 </li>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>mdast-util-from-markdown</strong> for
-                        converting the markdown body into a typed AST
+                        <strong className='font-semibold text-foreground'>mdast-util-from-markdown</strong>: Converts
+                        the markdown body into a typed AST.
                     </p>
                 </li>
                 <li className='leading-relaxed'>
                     <p className='text-foreground leading-relaxed'>
-                        <strong className='font-semibold text-foreground'>Node crypto</strong> for SHA-256 content
-                        hashing
+                        <strong className='font-semibold text-foreground'>Node crypto</strong>: Handles SHA-256 content
+                        hashing for the build cache.
                     </p>
                 </li>
             </ul>
-            <p className='text-foreground leading-relaxed'>The parsing itself fits in a few lines:</p>
+            <p className='text-foreground leading-relaxed'>The core logic takes just a few lines:</p>
             <CodeBlock
                 code={`const fileData = matter.read(filePath);
 const meta = frontMatterToFileDetails(fileData.data);
@@ -71,68 +70,44 @@ const tree = fromMarkdown(fileData.content);`}
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                Metadata in, AST out. Everything downstream is tree traversal and file emission.
+                Once the metadata and AST are ready, the rest is just tree traversal and file generation.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Incremental Builds</h2>
             <p className='text-foreground leading-relaxed'>
-                The first version of the script rebuilt every generated file on each run. This worked, but it scaled
-                poorly. Regenerating twenty files because of a typo in one is wasteful, and the problem only compounds
-                as the number of posts grows.
+                Initially, the script rebuilt every file from scratch on every run. This worked for a few posts but
+                doesn't scale. Regenerating dozens of files because of a single typo is inefficient.
             </p>
             <p className='text-foreground leading-relaxed'>
-                To address this, I added a manifest-based caching layer. Each source file is hashed with SHA-256, and
-                the hashes are stored in{' '}
+                To solve this, I added a manifest-based caching layer. The script hashes each source file using SHA-256
+                and stores these in{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     .cache/manifest.json
                 </code>
-                . On each subsequent run, the script compares current hashes against the manifest to create a diff.
+                . On subsequent runs, it compares the current hashes against the manifest to identify what actually
+                changed.
             </p>
             <p className='text-foreground leading-relaxed'>
-                Only new and modified files trigger regeneration. Deleted files have their generated TSX cleaned up.
-                Unchanged files skip generation. The script still reads unchanged files' frontmatter to rebuild the
-                index. In the future, I might start writing that metadata to the manifest to prevent redundant reads.
-                The manifest is written atomically after a successful run, so a failed build never leaves the cache in
-                an inconsistent state.
+                Only new or modified files trigger a rebuild. If a file is deleted, its generated TSX is removed.
+                Unchanged files are skipped, though the script still reads their frontmatter to ensure the main blog
+                index remains accurate. To prevent errors, the manifest is written only after a successful build,
+                keeping the cache consistent.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Walking the AST</h2>
             <p className='text-foreground leading-relaxed'>
-                The AST produced by{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    mdast-util-from-markdown
-                </code>{' '}
-                is a tree of typed nodes. Each node carries a{' '}
+                The AST is a tree of typed nodes representing elements like headings, paragraphs, and code blocks. Each
+                node has a{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     type
                 </code>
-                , something like{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    heading
-                </code>
-                ,{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    paragraph
-                </code>
-                ,{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    text
-                </code>
-                ,{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    strong
-                </code>
-                ,{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    code
-                </code>
-                , and so on. With leaf nodes holding a{' '}
+                , while leaf nodes contain a{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     value
                 </code>{' '}
-                and parent nodes holding{' '}
+                and parent nodes contain{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     children
                 </code>
-                . The mapping from AST to JSX is a recursive switch over node types:
+                . Mapping these to JSX happens through a recursive function:
             </p>
             <CodeBlock
                 code={`function parseNode(node: Node): string {
@@ -155,44 +130,36 @@ const tree = fromMarkdown(fileData.content);`}
                 language='ts'
             />
             <p className='text-foreground leading-relaxed'>
-                Each case maps a markdown node to a JSX string. Headings resolve to{' '}
+                This maps markdown directly to JSX. Headings become{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     h1
                 </code>{' '}
                 through{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     h6
-                </code>{' '}
-                based on depth, lists inspect{' '}
+                </code>
+                , while lists check the{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     ordered
                 </code>{' '}
-                to choose{' '}
+                property to toggle between{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     ol
                 </code>{' '}
-                or{' '}
+                and{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     ul
                 </code>
-                , and unhandled node types are logged so we can handle that use case. Syntax highlighting is in place.
-                Code blocks are routed through{' '}
+                . For code blocks, I integrated{' '}
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     prism-react-renderer
                 </code>{' '}
-                via a{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    CodeBlock
-                </code>{' '}
-                component, providing syntax highlighting out of the box.
+                to provide syntax highlighting by default.
             </p>
             <h2 className='text-xl font-bold text-foreground'>Generated Output</h2>
             <p className='text-foreground leading-relaxed'>
-                Each markdown file produces a standalone TSX component that wraps parsed content in a{' '}
-                <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
-                    LogPage
-                </code>{' '}
-                layout, with frontmatter passed as props:
+                Every markdown file results in a standalone TSX component. This component wraps the parsed content in a
+                layout and passes the frontmatter as props:
             </p>
             <CodeBlock
                 code={`import LogPage from '../../components/log/log-page';
@@ -216,22 +183,18 @@ export default function MarkdownToBlogPosts() {
                 <code className='bg-card border border-border px-1.5 py-0.5 rounded text-xs font-mono text-foreground'>
                     logs.ts
                 </code>{' '}
-                index imports every component and exports them as a typed array, which the listing page consumes
-                directly. The result is that the entire publishing workflow reduces to dropping a file in a folder and
-                running the build.
+                file imports these components and exports them as an array for the main listing page. The workflow is
+                now as close to frictionless as possible.
             </p>
-            <h2 className='text-xl font-bold text-foreground'>What's Next</h2>
+            <h2 className='text-xl font-bold text-foreground'>Next Steps</h2>
             <p className='text-foreground leading-relaxed'>
-                The next step is making the node-to-component mapping config-driven. Currently, every node type is
-                hardcoded in the switch statement. A mapping object that declares "headings use this component, code
-                blocks use that one" would decouple rendering decisions from the parser itself, making it possible to
-                change how any element renders without modifying the AST walker.
+                Currently, the node-to-component mapping is hardcoded in the switch statement. I plan to move this to a
+                configuration object. Decoupling the rendering logic from the parser will make it easier to change how
+                specific elements look without touching the AST walker itself.
             </p>
-            <blockquote className='border-l-4 border-primary pl-4 py-2 italic text-muted-foreground'>
-                <p className='text-foreground leading-relaxed'>
-                    The goal is to make writing the easiest part of maintaining this site.
-                </p>
-            </blockquote>
+            <p className='text-foreground leading-relaxed'>
+                The ultimate goal is to make writing the easiest part of maintaining the site.
+            </p>
         </LogPage>
     );
 }
