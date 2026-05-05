@@ -20,7 +20,23 @@ export default function Hero() {
                     <LinkedIn />
                 </div>
             </div>
-            <div className='order-first md:order-last w-32 h-32 md:w-36 md:h-36 flex-shrink-0'>
+            <div className='order-first md:order-last relative w-32 h-32 md:w-36 md:h-36 flex-shrink-0'>
+                <span
+                    aria-hidden='true'
+                    className='pointer-events-none absolute -top-3 -left-3 w-4 h-4 border-t-2 border-l-2 border-primary/70'
+                />
+                <span
+                    aria-hidden='true'
+                    className='pointer-events-none absolute -top-3 -right-3 w-4 h-4 border-t-2 border-r-2 border-primary/70'
+                />
+                <span
+                    aria-hidden='true'
+                    className='pointer-events-none absolute -bottom-3 -left-3 w-4 h-4 border-b-2 border-l-2 border-primary/70'
+                />
+                <span
+                    aria-hidden='true'
+                    className='pointer-events-none absolute -bottom-3 -right-3 w-4 h-4 border-b-2 border-r-2 border-primary/70'
+                />
                 <img
                     src='ct.webp'
                     alt='Carson'
