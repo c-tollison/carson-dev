@@ -5,6 +5,7 @@ export interface Project {
     link?: string;
     githubLink?: string;
     topics: string[];
+    embeddable?: boolean;
 }
 
 const projects: Project[] = [
@@ -28,6 +29,7 @@ const projects: Project[] = [
         link: 'https://c-tollison.github.io/unbeatable-ai/',
         githubLink: 'https://github.com/c-tollison/unbeatable-ai',
         thumbnail: 'unbeatable-ai.webp',
+        embeddable: true,
     },
 ];
 
