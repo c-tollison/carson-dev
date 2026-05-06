@@ -35,7 +35,7 @@ export default function Hero() {
                     </p>
                     <div className='flex flex-wrap items-center gap-3 mt-2'>
                         <a
-                            href='mailto:tollisoncarson@gmail.com'
+                            href='mailto:tollison.carson@gmail.com'
                             className='inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity'
                         >
                             Get In Touch

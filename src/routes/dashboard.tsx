@@ -201,7 +201,7 @@ function Projects() {
                                     }`}
                                 >
                                     <div className='overflow-hidden'>
-                                        <div className='rounded-xl overflow-hidden border border-border bg-card aspect-video'>
+                                        <div className='rounded-xl overflow-hidden border border-border bg-card aspect-[3/4] md:aspect-video'>
                                             {isExpanded && (
                                                 <iframe
                                                     src={project.link}

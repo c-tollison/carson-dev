@@ -10,14 +10,14 @@ export interface Project {
 
 const projects: Project[] = [
     {
-        title: 'Eagle Building Company',
-        description: `Full-stack platform I built for a construction company to manage bidding, workflows, and inventory. Python API on Lambda with Postgres, React frontend. Auto-generates bid documents and distributes them as PDFs. Private, no public access.`,
-        topics: ['Python', 'REST API', 'PostgreSQL', 'AWS Lambda', 'React'],
+        title: 'BidForge',
+        description: `Operations platform that replaced a spreadsheet-and-tribal-knowledge bidding workflow for a construction company. The team configures reusable bid templates once, then the platform auto-fills line items from live inventory pricing, versions every revision, and converts approved bids directly into client invoices. Next.js + Tailwind frontend, Python API on Lambda behind API Gateway, Postgres on RDS, documents versioned in S3.`,
+        topics: ['Python', 'Next.js', 'PostgreSQL', 'AWS Lambda', 'S3'],
         thumbnail: 'eagle-dashboard.webp',
     },
     {
         title: 'DSA Randomizer',
-        description: `Go CLI I built to keep myself honest with coding problems using spaced repetition. Problems I haven't touched in a while get weighted higher. Local SQLite storage with clean separation between CLI, logic, and data layers.`,
+        description: `Go CLI that picks my next algorithm problem using spaced-repetition weighting. Anything I haven't touched in a while bubbles to the top. Local SQLite store with clean separation between the CLI, scheduling logic, and persistence layers.`,
         topics: ['Go', 'SQLite', 'CLI', 'Data Structures'],
         githubLink: 'https://github.com/c-tollison/dsa-randomizer',
         thumbnail: 'dsa-randomizer.webp',
