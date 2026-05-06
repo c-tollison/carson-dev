@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import Hero from '../components/hero';
 import PageWrapper from '../components/page-wrapper';
-import logs from './converted-logs/logs';
 import projects from './projects/projects';
 
 const experience = [
@@ -50,46 +48,6 @@ const experience = [
         ],
     },
 ];
-
-function DevLogs({ latestLogs }: { latestLogs: typeof logs }) {
-    return (
-        <div>
-            <h3 className='flex justify-between items-end border-b pb-4 border-border font-display text-lg font-semibold tracking-tight'>
-                <span>Recent Dev Logs</span>
-                <Link
-                    to='/log'
-                    className='text-sm font-body font-medium text-muted-foreground hover:text-primary transition-colors'
-                >
-                    View all
-                </Link>
-            </h3>
-            <ul className='mt-6 flex flex-col gap-1'>
-                {latestLogs.length === 0 ? (
-                    <li className='text-muted-foreground py-2 text-sm'>No dev logs yet.</li>
-                ) : (
-                    latestLogs.map((log) => (
-                        <li key={log.route}>
-                            <Link
-                                to={`/log/${log.route}`}
-                                className='group flex justify-between items-center py-3 transition-colors duration-200'
-                            >
-                                <div className='min-w-0'>
-                                    <h4 className='text-[15px] font-medium text-foreground group-hover:text-primary transition-colors'>
-                                        {log.title}
-                                    </h4>
-                                    <p className='text-sm text-muted-foreground mt-0.5'>{log.date}</p>
-                                </div>
-                                <div className='text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-3'>
-                                    &#8594;
-                                </div>
-                            </Link>
-                        </li>
-                    ))
-                )}
-            </ul>
-        </div>
-    );
-}
 
 function Projects() {
     return (
@@ -241,23 +199,16 @@ function Experience() {
 }
 
 function Dashboard() {
-    const latestLogs = logs.slice(-3).reverse();
-
     return (
         <PageWrapper>
             <div className='flex flex-col gap-24'>
-                <div className='flex flex-col gap-10 md:flex-row md:items-stretch md:gap-12'>
-                    <div className='flex flex-col gap-8 md:w-3/5'>
-                        <Hero />
-                        <p className='text-[15px] leading-relaxed text-foreground/80'>
-                            Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
-                            infrastructure, and ship data pipelines across the stack — primarily in TypeScript. Clemson
-                            grad.
-                        </p>
-                    </div>
-                    <div className='md:w-2/5 md:border-l md:border-border md:pl-12'>
-                        <DevLogs latestLogs={latestLogs} />
-                    </div>
+                <div className='flex flex-col gap-8'>
+                    <Hero />
+                    <p className='text-[15px] leading-relaxed text-foreground/80'>
+                        Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
+                        infrastructure, and ship data pipelines across the stack — primarily in TypeScript. Clemson
+                        grad.
+                    </p>
                 </div>
 
                 <Projects />
