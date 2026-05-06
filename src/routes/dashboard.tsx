@@ -2,12 +2,21 @@ import Hero from '../components/hero';
 import PageWrapper from '../components/page-wrapper';
 import projects from './projects/projects';
 
+function SectionHeader({ label }: { label: string }) {
+    return (
+        <h2 className='font-mono mb-10 text-primary text-sm uppercase tracking-[0.25em]'>
+            <span className='text-muted-foreground/60'>{'//'}</span> {label}
+        </h2>
+    );
+}
+
 const experience = [
     {
         company: 'Felux',
         title: 'Founding Software Engineer',
         dates: 'Aug 2025 – Present',
         location: 'Remote',
+        tools: ['TypeScript', 'AWS', 'Vue.js', 'AI', 'DevOps'],
         bullets: [
             'Architected and built a full-stack SaaS platform from scratch: Vue web app, Hono/Drizzle API on ECS Fargate, PostgreSQL via Supabase, and AWS infrastructure managed with CDK',
             'Built an end-to-end email ingestion pipeline that syncs Outlook inboxes via the Microsoft Graph API, processing 100k+ emails with a per-user historical backfill of around 25,000 messages on first sign-in',
@@ -20,6 +29,7 @@ const experience = [
         title: 'Software Engineer',
         dates: 'Nov 2021 – Aug 2025',
         location: 'Remote',
+        tools: ['TypeScript', 'AWS', 'React.js', 'DevOps'],
         bullets: [
             'Built a private internal web app (TypeScript, React, Drizzle, Lambda) that let any engineer provision a fully isolated cloud environment from a UI, spinning up the entire stack (frontend, API, Postgres, backing AWS services) per-dev; adopted by all 20 engineers as the standard concurrent-development workflow',
             'Architected a double-entry accounting system with line-item-level tracking and balance reconciliation, processing 150,000+ transactions weekly with full audit compliance; migrated all historical data off a legacy multi-table schema',
@@ -32,6 +42,7 @@ const experience = [
         title: 'Software Development Engineer Intern',
         dates: 'May 2023 – Aug 2023',
         location: 'Hybrid / Seattle, WA',
+        tools: ['Java', 'AWS'],
         bullets: [
             'Designed an abstract Java parser and ingestion framework that processed multi-gigabyte CSV and Excel files with millions of SKUs behind a single interface, built on AWS Lambda, S3, SQS, and DynamoDB',
             'Resolved a throughput bottleneck by fanning ingestion across concurrent S3-event-triggered Lambdas, increasing data throughput by 25% while reducing memory consumption',
@@ -42,6 +53,7 @@ const experience = [
         title: 'Software Development Engineer Intern',
         dates: 'May 2022 – Aug 2022',
         location: 'Remote',
+        tools: ['Python', 'AWS'],
         bullets: [
             "Designed a CDK-based event-driven worker (SQS + Python Lambda) that applied paycode and holiday rules to Amazon's global timecard system serving 1M+ employees, replacing a manual SQL-script workflow",
             'Built dead-letter queues and CloudWatch alerting that let on-call detect and replay failed jobs when downstream services were unavailable, preventing data loss',
@@ -52,9 +64,7 @@ const experience = [
 function Projects() {
     return (
         <section>
-            <h2 className='font-display text-2xl font-semibold tracking-tight border-b border-border pb-4 mb-12'>
-                Projects
-            </h2>
+            <SectionHeader label='projects' />
             <div className='flex flex-col gap-20'>
                 {projects.map((project, index) => {
                     const isEven = index % 2 === 0;
@@ -164,9 +174,7 @@ function Projects() {
 function Experience() {
     return (
         <section>
-            <h2 className='font-display text-2xl font-semibold tracking-tight border-b border-border pb-4 mb-10'>
-                Experience
-            </h2>
+            <SectionHeader label='experience' />
             <div className='flex flex-col gap-10'>
                 {experience.map((job) => (
                     <div
@@ -180,6 +188,16 @@ function Experience() {
                         <p className='text-sm text-muted-foreground mt-0.5'>
                             {job.title} · {job.location}
                         </p>
+                        <div className='flex flex-wrap gap-2 mt-3'>
+                            {job.tools.map((tool) => (
+                                <span
+                                    key={tool}
+                                    className='text-[11px] px-2.5 py-1 rounded-full border border-border text-muted-foreground font-medium'
+                                >
+                                    {tool}
+                                </span>
+                            ))}
+                        </div>
                         <ul className='mt-4 flex flex-col gap-2.5'>
                             {job.bullets.map((bullet, i) => (
                                 <li
@@ -205,9 +223,11 @@ function Dashboard() {
                 <div className='flex flex-col gap-8'>
                     <Hero />
                     <p className='text-[15px] leading-relaxed text-foreground/80'>
-                        Full-Stack Engineer based in South Carolina. I build developer tooling, design cloud
-                        infrastructure, and ship data pipelines across the stack — primarily in TypeScript. Clemson
-                        grad.
+                        I'm a full-stack engineer based in South Carolina. I write TypeScript across the stack, with
+                        most of my work on the backend. Right now I'm building the Felux platform from the ground up;
+                        before that I shipped data pipelines, cloud infrastructure, and developer tooling at Amazon and
+                        ChiroHD. When I'm not coding I'm with my wife, planning the next trip, or adding to the tattoo
+                        collection. Clemson grad.
                     </p>
                 </div>
 

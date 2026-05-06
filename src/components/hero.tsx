@@ -22,7 +22,17 @@ export default function Hero() {
                     <h1 className='font-display text-primary text-4xl md:text-5xl font-bold tracking-tight'>
                         Carson Tollison
                     </h1>
-                    <p className='text-lg font-medium text-muted-foreground tracking-wide'>Full-Stack Engineer</p>
+                    <p className='text-lg font-medium text-muted-foreground tracking-wide'>
+                        Full-stack engineer{' '}
+                        <a
+                            href='https://felux.com'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='text-accent hover:underline underline-offset-4'
+                        >
+                            @Felux
+                        </a>
+                    </p>
                     <div className='flex flex-wrap items-center gap-3 mt-2'>
                         <a
                             href='mailto:tollisoncarson@gmail.com'
@@ -34,7 +44,7 @@ export default function Hero() {
                         <LinkedIn />
                     </div>
                 </div>
-                <div className='order-first md:order-last relative z-10 w-32 h-32 md:w-36 md:h-36 flex-shrink-0'>
+                <div className='order-first md:order-last relative z-10 w-28 h-28 md:w-32 md:h-32 flex-shrink-0 md:mr-2'>
                     <img
                         src='profile-pic.jpeg'
                         alt='Carson'
