@@ -10,6 +10,12 @@ export interface Project {
 
 const projects: Project[] = [
     {
+        title: 'Chrono',
+        description: `AI-powered Instagram DM inbox that turns conversations into a real business pipeline for creators running revenue through their inbox. Tags inbound messages by intent, extracts booking and pricing details into structured lead cards, drafts replies with live Google Calendar openings, and collects Stripe deposits to auto-confirm bookings. Currently in active development, public release in a few weeks.`,
+        topics: ['TypeScript', 'AI', 'Stripe', 'Integration'],
+        thumbnail: 'chrono.jpeg',
+    },
+    {
         title: 'BidForge',
         description: `Operations platform that replaced a spreadsheet-and-tribal-knowledge bidding workflow for a construction company. The team configures reusable bid templates once, then the platform auto-fills line items from live inventory pricing, versions every revision, and converts approved bids directly into client invoices. Next.js + Tailwind frontend, Python API on Lambda behind API Gateway, Postgres on RDS, documents versioned in S3.`,
         topics: ['Python', 'Next.js', 'PostgreSQL', 'AWS Lambda', 'S3'],
