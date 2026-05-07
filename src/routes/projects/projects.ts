@@ -11,8 +11,8 @@ export interface Project {
 const projects: Project[] = [
     {
         title: 'Chrono',
-        description: `AI inbox that turns Instagram DMs into a structured booking pipeline. Ingests messages via Instagram Graph API webhooks and runs each thread through a Gemini pipeline that classifies intent, extracts pricing and booking details into typed lead cards, and drafts replies seeded with live availability from the Google Calendar API. Confirmed bookings collect a Stripe deposit and write back to the calendar. Node/TypeScript on AWS Lambda, Postgres on RDS.`,
-        topics: ['TypeScript', 'AWS Lambda', 'PostgreSQL', 'Stripe', 'Instagram Graph API'],
+        description: `AI inbox that turns Instagram DMs into a booking pipeline. Webhooks feed each thread through a Gemini pipeline that classifies intent, extracts pricing into typed lead cards, and drafts replies using live Google Calendar availability. Confirmed bookings take a Stripe deposit and write back to the calendar. Hono on AWS, Postgres on RDS.`,
+        topics: ['TypeScript', 'Hono', 'AWS', 'PostgreSQL', 'Stripe'],
         thumbnail: 'chrono.jpeg',
     },
     {
