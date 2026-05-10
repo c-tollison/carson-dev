@@ -10,12 +10,6 @@ export interface Project {
 
 const projects: Project[] = [
     {
-        title: 'Chrono',
-        description: `AI inbox that turns Instagram DMs into a booking pipeline. Webhooks feed each thread through a Gemini pipeline that classifies intent, extracts pricing into typed lead cards, and drafts replies using live Google Calendar availability. Confirmed bookings take a Stripe deposit and write back to the calendar. Hono on AWS, Postgres on RDS.`,
-        topics: ['TypeScript', 'Hono', 'AWS', 'PostgreSQL', 'Stripe'],
-        thumbnail: 'chrono.jpeg',
-    },
-    {
         title: 'BidForge',
         description: `Operations platform that replaced a spreadsheet-and-tribal-knowledge bidding workflow for a construction company. The team configures reusable bid templates once, then the platform auto-fills line items from live inventory pricing, versions every revision, and converts approved bids directly into client invoices. Next.js + Tailwind frontend, Python API on Lambda behind API Gateway, Postgres on RDS, documents versioned in S3.`,
         topics: ['Python', 'Next.js', 'PostgreSQL', 'AWS Lambda', 'S3'],
