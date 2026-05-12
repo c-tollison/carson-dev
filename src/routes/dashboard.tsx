@@ -15,20 +15,21 @@ const experience = [
     {
         company: 'Felux',
         title: 'Founding Software Engineer',
-        dates: 'Aug 2025 – Present',
+        dates: 'Aug 2025 - Present',
         location: 'Remote',
         tools: ['TypeScript', 'Vue.js', 'Hono', 'AI/ML', 'Supabase'],
         bullets: [
             'Architected and built a full-stack SaaS platform from scratch: Vue web app, Hono/Drizzle API on ECS Fargate, PostgreSQL via Supabase, and AWS infrastructure managed with CDK',
             'Built an end-to-end email ingestion pipeline that syncs Outlook inboxes via the Microsoft Graph API, processing 100k+ emails with a per-user historical backfill of around 25,000 messages on first sign-in',
-            'Designed a two-stage AI pipeline where a custom ML model (Cognita) triages incoming emails and routes transactions to Gemini Flash for structured extraction, achieving 95% successful extraction at production volume',
+            'Designed a two-stage AI pipeline where a custom ML model (Cognita) triages incoming emails and routes transactions to Gemini Flash for structured extraction, achieving 95% successful extraction at production volume; layered Aho-Corasick post-processing to snap output to an industry-specific taxonomy',
             'Shipped an in-product realtime collaboration layer with transaction-scoped chat and @-tagging, using websockets via Supabase Realtime to push live state changes across email threads, transactions, and chat',
+            'Built an automation engine for auto follow-ups on outstanding quotes and business-day-aware auto-close on inactivity, running on a custom cron task system on EventBridge + ECS Fargate',
         ],
     },
     {
         company: 'ChiroHD',
         title: 'Software Engineer',
-        dates: 'Nov 2021 – Aug 2025',
+        dates: 'Nov 2021 - Aug 2025',
         location: 'Remote',
         tools: ['TypeScript', 'React', 'Lambda', 'PostgreSQL'],
         bullets: [
@@ -39,9 +40,9 @@ const experience = [
         ],
     },
     {
-        company: 'Amazon – APM',
+        company: 'Amazon - APM',
         title: 'Software Development Engineer Intern',
-        dates: 'May 2023 – Aug 2023',
+        dates: 'May 2023 - Aug 2023',
         location: 'Hybrid / Seattle, WA',
         tools: ['Java', 'Lambda', 'DynamoDB'],
         bullets: [
@@ -50,9 +51,9 @@ const experience = [
         ],
     },
     {
-        company: 'Amazon – Benefits',
+        company: 'Amazon - Pay and Benefits',
         title: 'Software Development Engineer Intern',
-        dates: 'May 2022 – Aug 2022',
+        dates: 'May 2022 - Aug 2022',
         location: 'Remote',
         tools: ['Python', 'CDK', 'SQS'],
         bullets: [
@@ -255,7 +256,7 @@ function Experience() {
                                     key={i}
                                     className='flex gap-3 text-[14px] leading-relaxed text-foreground/80'
                                 >
-                                    <span className='text-primary mt-0.5 flex-shrink-0'>–</span>
+                                    <span className='text-primary mt-0.5 flex-shrink-0'>-</span>
                                     <span>{bullet}</span>
                                 </li>
                             ))}

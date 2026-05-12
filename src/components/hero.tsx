@@ -1,10 +1,11 @@
+import CopyEmail from './buttons/copy-email';
 import Github from './buttons/github';
 import LinkedIn from './buttons/linkedin';
 
 export default function Hero() {
     return (
         <div className='mb-4 w-full'>
-            <div className='relative flex flex-col md:flex-row items-center md:justify-between gap-6 overflow-hidden'>
+            <div className='relative flex flex-col md:flex-row items-center md:justify-between gap-6'>
                 <div
                     aria-hidden='true'
                     className='pointer-events-none absolute inset-0 overflow-hidden'
@@ -42,6 +43,7 @@ export default function Hero() {
                         </a>
                         <Github />
                         <LinkedIn />
+                        <CopyEmail />
                     </div>
                 </div>
                 <div className='order-first md:order-last relative z-10 w-28 h-28 md:w-32 md:h-32 flex-shrink-0 md:mr-2'>
