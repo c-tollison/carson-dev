@@ -19,11 +19,11 @@ const experience = [
         location: 'Remote',
         tools: ['TypeScript', 'Vue.js', 'Hono', 'AI/ML', 'Supabase'],
         bullets: [
-            'Designed the email ingestion pipeline in two stages: a parallelized Microsoft Graph API backfill processing 25,000 historical emails per user on first sign-in, and a continuous live sync across concurrent inboxes with no backlog',
-            'Built a two-stage extraction pipeline combining a fine-tuned triage classifier with Gemini Flash for structured line-item extraction and Aho-Corasick post-processing to normalize product output against an industry-specific commodity taxonomy, powering commodity demand analytics',
+            'Designed a two-stage email ingestion pipeline: a parallelized backfill processing up to 25,000 historical emails per user on first sign-in, plus a continuous real-time sync across inboxes',
+            'Built an extraction pipeline combining a fine-tuned triage classifier with Gemini Flash for structured line-item extraction and Aho-Corasick post-processing to normalize product output against an industry-specific taxonomy, powering commodity demand analytics',
             'Cut manual quote follow-up to zero by building a business-day-aware automation engine for open quote reminders and auto-close on inactivity, running on EventBridge and ECS Fargate',
-            'Built the full production stack from zero (ECS Fargate, Supabase/PostgreSQL, EventBridge, Amplify) via CDK, driving deployment and scaling architecture decisions',
-            'Shipped transaction-scoped chat and @-tagging via Supabase Realtime websockets, syncing live state across email threads, transactions, and chat',
+            'Owned the full production stack on AWS (ECS Fargate, EventBridge, Amplify) with Supabase/PostgreSQL, deployed via CDK',
+            'Built real-time collaboration on Supabase WebSockets: transaction-scoped chat with mentions, plus live-syncing email threads and transaction state across active users',
         ],
     },
     {
@@ -34,9 +34,9 @@ const experience = [
         tools: ['TypeScript', 'React', 'Lambda', 'PostgreSQL'],
         bullets: [
             'Architected a double-entry ledger with line-item tracking and balance reconciliation processing 150,000+ transactions weekly with full audit trails, migrating all historical data off a legacy multi-table schema',
-            'Eliminated branch environment collisions for 20 engineers by replacing a broken shared-environment CLI with a self-service UI (TypeScript, React, Drizzle, Lambda) that provisioned isolated full-stack environments per branch on demand',
-            'Served 2,500+ chiropractic clinics by building an X12 EOB ingestion pipeline with SFTP sync and a parser that auto-mapped EOB line items to patient transactions, preventing secondary claim denials from missing rejection codes',
-            'Sustained 100,000+ messages per month by designing the Twilio SMS layer as a queue-based architecture that absorbed peak-hour spikes without dropped messages',
+            'Eliminated branch environment collisions for 20 engineers by replacing a broken shared-environment CLI with a self-service UI (TypeScript, React, Drizzle, Lambda) that provisioned isolated full-stack environments on demand',
+            'Built an automated X12 835 ERA ingestion pipeline with SFTP sync that parsed remittance files into structured EOB records and auto-mapped line items to patient transactions across 1,500+ chiropractic clinics, eliminating manual data entry and preventing secondary claim denials',
+            'Scaled the Twilio SMS layer to 1M+ messages per month by designing a queue-based architecture that absorbed peak-hour spikes without dropped messages',
         ],
     },
     {
