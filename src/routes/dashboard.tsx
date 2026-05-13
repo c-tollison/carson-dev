@@ -19,11 +19,11 @@ const experience = [
         location: 'Remote',
         tools: ['TypeScript', 'Vue.js', 'Hono', 'AI/ML', 'Supabase'],
         bullets: [
-            'Architected and built a full-stack SaaS platform from scratch: Vue web app, Hono/Drizzle API on ECS Fargate, PostgreSQL via Supabase, and AWS infrastructure managed with CDK',
-            'Built an end-to-end email ingestion pipeline that syncs Outlook inboxes via the Microsoft Graph API, processing 100k+ emails with a per-user historical backfill of around 25,000 messages on first sign-in',
-            'Designed a two-stage AI pipeline where a custom ML model (Cognita) triages incoming emails and routes transactions to Gemini Flash for structured extraction, achieving 95% successful extraction at production volume; layered Aho-Corasick post-processing to snap output to an industry-specific taxonomy',
-            'Shipped an in-product realtime collaboration layer with transaction-scoped chat and @-tagging, using websockets via Supabase Realtime to push live state changes across email threads, transactions, and chat',
-            'Built an automation engine for auto follow-ups on outstanding quotes and business-day-aware auto-close on inactivity, running on a custom cron task system on EventBridge + ECS Fargate',
+            'Designed the email ingestion pipeline in two stages: a parallelized Microsoft Graph API backfill processing 25,000 historical emails per user on first sign-in, and a continuous live sync across concurrent inboxes with no backlog',
+            'Built a two-stage extraction pipeline combining a fine-tuned triage classifier with Gemini Flash for structured line-item extraction and Aho-Corasick post-processing to normalize product output against an industry-specific commodity taxonomy, powering commodity demand analytics',
+            'Cut manual quote follow-up to zero by building a business-day-aware automation engine for open quote reminders and auto-close on inactivity, running on EventBridge and ECS Fargate',
+            'Built the full production stack from zero (ECS Fargate, Supabase/PostgreSQL, EventBridge, Amplify) via CDK, driving deployment and scaling architecture decisions',
+            'Shipped transaction-scoped chat and @-tagging via Supabase Realtime websockets, syncing live state across email threads, transactions, and chat',
         ],
     },
     {
@@ -33,10 +33,10 @@ const experience = [
         location: 'Remote',
         tools: ['TypeScript', 'React', 'Lambda', 'PostgreSQL'],
         bullets: [
-            'Built a private internal web app (TypeScript, React, Drizzle, Lambda) that let any engineer provision a fully isolated cloud environment from a UI, spinning up the entire stack (frontend, API, Postgres, backing AWS services) per-dev; adopted by all 20 engineers as the standard concurrent-development workflow',
-            'Architected a double-entry accounting system with line-item-level tracking and balance reconciliation, processing 150,000+ transactions weekly with full audit compliance; migrated all historical data off a legacy multi-table schema',
-            'Built an automated X12 insurance claims parser with SFTP integrations, eliminating manual claim data entry for 2,500+ chiropractic clinics and reducing claim rejection rate to 10%',
-            'Designed a high-throughput Twilio SMS system on a queue-based architecture to absorb peak-hour traffic spikes, reliably handling 100k+ inbound and outbound messages per month',
+            'Architected a double-entry ledger with line-item tracking and balance reconciliation processing 150,000+ transactions weekly with full audit trails, migrating all historical data off a legacy multi-table schema',
+            'Eliminated branch environment collisions for 20 engineers by replacing a broken shared-environment CLI with a self-service UI (TypeScript, React, Drizzle, Lambda) that provisioned isolated full-stack environments per branch on demand',
+            'Served 2,500+ chiropractic clinics by building an X12 EOB ingestion pipeline with SFTP sync and a parser that auto-mapped EOB line items to patient transactions, preventing secondary claim denials from missing rejection codes',
+            'Sustained 100,000+ messages per month by designing the Twilio SMS layer as a queue-based architecture that absorbed peak-hour spikes without dropped messages',
         ],
     },
     {
@@ -46,19 +46,19 @@ const experience = [
         location: 'Hybrid / Seattle, WA',
         tools: ['Java', 'Lambda', 'DynamoDB'],
         bullets: [
-            'Designed an abstract Java parser and ingestion framework that processed multi-gigabyte CSV and Excel files with millions of SKUs behind a single interface, built on AWS Lambda, S3, SQS, and DynamoDB',
-            'Resolved a throughput bottleneck by fanning ingestion across concurrent S3-event-triggered Lambdas, increasing data throughput by 25% while reducing memory consumption',
+            'Processed multi-gigabyte CSV and Excel files with millions of SKUs by designing an abstract Java parser framework on Lambda, S3, SQS, and DynamoDB behind a single interface, reducing new format support to a single class extension',
+            'Resolved a serial throughput bottleneck by redesigning ingestion as a concurrent fan-out across S3-event-triggered Lambdas, enabling the pipeline to scale with input volume',
         ],
     },
     {
         company: 'Amazon - Pay and Benefits',
         title: 'Software Development Engineer Intern',
         dates: 'May 2022 - Aug 2022',
-        location: 'Remote',
+        location: 'Seattle, WA',
         tools: ['Python', 'CDK', 'SQS'],
         bullets: [
-            "Designed a CDK-based event-driven worker (SQS + Python Lambda) that applied paycode and holiday rules to Amazon's global timecard system serving 1M+ employees, replacing a manual SQL-script workflow",
-            'Built dead-letter queues and CloudWatch alerting that let on-call detect and replay failed jobs when downstream services were unavailable, preventing data loss',
+            "Replaced a manual SQL-script workflow with an event-driven SQS + Python Lambda worker via CDK that applied paycode and holiday rules to Amazon's global timecard system serving 1M+ employees",
+            'Built dead-letter queues and CloudWatch alerting that gave on-call engineers full job replay capability, preventing timecard data loss during downstream outages',
         ],
     },
 ];
@@ -276,10 +276,10 @@ function Dashboard() {
                     <Hero />
                     <p className='text-[15px] leading-relaxed text-foreground/80'>
                         I'm a full-stack engineer based in South Carolina. I write TypeScript across the stack, with
-                        most of my work on the backend. Right now I'm building the Felux platform from the ground up;
-                        before that I shipped data pipelines, cloud infrastructure, and developer tooling at Amazon and
-                        ChiroHD. When I'm not coding I'm with my wife, planning the next trip, or adding to the tattoo
-                        collection. Clemson grad.
+                        most of my work on the backend. Right now I'm at Felux as a founding engineer; before that I
+                        shipped data pipelines, cloud infrastructure, and developer tooling at Amazon and ChiroHD. When
+                        I'm not coding I'm with my wife, planning the next trip, or adding to the tattoo collection.
+                        Clemson grad.
                     </p>
                 </div>
 
