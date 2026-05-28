@@ -14,16 +14,16 @@ function SectionHeader({ label }: { label: string }) {
 const experience = [
     {
         company: 'Felux',
-        title: 'Founding Software Engineer',
+        title: 'Software Engineer',
         dates: 'Aug 2025 - Present',
         location: 'Remote',
-        tools: ['TypeScript', 'Vue.js', 'Hono', 'AI/ML', 'Supabase'],
+        tools: ['TypeScript', 'SQS', 'ECS Fargate', 'AI/ML', 'PostgreSQL'],
         bullets: [
-            'Designed a two-stage email ingestion pipeline: a parallelized backfill processing up to 25,000 historical emails per user on first sign-in, plus a continuous real-time sync across inboxes',
-            'Built an extraction pipeline combining a fine-tuned triage classifier with Gemini Flash for structured line-item extraction and Aho-Corasick post-processing to normalize product output against an industry-specific taxonomy, powering commodity demand analytics',
-            'Cut manual quote follow-up to zero by building a business-day-aware automation engine for open quote reminders and auto-close on inactivity, running on EventBridge and ECS Fargate',
-            'Owned the full production stack on AWS (ECS Fargate, EventBridge, Amplify) with Supabase/PostgreSQL, deployed via CDK',
-            'Built real-time collaboration on Supabase WebSockets: transaction-scoped chat with mentions, plus live-syncing email threads and transaction state across active users',
+            'Designed an SQS-based ingestion layer that buffers Microsoft Graph webhook traffic with per-queue worker pools, capping concurrency to protect Postgres load and respect Graph rate limits',
+            'Engineered bidirectional sync between an in-app email client and Microsoft Outlook, keeping user actions consistent across both systems with a 50,000-email per-user backfill on signup',
+            'Built an ML pipeline that classifies inbound mail, then runs a Mastra-orchestrated Gemini Flash workflow with retries and Zod-validated outputs to extract quote line items and track won/lost state at 98% accuracy',
+            "Architected a config-driven job framework on long-lived ECS Fargate tasks triggered by EventBridge, now running all of the team's recurring jobs and replacing a workflow where engineers ran scripts locally against production data",
+            'Drove daily active usage from 30% to 75% by shipping a SendGrid-backed daily digest that delivers per-user pipeline analytics, pulling sales teams back into the app to act on AI-extracted data',
         ],
     },
     {
@@ -31,12 +31,12 @@ const experience = [
         title: 'Software Engineer',
         dates: 'Nov 2021 - Aug 2025',
         location: 'Remote',
-        tools: ['TypeScript', 'React', 'Lambda', 'PostgreSQL'],
+        tools: ['TypeScript', 'React', 'AWS Lambda', 'Twilio', 'PostgreSQL'],
         bullets: [
-            'Architected a double-entry ledger with line-item tracking and balance reconciliation processing 150,000+ transactions weekly with full audit trails, migrating all historical data off a legacy multi-table schema',
-            'Eliminated branch environment collisions for 20 engineers by replacing a broken shared-environment CLI with a self-service UI (TypeScript, React, Drizzle, Lambda) that provisioned isolated full-stack environments on demand',
-            'Built an automated X12 835 ERA ingestion pipeline with SFTP sync that parsed remittance files into structured EOB records and auto-mapped line items to patient transactions across 1,500+ chiropractic clinics, eliminating manual data entry and preventing secondary claim denials',
-            'Scaled the Twilio SMS layer to 1M+ messages per month by designing a queue-based architecture that absorbed peak-hour spikes without dropped messages',
+            'Eliminated a manual deploy process for 20 engineers with a self-service UI (TypeScript, React, Lambda) that provisioned isolated full-stack environments through GitHub Actions, so engineers could work on parallel branches without conflict',
+            'Built an X12 835 ingestion pipeline (SFTP → S3 → Lambda) with a CPT-code mapper supporting per-clinic overrides, auto-matching line items across 1,500+ clinics and routing unmatched records to a human-review queue',
+            'Scaled the Twilio SMS layer to several million messages per month by placing a queue in front of direct API calls and webhook handling, absorbing bursts of 100k+ messages and enabling reliable delivery tracking for billing',
+            'Architected a double-entry ledger replacing a legacy system into balanced debit/credit pairs and migrating 150,000+ weekly transactions via a gradual network-by-network rollout',
         ],
     },
     {
@@ -44,10 +44,10 @@ const experience = [
         title: 'Software Development Engineer Intern',
         dates: 'May 2023 - Aug 2023',
         location: 'Hybrid / Seattle, WA',
-        tools: ['Java', 'Lambda', 'DynamoDB'],
+        tools: ['Java', 'AWS Lambda', 'SQS', 'DynamoDB', 'S3'],
         bullets: [
-            'Processed multi-gigabyte CSV and Excel files with millions of SKUs by designing an abstract Java parser framework on Lambda, S3, SQS, and DynamoDB behind a single interface, reducing new format support to a single class extension',
-            'Resolved a serial throughput bottleneck by redesigning ingestion as a concurrent fan-out across S3-event-triggered Lambdas, enabling the pipeline to scale with input volume',
+            'Designed an abstract Java parser framework (Lambda, S3, SQS, DynamoDB) that processed multi-gigabyte CSV and Excel files with millions of SKUs, making new format support a one-class change',
+            'Eliminated a serial throughput bottleneck by redesigning ingestion as a concurrent fan-out across S3-event-triggered Lambdas, parallelizing file processing across the pipeline',
         ],
     },
     {
@@ -55,10 +55,10 @@ const experience = [
         title: 'Software Development Engineer Intern',
         dates: 'May 2022 - Aug 2022',
         location: 'Seattle, WA',
-        tools: ['Python', 'CDK', 'SQS'],
+        tools: ['Python', 'SQS', 'AWS Lambda', 'CDK', 'CloudWatch'],
         bullets: [
-            "Replaced a manual SQL-script workflow with an event-driven SQS + Python Lambda worker via CDK that applied paycode and holiday rules to Amazon's global timecard system serving 1M+ employees",
-            'Built dead-letter queues and CloudWatch alerting that gave on-call engineers full job replay capability, preventing timecard data loss during downstream outages',
+            "Replaced a manual SQL-script workflow with an event-driven SQS and Python Lambda pipeline that applied paycode and holiday rules to Amazon's global timecard system serving 1M+ employees",
+            'Added dead-letter queues and CloudWatch alerting that gave on-call engineers full replay capability, preventing timecard data loss during downstream outages',
         ],
     },
 ];
@@ -274,13 +274,6 @@ function Dashboard() {
             <div className='flex flex-col gap-16'>
                 <div className='flex flex-col gap-8'>
                     <Hero />
-                    <p className='text-[15px] leading-relaxed text-foreground/80'>
-                        I'm a full-stack engineer based in South Carolina. I write TypeScript across the stack, with
-                        most of my work on the backend. Right now I'm at Felux as a founding engineer; before that I
-                        shipped data pipelines, cloud infrastructure, and developer tooling at Amazon and ChiroHD. When
-                        I'm not coding I'm with my wife, planning the next trip, or adding to the tattoo collection.
-                        Clemson grad.
-                    </p>
                 </div>
 
                 <Projects />

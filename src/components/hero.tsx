@@ -24,7 +24,7 @@ export default function Hero() {
                         Carson Tollison
                     </h1>
                     <p className='text-lg font-medium text-muted-foreground tracking-wide'>
-                        Full-stack engineer{' '}
+                        Software engineer{' '}
                         <a
                             href='https://felux.com'
                             target='_blank'
@@ -33,6 +33,9 @@ export default function Hero() {
                         >
                             @Felux
                         </a>
+                    </p>
+                    <p className='-mt-4 text-sm text-muted-foreground tracking-wide text-center md:text-left'>
+                        Based in SC. TypeScript and Go, DevOps, backend systems. I also like UI design.
                     </p>
                     <div className='flex flex-wrap items-center gap-3 mt-2'>
                         <a
