@@ -22,7 +22,6 @@ export default function Hero() {
                         </a>
                     </p>
                     <p className='text-sm text-foreground/80 tracking-wide text-center md:text-left'>
-                        Ever since I cracked open <em>The C Programming Language</em>, I've been hooked on coding. Now
                         I'm a software engineer with 3+ years' experience, primarily in TypeScript and Python. Most of
                         my time has been spent at startups, with a couple of pitstops at Amazon as an SDE intern along
                         the way.
