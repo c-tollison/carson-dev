@@ -5,7 +5,7 @@ import projects from './projects/projects';
 
 function SectionHeader({ label }: { label: string }) {
     return (
-        <h2 className='font-mono mb-10 text-primary text-sm uppercase tracking-[0.25em]'>
+        <h2 className='font-mono mb-6 text-primary text-sm uppercase tracking-[0.25em]'>
             <span className='text-muted-foreground/60'>{'//'}</span> {label}
         </h2>
     );
@@ -19,11 +19,11 @@ const experience = [
         location: 'Remote',
         tools: ['TypeScript', 'SQS', 'ECS Fargate', 'AI/ML', 'PostgreSQL'],
         bullets: [
-            'Designed an SQS-based ingestion layer that buffers Microsoft Graph webhook traffic with per-queue worker pools, capping concurrency to protect Postgres load and respect Graph rate limits',
-            'Engineered bidirectional sync between an in-app email client and Microsoft Outlook, keeping user actions consistent across both systems with a 50,000-email per-user backfill on signup',
-            'Built an ML pipeline that classifies inbound mail, then runs a Mastra-orchestrated Gemini Flash workflow with retries and Zod-validated outputs to extract quote line items and track won/lost state at 98% accuracy',
-            "Architected a config-driven job framework on long-lived ECS Fargate tasks triggered by EventBridge, now running all of the team's recurring jobs and replacing a workflow where engineers ran scripts locally against production data",
-            'Drove daily active usage from 30% to 75% by shipping a SendGrid-backed daily digest that delivers per-user pipeline analytics, pulling sales teams back into the app to act on AI-extracted data',
+            'Engineered bidirectional sync between an in-app email client and Microsoft Outlook, keeping user actions consistent across both systems with a 50K-email per-user backfill on signup',
+            'Built an AI pipeline that classifies inbound mail, then runs a Mastra-orchestrated LLM workflow with schema-validated output to extract quote line items and track each thread across key deal states at 98% accuracy',
+            'Created an SQS worker pool to replace direct synchronous processing of Microsoft Graph webhooks, capping concurrency to protect Postgres load and respect Graph API rate limits',
+            'Architected a job framework on ECS Fargate tasks triggered by EventBridge, now running all recurring jobs and replacing an error-prone workflow where engineers manually ran scripts locally against production',
+            'Drove daily active usage from 30% to 75% by shipping a daily digest email feature that delivers per-user pipeline analytics, pulling users back into the app to act on AI-extracted data',
         ],
     },
     {
@@ -33,10 +33,10 @@ const experience = [
         location: 'Remote',
         tools: ['TypeScript', 'React', 'AWS Lambda', 'Twilio', 'PostgreSQL'],
         bullets: [
-            'Eliminated a manual deploy process for 20 engineers with a self-service UI (TypeScript, React, Lambda) that provisioned isolated full-stack environments through GitHub Actions, so engineers could work on parallel branches without conflict',
-            'Built an X12 835 ingestion pipeline (SFTP → S3 → Lambda) with a CPT-code mapper supporting per-clinic overrides, auto-matching line items across 1,500+ clinics and routing unmatched records to a human-review queue',
-            'Scaled the Twilio SMS layer to several million messages per month by placing a queue in front of direct API calls and webhook handling, absorbing bursts of 100k+ messages and enabling reliable delivery tracking for billing',
-            'Architected a double-entry ledger replacing a legacy system into balanced debit/credit pairs and migrating 150,000+ weekly transactions via a gradual network-by-network rollout',
+            'Eliminated a manual deploy process for 20 engineers with a self-service dashboard (TypeScript, React, Lambda) that provisioned isolated full-stack environments through GitHub Actions, so engineers could work on parallel branches without conflict',
+            'Built an X12 835 ingestion pipeline (SFTP to S3 to Lambda) with a CPT-code mapper supporting per-clinic overrides, cutting manual remittance processing time by auto-matching line items across 1,500 clinics and routing unmatched records to a human-review queue',
+            'Scaled Twilio SMS delivery to 1M+ messages per month by buffering direct API calls and webhook handling through a queue, absorbing burst peaks of 100K+ messages per hour and enabling delivery tracking for billing',
+            'Architected a double-entry ledger to replace a legacy system, recording transactions as balanced debit/credit pairs and migrating 150K+ weekly transactions via a gradual network-by-network rollout',
         ],
     },
     {
@@ -46,8 +46,8 @@ const experience = [
         location: 'Hybrid / Seattle, WA',
         tools: ['Java', 'AWS Lambda', 'SQS', 'DynamoDB', 'S3'],
         bullets: [
-            'Designed an abstract Java parser framework (Lambda, S3, SQS, DynamoDB) that processed multi-gigabyte CSV and Excel files with millions of SKUs, making new format support a one-class change',
-            'Eliminated a serial throughput bottleneck by redesigning ingestion as a concurrent fan-out across S3-event-triggered Lambdas, parallelizing file processing across the pipeline',
+            'Designed an extensible Java parser framework (Lambda, S3, SQS, DynamoDB) that processed multi-gigabyte CSV and Excel files with millions of SKUs, reducing new format support to a single new class',
+            'Replaced serial file ingestion with a concurrent fan-out across S3-event-triggered Lambdas, eliminating a throughput bottleneck',
         ],
     },
     {
@@ -57,8 +57,8 @@ const experience = [
         location: 'Seattle, WA',
         tools: ['Python', 'SQS', 'AWS Lambda', 'CDK', 'CloudWatch'],
         bullets: [
-            "Replaced a manual SQL-script workflow with an event-driven SQS and Python Lambda pipeline that applied paycode and holiday rules to Amazon's global timecard system serving 1M+ employees",
-            'Added dead-letter queues and CloudWatch alerting that gave on-call engineers full replay capability, preventing timecard data loss during downstream outages',
+            "Built an event-driven SQS and Python Lambda pipeline to replace a manual SQL-script workflow, encoding paycode and holiday rules into Amazon's global timecard system serving 1M+ employees",
+            'Added dead-letter queues and CloudWatch alerting that let on-call engineers replay failed events during downstream outages, preventing timecard data loss',
         ],
     },
 ];
@@ -68,16 +68,16 @@ function Projects() {
     return (
         <section>
             <SectionHeader label='projects' />
-            <div className='flex flex-col gap-20'>
+            <div className='flex flex-col gap-12'>
                 {projects.map((project, index) => {
                     const isEven = index % 2 === 0;
                     const isExpanded = expanded === project.title;
                     return (
                         <div
                             key={project.title}
-                            className='flex flex-col gap-8'
+                            className='flex flex-col gap-5'
                         >
-                            <div className='flex flex-col md:flex-row gap-8 md:gap-14 items-center'>
+                            <div className='flex flex-col md:flex-row gap-6 md:gap-10 items-center'>
                                 <div className={`w-full md:w-1/2 flex-shrink-0 ${!isEven ? 'md:order-last' : ''}`}>
                                     <div className='relative'>
                                         <span
@@ -106,7 +106,7 @@ function Projects() {
                                     </div>
                                 </div>
 
-                                <div className='w-full md:w-1/2 flex flex-col gap-4'>
+                                <div className='w-full md:w-1/2 flex flex-col gap-2.5'>
                                     <h3 className='font-display text-xl font-semibold tracking-tight'>
                                         {project.title}
                                     </h3>
@@ -117,7 +117,7 @@ function Projects() {
                                         {project.topics.map((topic) => (
                                             <span
                                                 key={topic}
-                                                className='text-[11px] px-2.5 py-1 rounded-full border border-border text-muted-foreground font-medium'
+                                                className='text-[11px] px-2.5 py-1 rounded-full border border-border text-foreground/80 font-medium'
                                             >
                                                 {topic}
                                             </span>
@@ -179,7 +179,7 @@ function Projects() {
                                                     href={project.githubLink}
                                                     target='_blank'
                                                     rel='noopener noreferrer'
-                                                    className='w-36 inline-flex justify-center items-center gap-2 px-4 py-2 rounded-md border border-border text-muted-foreground text-sm font-medium hover:text-foreground hover:border-foreground/30 transition-colors'
+                                                    className='w-36 inline-flex justify-center items-center gap-2 px-4 py-2 rounded-md border border-border text-foreground/80 text-sm font-medium hover:text-foreground hover:border-foreground/30 transition-colors'
                                                 >
                                                     <svg
                                                         className='w-3.5 h-3.5'
@@ -227,7 +227,7 @@ function Experience() {
     return (
         <section>
             <SectionHeader label='experience' />
-            <div className='flex flex-col gap-10'>
+            <div className='flex flex-col gap-6'>
                 {experience.map((job) => (
                     <div
                         key={job.company}
@@ -235,22 +235,22 @@ function Experience() {
                     >
                         <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1'>
                             <span className='font-display font-semibold text-[17px] tracking-tight'>{job.company}</span>
-                            <span className='text-sm text-muted-foreground flex-shrink-0'>{job.dates}</span>
+                            <span className='text-sm text-foreground/80 flex-shrink-0'>{job.dates}</span>
                         </div>
-                        <p className='text-sm text-muted-foreground mt-0.5'>
+                        <p className='text-sm text-foreground/80 mt-0.5'>
                             {job.title} | {job.location}
                         </p>
-                        <div className='flex flex-wrap gap-2 mt-3'>
+                        <div className='flex flex-wrap gap-2 mt-2'>
                             {job.tools.map((tool) => (
                                 <span
                                     key={tool}
-                                    className='text-[11px] px-2.5 py-1 rounded-full border border-border text-muted-foreground font-medium'
+                                    className='text-[11px] px-2.5 py-1 rounded-full border border-border text-foreground/80 font-medium'
                                 >
                                     {tool}
                                 </span>
                             ))}
                         </div>
-                        <ul className='mt-4 flex flex-col gap-2.5'>
+                        <ul className='mt-2.5 flex flex-col gap-2'>
                             {job.bullets.map((bullet, i) => (
                                 <li
                                     key={i}
@@ -271,11 +271,8 @@ function Experience() {
 function Dashboard() {
     return (
         <PageWrapper>
-            <div className='flex flex-col gap-16'>
-                <div className='flex flex-col gap-8'>
-                    <Hero />
-                </div>
-
+            <div className='flex flex-col gap-8'>
+                <Hero />
                 <Projects />
                 <Experience />
             </div>

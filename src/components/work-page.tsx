@@ -51,7 +51,7 @@ export default function WorkPage({
                         {company}
                     </h1>
                     <h2 className='text-lg font-semibold text-foreground mb-3'>{title}</h2>
-                    <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-sm text-muted-foreground'>
+                    <div className='flex flex-col sm:flex-row sm:items-center sm:gap-4 text-sm text-foreground/80'>
                         <span>{dates}</span>
                         {location && <span className='hidden sm:inline text-border'>|</span>}
                         <span>{location}</span>
@@ -63,7 +63,7 @@ export default function WorkPage({
             {tldr && (
                 <section className='mb-10'>
                     <h3 className='font-display text-lg font-semibold border-b border-border pb-3 mb-5'>TLDR</h3>
-                    <p className='text-sm leading-relaxed text-foreground/90'>{tldr}</p>
+                    <p className='text-sm leading-relaxed text-foreground/80'>{tldr}</p>
                 </section>
             )}
 
@@ -75,7 +75,7 @@ export default function WorkPage({
                     {points.map((point, index) => (
                         <li
                             key={index}
-                            className='text-foreground/90'
+                            className='text-foreground/80'
                         >
                             {point}
                         </li>
@@ -85,7 +85,7 @@ export default function WorkPage({
 
             <section className='pb-4 mb-8'>
                 <h3 className='font-display text-lg font-semibold border-b border-border pb-3 mb-5'>Experience</h3>
-                <div className='leading-relaxed flex flex-col gap-4 text-sm text-foreground/90'>{children}</div>
+                <div className='leading-relaxed flex flex-col gap-4 text-sm text-foreground/80'>{children}</div>
             </section>
             <Link
                 to='/work'
