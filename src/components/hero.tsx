@@ -23,14 +23,14 @@ export default function Hero() {
                     </p>
                     <p className='text-sm text-foreground/80 tracking-wide text-center md:text-left'>
                         I'm a software engineer with 3+ years' experience, primarily in TypeScript and Python. Most of
-                        my time has been spent at startups, with a couple of pitstops at Amazon as an SDE intern along
+                        my time has been spent at startups, with a couple of pit stops at Amazon as an SDE intern along
                         the way.
                         <br />
                         <br />
                         I specialize in backend systems, having built event-driven pipelines, AI workflows, and
-                        developer tooling. Lately I'm focused on AI solutions that meet people where they already work,
-                        building intelligence into the tools they use every day instead of asking them to adopt
-                        something new.
+                        developer tooling. Lately I'm focused on AI solutions and helping inform business decisions in
+                        the steel industry over at Felux. Outside of work, I've been deep in Go, building systems stuff
+                        and learning database internals.
                         <br />
                         <br />I also have a passion for graphic design and music, though I'll keep my day job. Always
                         happy to talk engineering or trade music recommendations.
